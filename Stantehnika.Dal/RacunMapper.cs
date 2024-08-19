@@ -15,13 +15,16 @@ namespace Stantehnika.Dal
         {
             return new RacunGlava
             {
-                RacunGlavaID = reader.GetInt32("RacunGlavaID"),
-                StevilkaRacuna = reader.GetString("StevilkaRacuna"),
-                Kraj = reader.GetString("Kraj"),
-                Datum = reader.GetDateTime("Datum"),
-                DatumOpravljeno = reader.GetDateTime("DatumOpravljeno"),
-                Datumzapade = reader.GetDateTime("Datumzapade"),
-                StrankaID = reader.GetInt32("StrankaID")
+                RacunGlavaID = reader.GetInt32(reader.GetOrdinal("RacunGlavaID")),
+                StevilkaRacuna = reader.GetString(reader.GetOrdinal("StevilkaRacuna")),
+                Kraj = reader.GetString(reader.GetOrdinal("Kraj")),
+                Datum = reader.GetDateTime(reader.GetOrdinal("Datum")),
+                DatumOpravljeno = reader.GetDateTime(reader.GetOrdinal("DatumOpravljeno")),
+                Datumzapade = reader.GetDateTime(reader.GetOrdinal("Datumzapade")),
+                StrankaID = reader.GetInt32(reader.GetOrdinal("StrankaID")),
+                NazivPodjetja = reader.IsDBNull(reader.GetOrdinal("NazivPodjetja")) ?
+                        $"{reader.GetString(reader.GetOrdinal("ImeInPriimek"))}" :
+                        reader.GetString(reader.GetOrdinal("NazivPodjetja"))
             };
         }
     }
