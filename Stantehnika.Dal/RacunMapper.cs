@@ -15,16 +15,17 @@ namespace Stantehnika.Dal
         {
             return new RacunGlava
             {
-                RacunGlavaID = reader.GetInt32(reader.GetOrdinal("RacunGlavaID")),
-                StevilkaRacuna = reader.GetString(reader.GetOrdinal("StevilkaRacuna")),
-                Kraj = reader.GetString(reader.GetOrdinal("Kraj")),
-                Datum = reader.GetDateTime(reader.GetOrdinal("Datum")),
-                DatumOpravljeno = reader.GetDateTime(reader.GetOrdinal("DatumOpravljeno")),
-                Datumzapade = reader.GetDateTime(reader.GetOrdinal("Datumzapade")),
-                StrankaID = reader.GetInt32(reader.GetOrdinal("StrankaID")),
+                RacunGlavaID = reader.GetInt32("RacunGlavaID"),
+                StevilkaRacuna = reader.GetString("StevilkaRacuna"),
+                Kraj = reader.GetString("Kraj"),
+                Datum = reader.GetDateTime(reader.GetOrdinal("Datum")).ToString("dd.MM.yyyy"),
+                DatumOpravljeno = reader.GetDateTime(reader.GetOrdinal("DatumOpravljeno")).ToString("dd.MM.yyyy"),
+                Datumzapade = reader.GetDateTime(reader.GetOrdinal("Datumzapade")).ToString("dd.MM.yyyy"),
+                StrankaID = reader.GetInt32("StrankaID"),
                 NazivPodjetja = reader.IsDBNull(reader.GetOrdinal("NazivPodjetja")) ?
-                        $"{reader.GetString(reader.GetOrdinal("ImeInPriimek"))}" :
-                        reader.GetString(reader.GetOrdinal("NazivPodjetja"))
+                                    reader.GetString("ImeInPriimek") :
+                                    reader.GetString("NazivPodjetja"),
+                SkupnaCena = reader.GetDecimal("SkupnaCena").ToString("N2") + " €",
             };
         }
     }

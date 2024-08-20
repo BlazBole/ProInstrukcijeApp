@@ -31,9 +31,16 @@ namespace Stantehnika.Dal
             using (var connection = dbConnection.GetConnection())
             {
                 connection.Open();
-                // Prilagojena poizvedba brez RacunGlavaID in StrankaID
                 string query = @"SELECT rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
-                                rg.StrankaID, s.NazivPodjetja, s.ImeInPriimek FROM RacunGlava rg JOIN Stranka s ON rg.StrankaID = s.StrankaID";
+                                rg.StrankaID, s.NazivPodjetja, 
+                                SUM(rp.CenaPostavke) AS SkupnaCena
+                         FROM RacunGlava rg 
+                         JOIN Stranka s ON rg.StrankaID = s.StrankaID
+                         LEFT JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
+                         GROUP BY rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+                                  rg.StrankaID, s.NazivPodjetja
+                         ORDER BY rg.Datum DESC";
+
                 using (var command = new MySqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
                 {

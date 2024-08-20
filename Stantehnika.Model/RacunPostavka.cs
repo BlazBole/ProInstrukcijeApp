@@ -14,7 +14,7 @@ namespace Stantehnika.Model
         public decimal Kolicina { get; set; }
         public string EnotaMerjenja { get; set; }
         public decimal CenaEneKolicine { get; set; }
-        public decimal CenaStoritve { get; set; }
+        public decimal CenaPostavke { get; set; }
         public int RacunGlavaID { get; set; } // Tuji kljuc
 
         public RacunGlava RacunGlava { get; set; } // Navigacijska lastnost
