@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,13 +15,20 @@ namespace Stantehnika.APP.UsersControls
 {
     public partial class UC_Domov : UserControl
     {
+        #region private members
         private RacunManager racunManager;
+        #endregion private members
+
+        #region constructor
         public UC_Domov()
         {
             InitializeComponent();
             pripravitabeloRacunov();
+            NapolniComboBoxStranka();
         }
+        #endregion constructor
 
+        #region methods
         public void pripravitabeloRacunov()
         {
             racunManager = new RacunManager();
@@ -29,26 +37,27 @@ namespace Stantehnika.APP.UsersControls
             // Nastavi podatke v DataGridView
             dataGridView.DataSource = racuni;
 
-            // Nastavi imena stolpcev
             dataGridView.Columns["StevilkaRacuna"].HeaderText = "Številka računa";
-            dataGridView.Columns["Kraj"].HeaderText = "Kraj";
-            dataGridView.Columns["Datum"].HeaderText = "Datum izdaje računa";
-            dataGridView.Columns["DatumOpravljeno"].HeaderText = "Datum opravljenje storitve";
-            dataGridView.Columns["Datumzapade"].HeaderText = "Rok plačila";
+            dataGridView.Columns["Datum"].HeaderText = "Izdano";
+            dataGridView.Columns["DatumOpravljeno"].HeaderText = "Opravljeno";
             dataGridView.Columns["NazivPodjetja"].HeaderText = "Stranka";
-            dataGridView.Columns["SkupnaCena"].HeaderText = "Skupna cena"; // Dodaj ta stolpec
+            dataGridView.Columns["CenaDelo"].HeaderText = "Cena dela";
+            dataGridView.Columns["CenaMaterial"].HeaderText = "Cena materiala";
+            dataGridView.Columns["SkupnaCena"].HeaderText = "Skupna cena"; 
 
 
             // Velikost celic v DataGridView
             dataGridView.Columns["StevilkaRacuna"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns["Kraj"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns["Datum"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns["DatumOpravljeno"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns["Datumzapade"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns["NazivPodjetja"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns["CenaDelo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns["CenaMaterial"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns["SkupnaCena"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             // Skrij neuporabljene stolpce
+            dataGridView.Columns["Datumzapade"].Visible = false;
+            dataGridView.Columns["Kraj"].Visible = false;
             dataGridView.Columns["RacunGlavaID"].Visible = false;
             dataGridView.Columns["StrankaID"].Visible = false;
             dataGridView.Columns["Stranka"].Visible = false;
@@ -71,6 +80,66 @@ namespace Stantehnika.APP.UsersControls
                 }
 
             }
+        }
+        private void NapolniComboBoxStranka()
+        {
+            var items = new List<dynamic>
+            {
+                new { Key = -1, Value = "Izberi stranko" }
+            };
+
+            RacunManager racunManager = new RacunManager();
+            Dictionary<int, string> stranke = racunManager.GetAllStranke();
+
+            foreach (var stranka in stranke)
+            {
+                items.Add(new { Key = stranka.Key, Value = stranka.Value });
+            }
+
+            cmbStranka.DataSource = new BindingSource(items, null);
+            cmbStranka.DisplayMember = "Value";
+            cmbStranka.ValueMember = "Key";
+            cmbStranka.SelectedIndex = 0; // Nastavi začetni element kot izbran
+        }
+
+
+        private void FiltrirajTabeloPoStranki(int strankaID)
+        {
+            RacunManager racunManager = new RacunManager();
+            List<RacunGlava> racuni = racunManager.GetRacuniPoStranki(strankaID);
+
+            dataGridView.DataSource = racuni;
+
+            // Nastavi imena stolpcev
+            dataGridView.Columns["StevilkaRacuna"].HeaderText = "Številka računa";
+            dataGridView.Columns["Datum"].HeaderText = "Izdano";
+            dataGridView.Columns["DatumOpravljeno"].HeaderText = "Opravljeno";
+            dataGridView.Columns["NazivPodjetja"].HeaderText = "Stranka";
+            dataGridView.Columns["CenaDelo"].HeaderText = "Cena dela";
+            dataGridView.Columns["CenaMaterial"].HeaderText = "Cena materiala";
+            dataGridView.Columns["SkupnaCena"].HeaderText = "Skupna cena";
+
+            dataGridView.Columns["RacunGlavaID"].Visible = false;
+            dataGridView.Columns["StrankaID"].Visible = false;
+        }
+        #endregion methods
+
+        #region events
+        private void btnFiltriraj_Click(object sender, EventArgs e)
+        {
+            if (cmbStranka.SelectedValue != null && cmbStranka.Text != "Izberi stranko")
+            {
+                int izbranaStrankaID = (int)cmbStranka.SelectedValue;
+                FiltrirajTabeloPoStranki(izbranaStrankaID);
+            }
+        }
+
+        #endregion events
+
+        private void btnResetirajFilter_Click(object sender, EventArgs e)
+        {
+            pripravitabeloRacunov();
+            cmbStranka.Text = "Izberi stranko";
         }
     }
 

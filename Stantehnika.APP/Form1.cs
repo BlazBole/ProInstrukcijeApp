@@ -19,11 +19,14 @@ namespace Stantehnika.APP
         #region private members
         private RacunManager racunManager;
         #endregion
+
+        #region constructor
         public Form1()
         {
             InitializeComponent();
             ShowUC_Home();
         }
+        #endregion constructor
 
         #region methods
         private void ShowUC_Home()

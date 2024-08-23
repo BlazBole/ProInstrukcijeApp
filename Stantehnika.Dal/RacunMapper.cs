@@ -13,6 +13,11 @@ namespace Stantehnika.Dal
     {
         public static RacunGlava MapToRacunGlava(MySqlDataReader reader)
         {
+            decimal skupnaCena = reader.GetDecimal("SkupnaCena");
+            decimal cenaMaterial = reader.IsDBNull(reader.GetOrdinal("CenaMaterial"))
+                                   ? 0.00m
+                                   : reader.GetDecimal("CenaMaterial");
+
             return new RacunGlava
             {
                 RacunGlavaID = reader.GetInt32("RacunGlavaID"),
@@ -22,10 +27,10 @@ namespace Stantehnika.Dal
                 DatumOpravljeno = reader.GetDateTime(reader.GetOrdinal("DatumOpravljeno")).ToString("dd.MM.yyyy"),
                 Datumzapade = reader.GetDateTime(reader.GetOrdinal("Datumzapade")).ToString("dd.MM.yyyy"),
                 StrankaID = reader.GetInt32("StrankaID"),
-                NazivPodjetja = reader.IsDBNull(reader.GetOrdinal("NazivPodjetja")) ?
-                                    reader.GetString("ImeInPriimek") :
-                                    reader.GetString("NazivPodjetja"),
-                SkupnaCena = reader.GetDecimal("SkupnaCena").ToString("N2") + " €",
+                NazivPodjetja = reader.GetString("Stranka"),
+                SkupnaCena = skupnaCena.ToString("N2") + " €",
+                CenaMaterial = cenaMaterial.ToString("N2") + " €",
+                CenaDelo = (skupnaCena - cenaMaterial).ToString("N2") + " €"
             };
         }
     }

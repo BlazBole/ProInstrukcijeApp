@@ -19,6 +19,10 @@ namespace Stantehnika.Model
         public Stranka Stranka { get; set; } // Navigacijska lastnost
         public string NazivPodjetja { get; set; }
         public string ImeInPriimek { get; set; }
+
+        public string CenaDelo { get; set; }
+        public string CenaMaterial { get; set; }
         public string SkupnaCena { get; set; }
+        
     }
 }
