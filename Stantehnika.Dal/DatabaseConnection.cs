@@ -20,7 +20,7 @@ namespace Stantehnika.Dal
         public DatabaseConnection()
         {
             // Prilagodi povezavo na osnovi tvojih podatkov (host, baza, uporabnik, geslo)
-            connectionString = "Server=212.44.101.98;Database=stante58_StantehnikaAPP;User=stante58_blaz;Password=Gregor.bole12345;";
+            connectionString = "Server=212.44.101.98;Database=stante58_StantehnikaAPP;User=stante58_blaz;Password=Gregor.bole12345;Connection Timeout=60";
         }
         #endregion constructor
 

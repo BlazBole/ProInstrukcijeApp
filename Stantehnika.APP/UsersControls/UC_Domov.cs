@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Stantehnika.APP.UsersControls
 {
@@ -25,6 +26,7 @@ namespace Stantehnika.APP.UsersControls
             InitializeComponent();
             pripravitabeloRacunov();
             NapolniComboBoxStranka();
+            NastaviFiltre();
         }
         #endregion constructor
 
@@ -43,7 +45,7 @@ namespace Stantehnika.APP.UsersControls
             dataGridView.Columns["NazivPodjetja"].HeaderText = "Stranka";
             dataGridView.Columns["CenaDelo"].HeaderText = "Cena dela";
             dataGridView.Columns["CenaMaterial"].HeaderText = "Cena materiala";
-            dataGridView.Columns["SkupnaCena"].HeaderText = "Skupna cena"; 
+            dataGridView.Columns["SkupnaCena"].HeaderText = "Skupna cena";
 
 
             // Velikost celic v DataGridView
@@ -81,7 +83,11 @@ namespace Stantehnika.APP.UsersControls
 
             }
         }
-        private void NapolniComboBoxStranka()
+
+        public void NastaviFiltre()
+        {
+        }
+        public void NapolniComboBoxStranka()
         {
             var items = new List<dynamic>
             {
@@ -102,11 +108,31 @@ namespace Stantehnika.APP.UsersControls
             cmbStranka.SelectedIndex = 0; // Nastavi začetni element kot izbran
         }
 
-
-        private void FiltrirajTabeloPoStranki(int strankaID)
+        public void FiltrirajTabeloPoStranki(int strankaID)
         {
             RacunManager racunManager = new RacunManager();
             List<RacunGlava> racuni = racunManager.GetRacuniPoStranki(strankaID);
+
+            dataGridView.DataSource = racuni;
+
+            // Nastavi imena stolpcev
+            dataGridView.Columns["StevilkaRacuna"].HeaderText = "Številka računa";
+            dataGridView.Columns["Datum"].HeaderText = "Izdano";
+            dataGridView.Columns["DatumOpravljeno"].HeaderText = "Opravljeno";
+            dataGridView.Columns["NazivPodjetja"].HeaderText = "Stranka";
+            dataGridView.Columns["CenaDelo"].HeaderText = "Cena dela";
+            dataGridView.Columns["CenaMaterial"].HeaderText = "Cena materiala";
+            dataGridView.Columns["SkupnaCena"].HeaderText = "Skupna cena";
+
+            dataGridView.Columns["RacunGlavaID"].Visible = false;
+            dataGridView.Columns["StrankaID"].Visible = false;
+        }
+
+        public void FiltrirajTabeloPoDatumu(DateTime datumOd, DateTime datumDo)
+        {
+            RacunManager racunManager = new RacunManager();
+
+            List<RacunGlava> racuni = racunManager.GetRacuniPoDatumu(datumOd, datumDo);
 
             dataGridView.DataSource = racuni;
 
@@ -127,19 +153,54 @@ namespace Stantehnika.APP.UsersControls
         #region events
         private void btnFiltriraj_Click(object sender, EventArgs e)
         {
-            if (cmbStranka.SelectedValue != null && cmbStranka.Text != "Izberi stranko")
+            if (cmbStranka.SelectedValue != null && cmbStranka.Text != "Izberi stranko" && btnIzberiStranko.Enabled == false && btnIzberiDatumOdDo.Enabled == true && btnIzberiSkupnoCenoOdDo.Enabled == true)
             {
                 int izbranaStrankaID = (int)cmbStranka.SelectedValue;
                 FiltrirajTabeloPoStranki(izbranaStrankaID);
             }
-        }
 
-        #endregion events
+            else if(btnIzberiStranko.Enabled == true && btnIzberiDatumOdDo.Enabled == false && btnIzberiSkupnoCenoOdDo.Enabled == true)
+            {
+                cmbStranka.Text = "Izberi stranko";
+                DateTime datumOd = dtpDatumIzdanegaRacunaOd.Value;
+                DateTime datumDo = dtpDatumIzdanegaRacunaDo.Value;
+
+                FiltrirajTabeloPoDatumu(datumOd, datumDo);
+            }
+            else if(btnIzberiStranko.Enabled == false && btnIzberiDatumOdDo.Enabled == false && btnIzberiSkupnoCenoOdDo.Enabled == true)
+            {
+                //TODO
+            }
+        }
 
         private void btnResetirajFilter_Click(object sender, EventArgs e)
         {
             pripravitabeloRacunov();
             cmbStranka.Text = "Izberi stranko";
+        }
+
+        #endregion events
+
+        private void btnIzberiStranko_Click(object sender, EventArgs e)
+        {
+            btnIzberiStranko.Enabled = false;
+            btnIzberiDatumOdDo.Enabled = true;
+            btnIzberiSkupnoCenoOdDo.Enabled=true;
+
+        }
+
+        private void btnIzberiDatumOdDo_Click(object sender, EventArgs e)
+        {
+            btnIzberiStranko.Enabled = true;
+            btnIzberiDatumOdDo.Enabled = false;
+            btnIzberiSkupnoCenoOdDo.Enabled = true;
+        }
+
+        private void btnIzberiSkupnoCenoOdDo_Click(object sender, EventArgs e)
+        {
+            btnIzberiStranko.Enabled = false;
+            btnIzberiDatumOdDo.Enabled = true;
+            btnIzberiSkupnoCenoOdDo.Enabled = false;
         }
     }
 
