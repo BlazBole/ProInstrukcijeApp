@@ -71,7 +71,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1108, 64);
+            this.panel1.Size = new System.Drawing.Size(1384, 64);
             this.panel1.TabIndex = 6;
             this.panel1.Click += new System.EventHandler(this.btnNovRacun_Click);
             // 
@@ -80,7 +80,7 @@
             this.btnNovRacun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNovRacun.BackColor = System.Drawing.Color.White;
             this.btnNovRacun.ForeColor = System.Drawing.Color.Black;
-            this.btnNovRacun.Location = new System.Drawing.Point(971, 5);
+            this.btnNovRacun.Location = new System.Drawing.Point(1196, 5);
             this.btnNovRacun.Name = "btnNovRacun";
             this.btnNovRacun.Size = new System.Drawing.Size(104, 42);
             this.btnNovRacun.TabIndex = 0;
@@ -95,7 +95,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 64);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1108, 52);
+            this.panel2.Size = new System.Drawing.Size(1384, 52);
             this.panel2.TabIndex = 7;
             this.panel2.Click += new System.EventHandler(this.btnNovRacun_Click);
             // 
@@ -105,7 +105,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 116);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1108, 567);
+            this.panel3.Size = new System.Drawing.Size(1384, 745);
             this.panel3.TabIndex = 8;
             this.panel3.Click += new System.EventHandler(this.btnNovRacun_Click);
             // 
@@ -113,10 +113,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1108, 683);
+            this.ClientSize = new System.Drawing.Size(1384, 861);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.MaximumSize = new System.Drawing.Size(1400, 900);
+            this.MinimumSize = new System.Drawing.Size(1400, 900);
             this.Name = "Form1";
             this.Text = "Stantehnika Gregor Bole s.p.";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

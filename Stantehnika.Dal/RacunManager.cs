@@ -24,6 +24,242 @@ namespace Stantehnika.Dal
         #endregion constructor
 
         #region methods
+
+        public int GetSteviloIzdaniRacunovZaMesec(DateTime prviDan, DateTime zadnjiDan)
+        {
+            int steviloRacunov = 0;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT COUNT(*) FROM RacunGlava WHERE Datum BETWEEN @PrviDanMeseca AND @ZadnjiDanMeseca";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PrviDanMeseca", prviDan);
+                    command.Parameters.AddWithValue("@ZadnjiDanMeseca", zadnjiDan);
+
+                    steviloRacunov = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+
+            return steviloRacunov;
+        }
+
+        public decimal GetVsotaMaterialovZaMesec(DateTime prviDan, DateTime zadnjiDan)
+        {
+            decimal vsotaMaterialov = 0m;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT SUM(rp.CenaPostavke) 
+                        FROM RacunPostavka rp
+                        JOIN RacunGlava rg ON rp.RacunGlavaID = rg.RacunGlavaID
+                        WHERE rp.Storitev = 'material' 
+                        AND rg.Datum BETWEEN @PrviDanMeseca AND @ZadnjiDanMeseca";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PrviDanMeseca", prviDan);
+                    command.Parameters.AddWithValue("@ZadnjiDanMeseca", zadnjiDan);
+
+                    var result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        vsotaMaterialov = Convert.ToDecimal(result);
+                    }
+                }
+            }
+
+            return vsotaMaterialov;
+        }
+
+        public decimal GetVsotaDelaZaMesec(DateTime prviDan, DateTime zadnjiDan)
+        {
+            decimal vsotaDela = 0m;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT SUM(rp.CenaPostavke) 
+                         FROM RacunPostavka rp
+                         JOIN RacunGlava rg ON rp.RacunGlavaID = rg.RacunGlavaID
+                         WHERE rp.Storitev != 'material'
+                         AND rg.Datum BETWEEN @PrviDanMeseca AND @ZadnjiDanMeseca";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PrviDanMeseca", prviDan);
+                    command.Parameters.AddWithValue("@ZadnjiDanMeseca", zadnjiDan);
+
+                    var result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        vsotaDela = Convert.ToDecimal(result);
+                    }
+                }
+            }
+
+            return vsotaDela;
+        }
+
+        public decimal GetSkupniPrilivZaMesec(DateTime prviDanMeseca, DateTime zadnjiDanMeseca)
+        {
+            decimal skupniPriliv = 0;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT SUM(rp.CenaPostavke) AS SkupniPriliv
+                         FROM RacunGlava rg
+                         JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
+                         WHERE rg.Datum BETWEEN @PrviDanMeseca AND @ZadnjiDanMeseca";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PrviDanMeseca", prviDanMeseca);
+                    command.Parameters.AddWithValue("@ZadnjiDanMeseca", zadnjiDanMeseca);
+
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        skupniPriliv = Convert.ToDecimal(result);
+                    }
+                }
+            }
+
+            return skupniPriliv;
+        }
+
+        public string GetStevilkaZadnjegaRacuna()
+        {
+            string stevilkaRacuna = null;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT StevilkaRacuna 
+                         FROM RacunGlava 
+                         ORDER BY Datum DESC 
+                         LIMIT 1";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        stevilkaRacuna = result.ToString();
+                    }
+                }
+            }
+
+            return stevilkaRacuna;
+        }
+
+        public string GetStrankaZadnjegaRacuna()
+        {
+            string stranka = null;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"
+                        SELECT COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka
+                        FROM RacunGlava rg
+                        JOIN Stranka s ON rg.StrankaID = s.StrankaID
+                        ORDER BY rg.Datum DESC
+                        LIMIT 1";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        stranka = result.ToString();
+                    }
+                }
+            }
+
+            return stranka;
+        }
+
+        public DateTime? GetDatumZadnjegaRacuna()
+        {
+            DateTime? datumZadnjegaRacuna = null;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"
+                    SELECT Datum
+                    FROM RacunGlava
+                    ORDER BY Datum DESC
+                    LIMIT 1";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        datumZadnjegaRacuna = Convert.ToDateTime(result);
+                    }
+                }
+            }
+
+            return datumZadnjegaRacuna;
+        }
+
+        public decimal GetSkupnaCenaZadnjegaRacuna()
+        {
+            decimal skupnaCena = 0.0m;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+
+                // Pridobitev ID zadnjega računa
+                string queryRacunID = @"
+            SELECT RacunGlavaID 
+            FROM RacunGlava 
+            ORDER BY Datum DESC 
+            LIMIT 1";
+
+                int? racunGlavaID = null;
+                using (var command = new MySqlCommand(queryRacunID, connection))
+                {
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        racunGlavaID = Convert.ToInt32(result);
+                    }
+                }
+
+                if (racunGlavaID.HasValue)
+                {
+                    // Pridobitev skupne cene postavk za ta račun
+                    string queryCena = @"
+                SELECT SUM(CenaPostavke) 
+                FROM RacunPostavka 
+                WHERE RacunGlavaID = @RacunGlavaID";
+
+                    using (var command = new MySqlCommand(queryCena, connection))
+                    {
+                        command.Parameters.AddWithValue("@RacunGlavaID", racunGlavaID.Value);
+
+                        object resultCena = command.ExecuteScalar();
+                        if (resultCena != DBNull.Value)
+                        {
+                            skupnaCena = Convert.ToDecimal(resultCena);
+                        }
+                    }
+                }
+            }
+
+            return skupnaCena;
+        }
+
+
         public List<RacunGlava> GetAllRacuni()
         {
             List<RacunGlava> racuni = new List<RacunGlava>();
@@ -68,11 +304,29 @@ namespace Stantehnika.Dal
             return racuni;
         }
 
+        public Dictionary<int, string> GetRacun()
+        {
+            Dictionary<int, string> racuni = new Dictionary<int, string>();
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "SELECT RacunGlavaID, StevilkaRacuna, Datum FROM RacunGlava ORDER BY Datum DESC";
+                using (var command = new MySqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        racuni.Add(reader.GetInt32("RacunGlavaID"), reader.GetString("StevilkaRacuna"));
+                    }
+                }
+            }
+
+            return racuni;
+        }
 
         public Dictionary<int, string> GetAllStranke()
         {
             Dictionary<int, string> stranke = new Dictionary<int, string>();
-
 
             using (var connection = dbConnection.GetConnection())
             {
@@ -91,6 +345,42 @@ namespace Stantehnika.Dal
             return stranke;
         }
 
+        public List<RacunGlava> GetRacuniPoRacunu(int racunID)
+        {
+            List<RacunGlava> racuni = new List<RacunGlava>();
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+                         rg.StrankaID, 
+                         COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka, 
+                         SUM(rp.CenaPostavke) AS SkupnaCena,
+                         SUM(CASE WHEN rp.Storitev = 'material' THEN rp.CenaPostavke ELSE 0 END) AS CenaMaterial
+                         FROM RacunGlava rg
+                         JOIN Stranka s ON rg.StrankaID = s.StrankaID
+                         LEFT JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
+                         WHERE rg.RacunGlavaID = @RacunGlavaID
+                         GROUP BY rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+                                  rg.StrankaID, s.NazivPodjetja, s.ImeInPriimek
+                         ORDER BY rg.Datum DESC";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@RacunGlavaID", racunID);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            RacunGlava racun = RacunMapper.MapToRacunGlava(reader);
+                            racuni.Add(racun);
+                        }
+                    }
+                }
+            }
+
+            return racuni;
+        }
 
         public List<RacunGlava> GetRacuniPoStranki(int strankaID)
         {
@@ -129,7 +419,6 @@ namespace Stantehnika.Dal
             return racuni;
         }
 
-
         public List<RacunGlava> GetRacuniPoDatumu(DateTime datumOd, DateTime datumDo)
         {
             List<RacunGlava> racuni = new List<RacunGlava>();
@@ -166,6 +455,44 @@ namespace Stantehnika.Dal
                 }
             }
 
+            return racuni;
+        }
+
+        public List<RacunGlava> GetRacuniPoSkupniceni(int cenaOd, int cenaDo)
+        {
+            List<RacunGlava> racuni = new List<RacunGlava>();
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+                   rg.StrankaID, 
+                   COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka, 
+                   SUM(rp.CenaPostavke) AS SkupnaCena,
+                   SUM(CASE WHEN rp.Storitev = 'material' THEN rp.CenaPostavke ELSE 0 END) AS CenaMaterial
+                   FROM RacunGlava rg
+                   JOIN Stranka s ON rg.StrankaID = s.StrankaID
+                   LEFT JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
+                   GROUP BY rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+                            rg.StrankaID, s.NazivPodjetja, s.ImeInPriimek
+                   HAVING SkupnaCena >= @CenaOd AND SkupnaCena <= @CenaDo
+                   ORDER BY rg.Datum DESC";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CenaOd", cenaOd);
+                    command.Parameters.AddWithValue("@CenaDo", cenaDo);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            RacunGlava racun = RacunMapper.MapToRacunGlava(reader);
+                            racuni.Add(racun);
+                        }
+                    }
+                }
+            }
             return racuni;
         }
 

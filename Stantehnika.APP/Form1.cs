@@ -17,7 +17,6 @@ namespace Stantehnika.APP
     public partial class Form1 : Form
     {
         #region private members
-        private RacunManager racunManager;
         #endregion
 
         #region constructor
