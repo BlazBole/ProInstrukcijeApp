@@ -425,10 +425,7 @@ namespace Stantehnika.APP.UsersControls
             {
                 tbSkupnaCenaOd.Text = string.Format("{0:N0}", amount);
                 tbSkupnaCenaOd.SelectionStart = tbSkupnaCenaOd.Text.Length;
-            }
-            else
-            {
-                tbSkupnaCenaOd.Text = "0";
+                tbSkupnaCenaOd.ForeColor=Color.Black;
             }
         }
 
@@ -443,11 +440,19 @@ namespace Stantehnika.APP.UsersControls
             {
                 tbSkupnaCenaDo.Text = string.Format("{0:N0}", amount);
                 tbSkupnaCenaDo.SelectionStart = tbSkupnaCenaDo.Text.Length;
+                tbSkupnaCenaDo.ForeColor = Color.Black;
             }
-            else
-            {
-                tbSkupnaCenaDo.Text = "0";
-            }
+
+        }
+
+        private void tbSkupnaCenaOd_Click(object sender, EventArgs e)
+        {
+            tbSkupnaCenaOd.Text = "";
+        }
+
+        private void tbSkupnaCenaDo_Click(object sender, EventArgs e)
+        {
+            tbSkupnaCenaDo.Text = "";
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -469,6 +474,26 @@ namespace Stantehnika.APP.UsersControls
             lblFilterHelp.Visible = false;
         }
 
+        private void pbHelpDodajRacun_MouseHover(object sender, EventArgs e)
+        {
+            lblDodajRacunHelp.Visible = true;
+        }
+
+        private void pbHelpDodajRacun_MouseLeave(object sender, EventArgs e)
+        {
+            lblDodajRacunHelp.Visible = false;
+        }
+
+        private void pbHelpDodajRacun_MouseHover_1(object sender, EventArgs e)
+        {
+            lblDodajRacunHelp.Visible = true;
+        }
+
+        private void pbHelpDodajRacun_MouseLeave_1(object sender, EventArgs e)
+        {
+            lblDodajRacunHelp.Visible = false;
+        }
+
         private void pbIzbrisiFiltre_Click(object sender, EventArgs e)
         {
             PripravitabeloRacunov();
@@ -477,12 +502,16 @@ namespace Stantehnika.APP.UsersControls
             jeIzbranaCena = false;
 
             cmbStranka.SelectedIndex = 0;
+            cmbRacun.SelectedIndex = 0;
+            tbSkupnaCenaOd.Text = "Cena od";
+            tbSkupnaCenaDo.Text = "Cena do";
+            tbSkupnaCenaOd.ForeColor = Color.DimGray;
+            tbSkupnaCenaDo.ForeColor = Color.DimGray;
 
             btnIzberiStranko.Image = Properties.Resources.close;
             btnIzberiDatumOdDo.Image = Properties.Resources.close;
             btnIzberiSkupnoCenoOdDo.Image = Properties.Resources.close;
         }
         #endregion events
-
     }
 }

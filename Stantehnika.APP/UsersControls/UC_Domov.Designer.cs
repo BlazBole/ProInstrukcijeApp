@@ -28,16 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Domov));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDodajRacunHelp = new System.Windows.Forms.Label();
+            this.pbHelpDodajRacun = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.lblDatum = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.lblSkupnaCenaZadnjegaRacuna = new System.Windows.Forms.Label();
+            this.lblDatumIzdajeZadnjegaRacuna = new System.Windows.Forms.Label();
+            this.lblStrankaZadnjegaRacuna = new System.Windows.Forms.Label();
+            this.lblStevilkaZadnjegaRacuna = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblPrilivSkupno = new System.Windows.Forms.Label();
             this.lblPrilivNeto = new System.Windows.Forms.Label();
@@ -56,7 +68,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cmbRacun = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -64,51 +75,44 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblFilterHelp = new System.Windows.Forms.Label();
+            this.phHelpFilter = new System.Windows.Forms.PictureBox();
+            this.pbIzbrisiFiltre = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbSkupnaCenaDo = new System.Windows.Forms.TextBox();
             this.tbSkupnaCenaOd = new System.Windows.Forms.TextBox();
+            this.btnIzberiSkupnoCenoOdDo = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnFiltriraj = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnIzberiDatumOdDo = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpDatumIzdanegaRacunaDo = new System.Windows.Forms.DateTimePicker();
             this.dtpDatumIzdanegaRacunaOd = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbStranka = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.lblStevilkaZadnjegaRacuna = new System.Windows.Forms.Label();
-            this.lblStrankaZadnjegaRacuna = new System.Windows.Forms.Label();
-            this.lblDatumIzdajeZadnjegaRacuna = new System.Windows.Forms.Label();
-            this.lblSkupnaCenaZadnjegaRacuna = new System.Windows.Forms.Label();
-            this.phHelpFilter = new System.Windows.Forms.PictureBox();
-            this.pbIzbrisiFiltre = new System.Windows.Forms.PictureBox();
-            this.btnIzberiSkupnoCenoOdDo = new System.Windows.Forms.PictureBox();
-            this.btnIzberiDatumOdDo = new System.Windows.Forms.PictureBox();
             this.btnIzberiStranko = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelpDodajRacun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.phHelpFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIzbrisiFiltre)).BeginInit();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnIzberiSkupnoCenoOdDo)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnIzberiDatumOdDo)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnIzberiStranko)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -118,23 +122,23 @@
             this.dataGridView.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.ForestGreen;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.ForestGreen;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.EnableHeadersVisualStyles = false;
             this.dataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -142,14 +146,14 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.ForestGreen;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.ForestGreen;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView.RowHeadersWidth = 30;
             this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -158,6 +162,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblDodajRacunHelp);
+            this.panel1.Controls.Add(this.pbHelpDodajRacun);
+            this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label13);
@@ -165,7 +172,6 @@
             this.panel1.Controls.Add(this.groupBox7);
             this.panel1.Controls.Add(this.groupBox6);
             this.panel1.Controls.Add(this.groupBox5);
-            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -173,11 +179,44 @@
             this.panel1.Size = new System.Drawing.Size(1384, 299);
             this.panel1.TabIndex = 9;
             // 
+            // lblDodajRacunHelp
+            // 
+            this.lblDodajRacunHelp.AutoSize = true;
+            this.lblDodajRacunHelp.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblDodajRacunHelp.Location = new System.Drawing.Point(1181, 208);
+            this.lblDodajRacunHelp.Name = "lblDodajRacunHelp";
+            this.lblDodajRacunHelp.Size = new System.Drawing.Size(99, 17);
+            this.lblDodajRacunHelp.TabIndex = 17;
+            this.lblDodajRacunHelp.Text = "Vnesi nov račun";
+            this.lblDodajRacunHelp.Visible = false;
+            // 
+            // pbHelpDodajRacun
+            // 
+            this.pbHelpDodajRacun.Image = ((System.Drawing.Image)(resources.GetObject("pbHelpDodajRacun.Image")));
+            this.pbHelpDodajRacun.Location = new System.Drawing.Point(1280, 221);
+            this.pbHelpDodajRacun.Name = "pbHelpDodajRacun";
+            this.pbHelpDodajRacun.Size = new System.Drawing.Size(25, 23);
+            this.pbHelpDodajRacun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbHelpDodajRacun.TabIndex = 16;
+            this.pbHelpDodajRacun.TabStop = false;
+            this.pbHelpDodajRacun.MouseLeave += new System.EventHandler(this.pbHelpDodajRacun_MouseLeave_1);
+            this.pbHelpDodajRacun.MouseHover += new System.EventHandler(this.pbHelpDodajRacun_MouseHover_1);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1227, 251);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(52, 32);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 15;
+            this.pictureBox2.TabStop = false;
+            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.linkLabel1.Location = new System.Drawing.Point(116, 182);
+            this.linkLabel1.Location = new System.Drawing.Point(116, 173);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(88, 16);
             this.linkLabel1.TabIndex = 14;
@@ -186,12 +225,22 @@
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(75, 48);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(173, 122);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(840, 18);
+            this.label13.Location = new System.Drawing.Point(817, 18);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(58, 20);
             this.label13.TabIndex = 11;
@@ -202,7 +251,7 @@
             this.lblDatum.AutoSize = true;
             this.lblDatum.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblDatum.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblDatum.Location = new System.Drawing.Point(893, 18);
+            this.lblDatum.Location = new System.Drawing.Point(870, 18);
             this.lblDatum.Name = "lblDatum";
             this.lblDatum.Size = new System.Drawing.Size(53, 20);
             this.lblDatum.TabIndex = 8;
@@ -225,6 +274,90 @@
             this.groupBox7.TabIndex = 10;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Zadnje opravljeno";
+            // 
+            // lblSkupnaCenaZadnjegaRacuna
+            // 
+            this.lblSkupnaCenaZadnjegaRacuna.AutoSize = true;
+            this.lblSkupnaCenaZadnjegaRacuna.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblSkupnaCenaZadnjegaRacuna.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblSkupnaCenaZadnjegaRacuna.Location = new System.Drawing.Point(125, 112);
+            this.lblSkupnaCenaZadnjegaRacuna.Name = "lblSkupnaCenaZadnjegaRacuna";
+            this.lblSkupnaCenaZadnjegaRacuna.Size = new System.Drawing.Size(17, 20);
+            this.lblSkupnaCenaZadnjegaRacuna.TabIndex = 22;
+            this.lblSkupnaCenaZadnjegaRacuna.Text = "0";
+            // 
+            // lblDatumIzdajeZadnjegaRacuna
+            // 
+            this.lblDatumIzdajeZadnjegaRacuna.AutoSize = true;
+            this.lblDatumIzdajeZadnjegaRacuna.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblDatumIzdajeZadnjegaRacuna.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblDatumIzdajeZadnjegaRacuna.Location = new System.Drawing.Point(125, 87);
+            this.lblDatumIzdajeZadnjegaRacuna.Name = "lblDatumIzdajeZadnjegaRacuna";
+            this.lblDatumIzdajeZadnjegaRacuna.Size = new System.Drawing.Size(79, 20);
+            this.lblDatumIzdajeZadnjegaRacuna.TabIndex = 21;
+            this.lblDatumIzdajeZadnjegaRacuna.Text = "00.00.0000";
+            // 
+            // lblStrankaZadnjegaRacuna
+            // 
+            this.lblStrankaZadnjegaRacuna.AutoSize = true;
+            this.lblStrankaZadnjegaRacuna.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStrankaZadnjegaRacuna.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblStrankaZadnjegaRacuna.Location = new System.Drawing.Point(125, 63);
+            this.lblStrankaZadnjegaRacuna.Name = "lblStrankaZadnjegaRacuna";
+            this.lblStrankaZadnjegaRacuna.Size = new System.Drawing.Size(97, 20);
+            this.lblStrankaZadnjegaRacuna.TabIndex = 20;
+            this.lblStrankaZadnjegaRacuna.Text = "Naziv stranke";
+            // 
+            // lblStevilkaZadnjegaRacuna
+            // 
+            this.lblStevilkaZadnjegaRacuna.AutoSize = true;
+            this.lblStevilkaZadnjegaRacuna.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStevilkaZadnjegaRacuna.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblStevilkaZadnjegaRacuna.Location = new System.Drawing.Point(125, 35);
+            this.lblStevilkaZadnjegaRacuna.Name = "lblStevilkaZadnjegaRacuna";
+            this.lblStevilkaZadnjegaRacuna.Size = new System.Drawing.Size(55, 20);
+            this.lblStevilkaZadnjegaRacuna.TabIndex = 19;
+            this.lblStevilkaZadnjegaRacuna.Text = "0000-0";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.Location = new System.Drawing.Point(6, 110);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(101, 21);
+            this.label21.TabIndex = 18;
+            this.label21.Text = "Skupna cena:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.Location = new System.Drawing.Point(6, 85);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(59, 21);
+            this.label20.TabIndex = 17;
+            this.label20.Text = "Izdano:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.Location = new System.Drawing.Point(6, 60);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(65, 21);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "Stranka:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.Location = new System.Drawing.Point(6, 32);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(117, 21);
+            this.label18.TabIndex = 15;
+            this.label18.Text = "Številka računa:";
             // 
             // groupBox6
             // 
@@ -430,16 +563,6 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Podjetje:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(78, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(165, 28);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Pregled prometa";
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.cmbRacun);
@@ -516,6 +639,29 @@
             this.lblFilterHelp.Text = "Ponastavi filtre";
             this.lblFilterHelp.Visible = false;
             // 
+            // phHelpFilter
+            // 
+            this.phHelpFilter.Image = ((System.Drawing.Image)(resources.GetObject("phHelpFilter.Image")));
+            this.phHelpFilter.Location = new System.Drawing.Point(109, 114);
+            this.phHelpFilter.Name = "phHelpFilter";
+            this.phHelpFilter.Size = new System.Drawing.Size(25, 23);
+            this.phHelpFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.phHelpFilter.TabIndex = 11;
+            this.phHelpFilter.TabStop = false;
+            this.phHelpFilter.MouseLeave += new System.EventHandler(this.phHelpFilter_MouseLeave);
+            this.phHelpFilter.MouseHover += new System.EventHandler(this.phHelpFilter_MouseHover);
+            // 
+            // pbIzbrisiFiltre
+            // 
+            this.pbIzbrisiFiltre.Image = ((System.Drawing.Image)(resources.GetObject("pbIzbrisiFiltre.Image")));
+            this.pbIzbrisiFiltre.Location = new System.Drawing.Point(69, 138);
+            this.pbIzbrisiFiltre.Name = "pbIzbrisiFiltre";
+            this.pbIzbrisiFiltre.Size = new System.Drawing.Size(34, 33);
+            this.pbIzbrisiFiltre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbIzbrisiFiltre.TabIndex = 10;
+            this.pbIzbrisiFiltre.TabStop = false;
+            this.pbIzbrisiFiltre.Click += new System.EventHandler(this.pbIzbrisiFiltre_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.textBox2);
@@ -557,23 +703,38 @@
             // tbSkupnaCenaDo
             // 
             this.tbSkupnaCenaDo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbSkupnaCenaDo.ForeColor = System.Drawing.Color.DimGray;
             this.tbSkupnaCenaDo.Location = new System.Drawing.Point(168, 33);
             this.tbSkupnaCenaDo.Name = "tbSkupnaCenaDo";
             this.tbSkupnaCenaDo.Size = new System.Drawing.Size(75, 25);
             this.tbSkupnaCenaDo.TabIndex = 11;
             this.tbSkupnaCenaDo.Text = "Cena do";
+            this.tbSkupnaCenaDo.Click += new System.EventHandler(this.tbSkupnaCenaDo_Click);
             this.tbSkupnaCenaDo.TextChanged += new System.EventHandler(this.tbSkupnaCenaDo_TextChanged);
             // 
             // tbSkupnaCenaOd
             // 
             this.tbSkupnaCenaOd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbSkupnaCenaOd.ForeColor = System.Drawing.Color.DimGray;
             this.tbSkupnaCenaOd.Location = new System.Drawing.Point(22, 34);
             this.tbSkupnaCenaOd.Name = "tbSkupnaCenaOd";
             this.tbSkupnaCenaOd.Size = new System.Drawing.Size(75, 25);
             this.tbSkupnaCenaOd.TabIndex = 10;
             this.tbSkupnaCenaOd.Tag = "";
             this.tbSkupnaCenaOd.Text = "Cena od";
+            this.tbSkupnaCenaOd.Click += new System.EventHandler(this.tbSkupnaCenaOd_Click);
             this.tbSkupnaCenaOd.TextChanged += new System.EventHandler(this.tbSkupnaCenaOd_TextChanged);
+            // 
+            // btnIzberiSkupnoCenoOdDo
+            // 
+            this.btnIzberiSkupnoCenoOdDo.Image = ((System.Drawing.Image)(resources.GetObject("btnIzberiSkupnoCenoOdDo.Image")));
+            this.btnIzberiSkupnoCenoOdDo.Location = new System.Drawing.Point(287, 33);
+            this.btnIzberiSkupnoCenoOdDo.Name = "btnIzberiSkupnoCenoOdDo";
+            this.btnIzberiSkupnoCenoOdDo.Size = new System.Drawing.Size(24, 22);
+            this.btnIzberiSkupnoCenoOdDo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnIzberiSkupnoCenoOdDo.TabIndex = 12;
+            this.btnIzberiSkupnoCenoOdDo.TabStop = false;
+            this.btnIzberiSkupnoCenoOdDo.Click += new System.EventHandler(this.btnIzberiSkupnoCenoOdDo_Click);
             // 
             // label3
             // 
@@ -615,6 +776,17 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Izdano med";
+            // 
+            // btnIzberiDatumOdDo
+            // 
+            this.btnIzberiDatumOdDo.Image = ((System.Drawing.Image)(resources.GetObject("btnIzberiDatumOdDo.Image")));
+            this.btnIzberiDatumOdDo.Location = new System.Drawing.Point(318, 34);
+            this.btnIzberiDatumOdDo.Name = "btnIzberiDatumOdDo";
+            this.btnIzberiDatumOdDo.Size = new System.Drawing.Size(24, 22);
+            this.btnIzberiDatumOdDo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnIzberiDatumOdDo.TabIndex = 3;
+            this.btnIzberiDatumOdDo.TabStop = false;
+            this.btnIzberiDatumOdDo.Click += new System.EventHandler(this.btnIzberiDatumOdDo_Click);
             // 
             // label2
             // 
@@ -671,145 +843,6 @@
             this.cmbStranka.TabIndex = 1;
             this.cmbStranka.Tag = "";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(65, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Napredno iskanje";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label18.Location = new System.Drawing.Point(6, 32);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(117, 21);
-            this.label18.TabIndex = 15;
-            this.label18.Text = "Številka računa:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label19.Location = new System.Drawing.Point(6, 60);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(65, 21);
-            this.label19.TabIndex = 16;
-            this.label19.Text = "Stranka:";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label20.Location = new System.Drawing.Point(6, 85);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(59, 21);
-            this.label20.TabIndex = 17;
-            this.label20.Text = "Izdano:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label21.Location = new System.Drawing.Point(6, 110);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(101, 21);
-            this.label21.TabIndex = 18;
-            this.label21.Text = "Skupna cena:";
-            // 
-            // lblStevilkaZadnjegaRacuna
-            // 
-            this.lblStevilkaZadnjegaRacuna.AutoSize = true;
-            this.lblStevilkaZadnjegaRacuna.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblStevilkaZadnjegaRacuna.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblStevilkaZadnjegaRacuna.Location = new System.Drawing.Point(125, 35);
-            this.lblStevilkaZadnjegaRacuna.Name = "lblStevilkaZadnjegaRacuna";
-            this.lblStevilkaZadnjegaRacuna.Size = new System.Drawing.Size(55, 20);
-            this.lblStevilkaZadnjegaRacuna.TabIndex = 19;
-            this.lblStevilkaZadnjegaRacuna.Text = "0000-0";
-            // 
-            // lblStrankaZadnjegaRacuna
-            // 
-            this.lblStrankaZadnjegaRacuna.AutoSize = true;
-            this.lblStrankaZadnjegaRacuna.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblStrankaZadnjegaRacuna.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblStrankaZadnjegaRacuna.Location = new System.Drawing.Point(125, 63);
-            this.lblStrankaZadnjegaRacuna.Name = "lblStrankaZadnjegaRacuna";
-            this.lblStrankaZadnjegaRacuna.Size = new System.Drawing.Size(97, 20);
-            this.lblStrankaZadnjegaRacuna.TabIndex = 20;
-            this.lblStrankaZadnjegaRacuna.Text = "Naziv stranke";
-            // 
-            // lblDatumIzdajeZadnjegaRacuna
-            // 
-            this.lblDatumIzdajeZadnjegaRacuna.AutoSize = true;
-            this.lblDatumIzdajeZadnjegaRacuna.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblDatumIzdajeZadnjegaRacuna.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblDatumIzdajeZadnjegaRacuna.Location = new System.Drawing.Point(125, 87);
-            this.lblDatumIzdajeZadnjegaRacuna.Name = "lblDatumIzdajeZadnjegaRacuna";
-            this.lblDatumIzdajeZadnjegaRacuna.Size = new System.Drawing.Size(79, 20);
-            this.lblDatumIzdajeZadnjegaRacuna.TabIndex = 21;
-            this.lblDatumIzdajeZadnjegaRacuna.Text = "00.00.0000";
-            // 
-            // lblSkupnaCenaZadnjegaRacuna
-            // 
-            this.lblSkupnaCenaZadnjegaRacuna.AutoSize = true;
-            this.lblSkupnaCenaZadnjegaRacuna.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblSkupnaCenaZadnjegaRacuna.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblSkupnaCenaZadnjegaRacuna.Location = new System.Drawing.Point(125, 112);
-            this.lblSkupnaCenaZadnjegaRacuna.Name = "lblSkupnaCenaZadnjegaRacuna";
-            this.lblSkupnaCenaZadnjegaRacuna.Size = new System.Drawing.Size(17, 20);
-            this.lblSkupnaCenaZadnjegaRacuna.TabIndex = 22;
-            this.lblSkupnaCenaZadnjegaRacuna.Text = "0";
-            // 
-            // phHelpFilter
-            // 
-            this.phHelpFilter.Image = ((System.Drawing.Image)(resources.GetObject("phHelpFilter.Image")));
-            this.phHelpFilter.Location = new System.Drawing.Point(109, 114);
-            this.phHelpFilter.Name = "phHelpFilter";
-            this.phHelpFilter.Size = new System.Drawing.Size(25, 23);
-            this.phHelpFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.phHelpFilter.TabIndex = 11;
-            this.phHelpFilter.TabStop = false;
-            this.phHelpFilter.MouseLeave += new System.EventHandler(this.phHelpFilter_MouseLeave);
-            this.phHelpFilter.MouseHover += new System.EventHandler(this.phHelpFilter_MouseHover);
-            // 
-            // pbIzbrisiFiltre
-            // 
-            this.pbIzbrisiFiltre.Image = ((System.Drawing.Image)(resources.GetObject("pbIzbrisiFiltre.Image")));
-            this.pbIzbrisiFiltre.Location = new System.Drawing.Point(69, 138);
-            this.pbIzbrisiFiltre.Name = "pbIzbrisiFiltre";
-            this.pbIzbrisiFiltre.Size = new System.Drawing.Size(34, 33);
-            this.pbIzbrisiFiltre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbIzbrisiFiltre.TabIndex = 10;
-            this.pbIzbrisiFiltre.TabStop = false;
-            this.pbIzbrisiFiltre.Click += new System.EventHandler(this.pbIzbrisiFiltre_Click);
-            // 
-            // btnIzberiSkupnoCenoOdDo
-            // 
-            this.btnIzberiSkupnoCenoOdDo.Image = ((System.Drawing.Image)(resources.GetObject("btnIzberiSkupnoCenoOdDo.Image")));
-            this.btnIzberiSkupnoCenoOdDo.Location = new System.Drawing.Point(287, 33);
-            this.btnIzberiSkupnoCenoOdDo.Name = "btnIzberiSkupnoCenoOdDo";
-            this.btnIzberiSkupnoCenoOdDo.Size = new System.Drawing.Size(24, 22);
-            this.btnIzberiSkupnoCenoOdDo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnIzberiSkupnoCenoOdDo.TabIndex = 12;
-            this.btnIzberiSkupnoCenoOdDo.TabStop = false;
-            this.btnIzberiSkupnoCenoOdDo.Click += new System.EventHandler(this.btnIzberiSkupnoCenoOdDo_Click);
-            // 
-            // btnIzberiDatumOdDo
-            // 
-            this.btnIzberiDatumOdDo.Image = ((System.Drawing.Image)(resources.GetObject("btnIzberiDatumOdDo.Image")));
-            this.btnIzberiDatumOdDo.Location = new System.Drawing.Point(318, 34);
-            this.btnIzberiDatumOdDo.Name = "btnIzberiDatumOdDo";
-            this.btnIzberiDatumOdDo.Size = new System.Drawing.Size(24, 22);
-            this.btnIzberiDatumOdDo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnIzberiDatumOdDo.TabIndex = 3;
-            this.btnIzberiDatumOdDo.TabStop = false;
-            this.btnIzberiDatumOdDo.Click += new System.EventHandler(this.btnIzberiDatumOdDo_Click);
-            // 
             // btnIzberiStranko
             // 
             this.btnIzberiStranko.AccessibleDescription = "";
@@ -824,15 +857,15 @@
             this.btnIzberiStranko.Tag = "";
             this.btnIzberiStranko.Click += new System.EventHandler(this.btnIzberiStranko_Click);
             // 
-            // pictureBox1
+            // label1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(75, 57);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 122);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(65, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(144, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Napredno iskanje";
             // 
             // UC_Domov
             // 
@@ -848,6 +881,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelpDodajRacun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -858,17 +894,16 @@
             this.panel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.phHelpFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIzbrisiFiltre)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnIzberiSkupnoCenoOdDo)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnIzberiDatumOdDo)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnIzberiStranko)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -900,7 +935,6 @@
         private System.Windows.Forms.ComboBox cmbRacun;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -935,5 +969,8 @@
         private System.Windows.Forms.Label lblStrankaZadnjegaRacuna;
         private System.Windows.Forms.Label lblStevilkaZadnjegaRacuna;
         private System.Windows.Forms.Label lblSkupnaCenaZadnjegaRacuna;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pbHelpDodajRacun;
+        private System.Windows.Forms.Label lblDodajRacunHelp;
     }
 }

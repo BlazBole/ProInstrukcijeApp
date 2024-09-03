@@ -126,6 +126,12 @@
     <Compile Include="UsersControls\UC_Domov.Designer.cs">
       <DependentUpon>UC_Domov.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsersControls\UC_Stranke.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsersControls\UC_Stranke.Designer.cs">
+      <DependentUpon>UC_Stranke.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +150,9 @@
     </Compile>
     <EmbeddedResource Include="UsersControls\UC_Domov.resx">
       <DependentUpon>UC_Domov.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersControls\UC_Stranke.resx">
+      <DependentUpon>UC_Stranke.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -174,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
