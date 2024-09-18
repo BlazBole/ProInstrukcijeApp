@@ -33,6 +33,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.gbGlavaNovRacun = new System.Windows.Forms.GroupBox();
+            this.lblGlavaNovRacun = new System.Windows.Forms.Label();
+            this.pbglavaNovRacun = new System.Windows.Forms.PictureBox();
+            this.gbGlavaProfil = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pbGlavaProfil = new System.Windows.Forms.PictureBox();
             this.gbGlavaStatistika = new System.Windows.Forms.GroupBox();
             this.lblGlavaStatistika = new System.Windows.Forms.Label();
             this.pbGlavaStatistika = new System.Windows.Forms.PictureBox();
@@ -43,25 +49,19 @@
             this.lblGlavaDelo = new System.Windows.Forms.Label();
             this.pbGlavaDelo = new System.Windows.Forms.PictureBox();
             this.lblGlavaProfil = new System.Windows.Forms.Panel();
-            this.gbGlavaProfil = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pbGlavaProfil = new System.Windows.Forms.PictureBox();
-            this.gbGlavaNovRacun = new System.Windows.Forms.GroupBox();
-            this.lblGlavaNovRacun = new System.Windows.Forms.Label();
-            this.pbglavaNovRacun = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            this.gbGlavaNovRacun.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbglavaNovRacun)).BeginInit();
+            this.gbGlavaProfil.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGlavaProfil)).BeginInit();
             this.gbGlavaStatistika.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbGlavaStatistika)).BeginInit();
             this.gbGlavaStranke.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbGlavaStranke)).BeginInit();
             this.gbGlavaDelo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbGlavaDelo)).BeginInit();
-            this.gbGlavaProfil.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGlavaProfil)).BeginInit();
-            this.gbGlavaNovRacun.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbglavaNovRacun)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -109,6 +109,68 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1384, 52);
             this.panel2.TabIndex = 7;
+            // 
+            // gbGlavaNovRacun
+            // 
+            this.gbGlavaNovRacun.Controls.Add(this.lblGlavaNovRacun);
+            this.gbGlavaNovRacun.Controls.Add(this.pbglavaNovRacun);
+            this.gbGlavaNovRacun.Location = new System.Drawing.Point(1167, 3);
+            this.gbGlavaNovRacun.Name = "gbGlavaNovRacun";
+            this.gbGlavaNovRacun.Size = new System.Drawing.Size(139, 44);
+            this.gbGlavaNovRacun.TabIndex = 5;
+            this.gbGlavaNovRacun.TabStop = false;
+            this.gbGlavaNovRacun.Paint += new System.Windows.Forms.PaintEventHandler(this.gbGlavaNovRacun_Paint);
+            // 
+            // lblGlavaNovRacun
+            // 
+            this.lblGlavaNovRacun.AutoSize = true;
+            this.lblGlavaNovRacun.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblGlavaNovRacun.Location = new System.Drawing.Point(41, 13);
+            this.lblGlavaNovRacun.Name = "lblGlavaNovRacun";
+            this.lblGlavaNovRacun.Size = new System.Drawing.Size(89, 23);
+            this.lblGlavaNovRacun.TabIndex = 1;
+            this.lblGlavaNovRacun.Text = "Nov račun";
+            // 
+            // pbglavaNovRacun
+            // 
+            this.pbglavaNovRacun.Image = ((System.Drawing.Image)(resources.GetObject("pbglavaNovRacun.Image")));
+            this.pbglavaNovRacun.Location = new System.Drawing.Point(6, 10);
+            this.pbglavaNovRacun.Name = "pbglavaNovRacun";
+            this.pbglavaNovRacun.Size = new System.Drawing.Size(29, 28);
+            this.pbglavaNovRacun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbglavaNovRacun.TabIndex = 0;
+            this.pbglavaNovRacun.TabStop = false;
+            // 
+            // gbGlavaProfil
+            // 
+            this.gbGlavaProfil.Controls.Add(this.label2);
+            this.gbGlavaProfil.Controls.Add(this.pbGlavaProfil);
+            this.gbGlavaProfil.Location = new System.Drawing.Point(433, 3);
+            this.gbGlavaProfil.Name = "gbGlavaProfil";
+            this.gbGlavaProfil.Size = new System.Drawing.Size(96, 44);
+            this.gbGlavaProfil.TabIndex = 4;
+            this.gbGlavaProfil.TabStop = false;
+            this.gbGlavaProfil.Paint += new System.Windows.Forms.PaintEventHandler(this.gbGlavaProfil_Paint);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(41, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 23);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Profil";
+            // 
+            // pbGlavaProfil
+            // 
+            this.pbGlavaProfil.Image = ((System.Drawing.Image)(resources.GetObject("pbGlavaProfil.Image")));
+            this.pbGlavaProfil.Location = new System.Drawing.Point(6, 10);
+            this.pbGlavaProfil.Name = "pbGlavaProfil";
+            this.pbGlavaProfil.Size = new System.Drawing.Size(29, 28);
+            this.pbGlavaProfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbGlavaProfil.TabIndex = 0;
+            this.pbGlavaProfil.TabStop = false;
             // 
             // gbGlavaStatistika
             // 
@@ -161,6 +223,9 @@
             this.lblGlavaStranke.Size = new System.Drawing.Size(66, 23);
             this.lblGlavaStranke.TabIndex = 1;
             this.lblGlavaStranke.Text = "Stranke";
+            this.lblGlavaStranke.Click += new System.EventHandler(this.lblGlavaStranke_Click);
+            this.lblGlavaStranke.MouseLeave += new System.EventHandler(this.lblGlavaStranke_MouseLeave);
+            this.lblGlavaStranke.MouseHover += new System.EventHandler(this.lblGlavaStranke_MouseHover);
             // 
             // pbGlavaStranke
             // 
@@ -171,6 +236,7 @@
             this.pbGlavaStranke.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbGlavaStranke.TabIndex = 0;
             this.pbGlavaStranke.TabStop = false;
+            this.pbGlavaStranke.Click += new System.EventHandler(this.pbGlavaStranke_Click);
             // 
             // gbGlavaDelo
             // 
@@ -216,68 +282,6 @@
             this.lblGlavaProfil.Size = new System.Drawing.Size(1384, 745);
             this.lblGlavaProfil.TabIndex = 8;
             // 
-            // gbGlavaProfil
-            // 
-            this.gbGlavaProfil.Controls.Add(this.label2);
-            this.gbGlavaProfil.Controls.Add(this.pbGlavaProfil);
-            this.gbGlavaProfil.Location = new System.Drawing.Point(433, 3);
-            this.gbGlavaProfil.Name = "gbGlavaProfil";
-            this.gbGlavaProfil.Size = new System.Drawing.Size(96, 44);
-            this.gbGlavaProfil.TabIndex = 4;
-            this.gbGlavaProfil.TabStop = false;
-            this.gbGlavaProfil.Paint += new System.Windows.Forms.PaintEventHandler(this.gbGlavaProfil_Paint);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(41, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Profil";
-            // 
-            // pbGlavaProfil
-            // 
-            this.pbGlavaProfil.Image = ((System.Drawing.Image)(resources.GetObject("pbGlavaProfil.Image")));
-            this.pbGlavaProfil.Location = new System.Drawing.Point(6, 10);
-            this.pbGlavaProfil.Name = "pbGlavaProfil";
-            this.pbGlavaProfil.Size = new System.Drawing.Size(29, 28);
-            this.pbGlavaProfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbGlavaProfil.TabIndex = 0;
-            this.pbGlavaProfil.TabStop = false;
-            // 
-            // gbGlavaNovRacun
-            // 
-            this.gbGlavaNovRacun.Controls.Add(this.lblGlavaNovRacun);
-            this.gbGlavaNovRacun.Controls.Add(this.pbglavaNovRacun);
-            this.gbGlavaNovRacun.Location = new System.Drawing.Point(1167, 3);
-            this.gbGlavaNovRacun.Name = "gbGlavaNovRacun";
-            this.gbGlavaNovRacun.Size = new System.Drawing.Size(139, 44);
-            this.gbGlavaNovRacun.TabIndex = 5;
-            this.gbGlavaNovRacun.TabStop = false;
-            this.gbGlavaNovRacun.Paint += new System.Windows.Forms.PaintEventHandler(this.gbGlavaNovRacun_Paint);
-            // 
-            // lblGlavaNovRacun
-            // 
-            this.lblGlavaNovRacun.AutoSize = true;
-            this.lblGlavaNovRacun.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblGlavaNovRacun.Location = new System.Drawing.Point(41, 13);
-            this.lblGlavaNovRacun.Name = "lblGlavaNovRacun";
-            this.lblGlavaNovRacun.Size = new System.Drawing.Size(89, 23);
-            this.lblGlavaNovRacun.TabIndex = 1;
-            this.lblGlavaNovRacun.Text = "Nov račun";
-            // 
-            // pbglavaNovRacun
-            // 
-            this.pbglavaNovRacun.Image = ((System.Drawing.Image)(resources.GetObject("pbglavaNovRacun.Image")));
-            this.pbglavaNovRacun.Location = new System.Drawing.Point(6, 10);
-            this.pbglavaNovRacun.Name = "pbglavaNovRacun";
-            this.pbglavaNovRacun.Size = new System.Drawing.Size(29, 28);
-            this.pbglavaNovRacun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbglavaNovRacun.TabIndex = 0;
-            this.pbglavaNovRacun.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,6 +299,12 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.gbGlavaNovRacun.ResumeLayout(false);
+            this.gbGlavaNovRacun.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbglavaNovRacun)).EndInit();
+            this.gbGlavaProfil.ResumeLayout(false);
+            this.gbGlavaProfil.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGlavaProfil)).EndInit();
             this.gbGlavaStatistika.ResumeLayout(false);
             this.gbGlavaStatistika.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbGlavaStatistika)).EndInit();
@@ -304,12 +314,6 @@
             this.gbGlavaDelo.ResumeLayout(false);
             this.gbGlavaDelo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbGlavaDelo)).EndInit();
-            this.gbGlavaProfil.ResumeLayout(false);
-            this.gbGlavaProfil.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGlavaProfil)).EndInit();
-            this.gbGlavaNovRacun.ResumeLayout(false);
-            this.gbGlavaNovRacun.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbglavaNovRacun)).EndInit();
             this.ResumeLayout(false);
 
         }

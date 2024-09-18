@@ -106,17 +106,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FizicnaOsebaVnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FizicnaOsebaVnos.Designer.cs">
+      <DependentUpon>FizicnaOsebaVnos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTest.cs">
+    <Compile Include="PravnaOsebaVnos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTest.Designer.cs">
-      <DependentUpon>FormTest.cs</DependentUpon>
+    <Compile Include="PravnaOsebaVnos.Designer.cs">
+      <DependentUpon>PravnaOsebaVnos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,11 +138,14 @@
     <Compile Include="UsersControls\UC_Stranke.Designer.cs">
       <DependentUpon>UC_Stranke.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FizicnaOsebaVnos.resx">
+      <DependentUpon>FizicnaOsebaVnos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTest.resx">
-      <DependentUpon>FormTest.cs</DependentUpon>
+    <EmbeddedResource Include="PravnaOsebaVnos.resx">
+      <DependentUpon>PravnaOsebaVnos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -186,6 +195,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user %282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

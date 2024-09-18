@@ -13,8 +13,9 @@ namespace Stantehnika.Model
         public string UlicaInHisnaStevilka { get; set; }
         public string PostaInKraj { get; set; }
         public string NazivPodjetja { get; set; }
-        public string DavcnaStevilka { get; set; }
         public string SedezPodjetja { get; set; }
         public string Email { get; set; }
+        public string Naslov { get; set; } //skupno
+        public string DavcnaStevilka { get; set; }
     }
 }

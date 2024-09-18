@@ -493,7 +493,123 @@ namespace Stantehnika.Dal
                     }
                 }
             }
+
             return racuni;
+        }
+
+        public List<Stranka> PridobiVseStranke()
+        {
+            List<Stranka> stranke = new List<Stranka>();
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT StrankaID, COALESCE(NazivPodjetja, ImeInPriimek) AS Stranka, 
+                UlicaInHisnaStevilka, PostaInKraj, DavcnaStevilka, SedezPodjetja, Email
+                FROM Stranka
+                ORDER BY Stranka ASC";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Stranka stranka = RacunMapper.MapToRacunStranka(reader);
+                            stranke.Add(stranka);
+                        }
+                    }
+                }
+            }
+
+            return stranke;
+        }
+
+        public List<Stranka> PridobiStrankePoNazivu(string iskalniPojem)
+        {
+            List<Stranka> stranke = new List<Stranka>();
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT StrankaID, COALESCE(NazivPodjetja, ImeInPriimek) AS Stranka, 
+                        UlicaInHisnaStevilka, PostaInKraj, DavcnaStevilka, SedezPodjetja, Email
+                        FROM Stranka
+                        WHERE NazivPodjetja LIKE CONCAT('%', @IskalniPojem, '%') 
+                        OR ImeInPriimek LIKE CONCAT('%', @IskalniPojem, '%')";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    // Define and add the parameter
+                    command.Parameters.AddWithValue("@IskalniPojem", iskalniPojem.Trim());
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Stranka stranka = RacunMapper.MapToRacunStranka(reader);
+                            stranke.Add(stranka);
+                        }
+                    }
+                }
+            }
+
+            return stranke;
+        }
+
+        public bool PreveriEmailObstaja(string email)
+        {
+            using (var connection = dbConnection.GetConnection())
+            {
+                string query = "SELECT COUNT(1) FROM Stranka WHERE Email = @Email";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    connection.Open();
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                    return count > 0; // Returns true if email exists, false otherwise
+                }
+            }
+        }
+
+        public void DodajFizicnoOsebo(string imeInPriimek, string ulicaInHisnaStevilka, string postaInKraj, string email)
+        {
+            using (var connection = dbConnection.GetConnection())
+            {
+                string query = @"INSERT INTO Stranka (ImeInPriimek, UlicaInHisnaStevilka, PostaInKraj, NazivPodjetja, DavcnaStevilka, SedezPodjetja, Email)
+                         VALUES (@ImeInPriimek, @UlicaInHisnaStevilka, @PostaInKraj, NULL, NULL, NULL, @Email)";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ImeInPriimek", imeInPriimek);
+                    command.Parameters.AddWithValue("@UlicaInHisnaStevilka", ulicaInHisnaStevilka);
+                    command.Parameters.AddWithValue("@PostaInKraj", postaInKraj);
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DodajPravnoOsebo(string nazivPodjetja, string davcnaStevilka, string sedezPodjetja, string email)
+        {
+            using (var connection = dbConnection.GetConnection())
+            {
+                string query = @"INSERT INTO Stranka (NazivPodjetja, DavcnaStevilka, PostaInKraj, SedezPodjetja, UlicaInHisnaStevilka, ImeInPriimek, Email)
+                         VALUES (@NazivPodjetja, @DavcnaStevilka, NULL, @SedezPodjetja, NULL, NULL, @Email)";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NazivPodjetja", nazivPodjetja);
+                    command.Parameters.AddWithValue("@DavcnaStevilka", davcnaStevilka);
+                    command.Parameters.AddWithValue("@SedezPodjetja", sedezPodjetja);
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         #endregion methods

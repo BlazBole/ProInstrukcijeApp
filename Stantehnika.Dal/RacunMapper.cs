@@ -33,5 +33,43 @@ namespace Stantehnika.Dal
                 CenaDelo = (skupnaCena - cenaMaterial).ToString("N2") + " €"
             };
         }
+
+        public static Stranka MapToRacunStranka(MySqlDataReader reader)
+        {
+            var stranka = new Stranka
+            {
+                StrankaID = reader.GetInt32("StrankaID"),
+                ImeInPriimek = reader.IsDBNull(reader.GetOrdinal("Stranka"))
+                              ? null
+                              : reader.GetString("Stranka"),
+                UlicaInHisnaStevilka = reader.IsDBNull(reader.GetOrdinal("UlicaInHisnaStevilka"))
+                                        ? null
+                                        : reader.GetString("UlicaInHisnaStevilka"),
+                PostaInKraj = reader.IsDBNull(reader.GetOrdinal("PostaInKraj"))
+                                ? null
+                                : reader.GetString("PostaInKraj"),
+                NazivPodjetja = reader.IsDBNull(reader.GetOrdinal("Stranka"))
+                                ? null
+                                : reader.GetString("Stranka"),
+                SedezPodjetja = reader.IsDBNull(reader.GetOrdinal("SedezPodjetja"))
+                                 ? null
+                                 : reader.GetString("SedezPodjetja"),
+                Email = reader.IsDBNull(reader.GetOrdinal("Email"))
+                         ? null
+                         : reader.GetString("Email"),
+                DavcnaStevilka = reader.IsDBNull(reader.GetOrdinal("DavcnaStevilka"))
+                                  ? null
+                                  : reader.GetString("DavcnaStevilka")
+            };
+
+            // Determine the address based on whether SedezPodjetja or UlicaInHisnaStevilka is present
+            stranka.Naslov = stranka.SedezPodjetja != null
+                              ? stranka.SedezPodjetja
+                              : stranka.UlicaInHisnaStevilka;
+
+            return stranka;
+        }
+
+
     }
 }

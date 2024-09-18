@@ -30,10 +30,10 @@ namespace Stantehnika.APP.UsersControls
             InitializeComponent();
 
             PripraviPodatkePrilivov();
-
             PripravitabeloRacunov();
             NapolniComboBoxStranka();
             NapolniComboBoxRacun();
+            NastaviZacetniInKoncniDatum();
             lblDatum.Text = DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("sl-SI"));
         }
         #endregion constructor
@@ -132,8 +132,6 @@ namespace Stantehnika.APP.UsersControls
             lblSkupnaCenaZadnjegaRacuna.Text = skupnaCena.ToString("N2") + " €";
         }
 
-
-
         public void PripravitabeloRacunov()
         {
             racunManager = new RacunManager();
@@ -219,6 +217,12 @@ namespace Stantehnika.APP.UsersControls
             cmbStranka.DisplayMember = "Value";
             cmbStranka.ValueMember = "Key";
             cmbStranka.SelectedIndex = 0; 
+        }
+
+        public void NastaviZacetniInKoncniDatum()
+        {
+            dtpDatumIzdanegaRacunaOd.Value = new DateTime(DateTime.Today.Year, 1, 1);
+            dtpDatumIzdanegaRacunaDo.Value = DateTime.Today;
         }
 
         public void FiltrirajTabeloPoRacunu(int racunID)
@@ -339,6 +343,15 @@ namespace Stantehnika.APP.UsersControls
 
                 FiltrirajTabeloPoSkupniceni(cenaOd, cenaDo);
             }
+
+            jeIzbranaStranka = false;
+            jeIzbranDatum = false;
+            jeIzbranaCena = false;
+
+            btnIzberiStranko.Image = Properties.Resources.close;
+            btnIzberiDatumOdDo.Image = Properties.Resources.close;
+            btnIzberiSkupnoCenoOdDo.Image = Properties.Resources.close;
+
         }
 
         private void btnIzberiStranko_Click(object sender, EventArgs e)

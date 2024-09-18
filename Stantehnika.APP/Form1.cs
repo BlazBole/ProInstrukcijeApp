@@ -144,6 +144,16 @@ namespace Stantehnika.APP
             lblGlavaDelo.ForeColor = Color.ForestGreen;
         }
 
+        private void lblGlavaStranke_Click(object sender, EventArgs e)
+        {
+            ShowUC_Stranke();
+        }
+
+        private void pbGlavaStranke_Click(object sender, EventArgs e)
+        {
+            ShowUC_Stranke();
+        }
+
         private void lblGlavaDelo_MouseHover(object sender, EventArgs e)
         {
             lblGlavaDelo.ForeColor = Color.ForestGreen;
@@ -152,6 +162,16 @@ namespace Stantehnika.APP
         private void lblGlavaDelo_MouseLeave(object sender, EventArgs e)
         {
             lblGlavaDelo.ForeColor = Color.Black;
+        }
+
+        private void lblGlavaStranke_MouseHover(object sender, EventArgs e)
+        {
+            lblGlavaStranke.ForeColor = Color.ForestGreen;
+        }
+
+        private void lblGlavaStranke_MouseLeave(object sender, EventArgs e)
+        {
+            lblGlavaStranke.ForeColor = Color.Black;
         }
         #endregion events
     }
