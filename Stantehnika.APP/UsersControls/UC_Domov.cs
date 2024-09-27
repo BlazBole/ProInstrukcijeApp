@@ -314,6 +314,13 @@ namespace Stantehnika.APP.UsersControls
                 return 0;
             }
         }
+
+        private void ShowForm_VnosRacuna()
+        {
+            VnosRacuna form = new VnosRacuna();
+
+            form.ShowDialog();
+        }
         #endregion methods
 
         #region events
@@ -412,6 +419,22 @@ namespace Stantehnika.APP.UsersControls
             {
                 btnIzberiSkupnoCenoOdDo.Image = Properties.Resources.close;
             };
+        }
+
+        private void tbSkupnaCenaOd_Leave(object sender, EventArgs e)
+        {
+            if(tbSkupnaCenaOd.Text == "")
+            {
+                tbSkupnaCenaOd.Text = "Cena od";
+            }
+        }
+
+        private void tbSkupnaCenaDo_Leave(object sender, EventArgs e)
+        {
+            if (tbSkupnaCenaDo.Text == "")
+            {
+                tbSkupnaCenaDo.Text = "Cena do";
+            }
         }
 
         private void cmbRacun_SelectedValueChanged(object sender, EventArgs e)
@@ -524,6 +547,11 @@ namespace Stantehnika.APP.UsersControls
             btnIzberiStranko.Image = Properties.Resources.close;
             btnIzberiDatumOdDo.Image = Properties.Resources.close;
             btnIzberiSkupnoCenoOdDo.Image = Properties.Resources.close;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            ShowForm_VnosRacuna();
         }
         #endregion events
     }

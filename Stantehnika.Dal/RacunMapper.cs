@@ -46,8 +46,8 @@ namespace Stantehnika.Dal
                                         ? null
                                         : reader.GetString("UlicaInHisnaStevilka"),
                 PostaInKraj = reader.IsDBNull(reader.GetOrdinal("PostaInKraj"))
-                                ? null
-                                : reader.GetString("PostaInKraj"),
+                              ? null
+                              : reader.GetString("PostaInKraj"),
                 NazivPodjetja = reader.IsDBNull(reader.GetOrdinal("Stranka"))
                                 ? null
                                 : reader.GetString("Stranka"),
@@ -62,14 +62,20 @@ namespace Stantehnika.Dal
                                   : reader.GetString("DavcnaStevilka")
             };
 
-            // Determine the address based on whether SedezPodjetja or UlicaInHisnaStevilka is present
-            stranka.Naslov = stranka.SedezPodjetja != null
-                              ? stranka.SedezPodjetja
-                              : stranka.UlicaInHisnaStevilka;
+            if (stranka.SedezPodjetja != null)
+            {
+                stranka.Naslov = stranka.SedezPodjetja;
+            }
+            else if (stranka.UlicaInHisnaStevilka != null && stranka.PostaInKraj != null)
+            {
+                stranka.Naslov = $"{stranka.UlicaInHisnaStevilka}, {stranka.PostaInKraj}";
+            }
+            else
+            {
+                stranka.Naslov = null;
+            }
 
             return stranka;
         }
-
-
     }
 }

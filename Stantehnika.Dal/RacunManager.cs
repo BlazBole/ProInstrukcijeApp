@@ -331,7 +331,7 @@ namespace Stantehnika.Dal
             using (var connection = dbConnection.GetConnection())
             {
                 connection.Open();
-                string query = "SELECT StrankaID, COALESCE(NazivPodjetja, ImeInPriimek) AS Stranka FROM Stranka";
+                string query = "SELECT StrankaID, COALESCE(NazivPodjetja, ImeInPriimek) AS Stranka FROM Stranka ORDER BY Stranka ASC";
                 using (var command = new MySqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
                 {
@@ -611,6 +611,43 @@ namespace Stantehnika.Dal
                 }
             }
         }
+
+        public List<Stranka> IsciStranke(string iskalniPogoj)
+        {
+            List<Stranka> predlogiStrank = new List<Stranka>();
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT StrankaID, COALESCE(NazivPodjetja, ImeInPriimek) AS Stranka, Email
+                         FROM Stranka
+                         WHERE NazivPodjetja LIKE @IskalniPogoj OR ImeInPriimek LIKE @IskalniPogoj";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IskalniPogoj", "%" + iskalniPogoj + "%");
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Stranka stranka = new Stranka
+                            {
+                                StrankaID = reader.GetInt32("StrankaID"),
+                                ImeInPriimek = reader.IsDBNull(reader.GetOrdinal("Stranka"))
+                                               ? null
+                                               : reader.GetString("Stranka"),
+                                Email = reader.GetString("Email")
+                            };
+                            predlogiStrank.Add(stranka);
+                        }
+                    }
+                }
+            }
+            return predlogiStrank;
+        }
+
+
 
         #endregion methods
     }

@@ -33,6 +33,7 @@ namespace Stantehnika.APP.UsersControls
             List<Stranka> stranke = strankaManager.PridobiVseStranke();
 
             dataGridView1.DataSource = stranke;
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText; // Lahko uporabite tudi EnableAlwaysIncludeHeaderText
 
             dataGridView1.Columns["NazivPodjetja"].HeaderText = "Stranka";
             dataGridView1.Columns["Email"].HeaderText = "E-naslov";
@@ -55,13 +56,16 @@ namespace Stantehnika.APP.UsersControls
 
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Check if the current column is DavcnaStevilka
             if (dataGridView1.Columns[e.ColumnIndex].Name == "DavcnaStevilka")
             {
-                // Check if the value is null or empty
                 if (e.Value == null || e.Value == DBNull.Value || string.IsNullOrWhiteSpace(e.Value.ToString()))
                 {
-                    e.Value = "Fizična oseba"; // Set to default text
+                    e.Value = "Fizična oseba"; 
+                    e.CellStyle.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+                }
+                else
+                {
+                    e.CellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
                 }
             }
         }
@@ -76,7 +80,6 @@ namespace Stantehnika.APP.UsersControls
 
         private void FiltrirajStranke(string iskalniPojem)
         {
-            // Kliče se metoda managerja, ki vrne stranke na podlagi vnosa
             RacunManager strankaManager = new RacunManager();
             List<Stranka> stranke = strankaManager.PridobiStrankePoNazivu(iskalniPojem);
 

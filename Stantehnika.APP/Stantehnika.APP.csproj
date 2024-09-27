@@ -124,6 +124,12 @@
     <Compile Include="PravnaOsebaVnos.Designer.cs">
       <DependentUpon>PravnaOsebaVnos.cs</DependentUpon>
     </Compile>
+    <Compile Include="PregledInfoPodjetja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PregledInfoPodjetja.Designer.cs">
+      <DependentUpon>PregledInfoPodjetja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersControls\UC_Domov.cs">
@@ -138,6 +144,18 @@
     <Compile Include="UsersControls\UC_Stranke.Designer.cs">
       <DependentUpon>UC_Stranke.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsersControls\UC_VnosRacuna.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsersControls\UC_VnosRacuna.Designer.cs">
+      <DependentUpon>UC_VnosRacuna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VnosRacuna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VnosRacuna.Designer.cs">
+      <DependentUpon>VnosRacuna.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FizicnaOsebaVnos.resx">
       <DependentUpon>FizicnaOsebaVnos.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PravnaOsebaVnos.resx">
       <DependentUpon>PravnaOsebaVnos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PregledInfoPodjetja.resx">
+      <DependentUpon>PregledInfoPodjetja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -162,6 +183,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UsersControls\UC_Stranke.resx">
       <DependentUpon>UC_Stranke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersControls\UC_VnosRacuna.resx">
+      <DependentUpon>UC_VnosRacuna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VnosRacuna.resx">
+      <DependentUpon>VnosRacuna.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -1248,7 +1248,7 @@
         MzMzMzMzMzMzMzMzMzOzmbfWWv8PsCNMXxvtfv0AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnIzberiDatumOdDo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnIzberiSkupnoCenoOdDo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAD1QSURBVHhe7Z0J
@@ -1516,7 +1516,7 @@
         6rPVNsjPOzoM3H9Q26a2UW0rh+kBbKen5/8DAybz1cvg5sEAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnIzberiSkupnoCenoOdDo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnIzberiDatumOdDo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAD1QSURBVHhe7Z0J

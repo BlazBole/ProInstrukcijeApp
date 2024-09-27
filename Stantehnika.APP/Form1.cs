@@ -44,6 +44,13 @@ namespace Stantehnika.APP
             lblGlavaProfil.Controls.Clear();
             lblGlavaProfil.Controls.Add(homeControl);
         }
+
+        private void ShowForm_VnosRacuna()
+        {
+            VnosRacuna form = new VnosRacuna();
+
+            form.ShowDialog();
+        }
         #endregion methods
 
         #region events
@@ -154,6 +161,16 @@ namespace Stantehnika.APP
             ShowUC_Stranke();
         }
 
+        private void lblGlavaNovRacun_Click(object sender, EventArgs e)
+        {
+            ShowForm_VnosRacuna();
+        }
+
+        private void pbglavaNovRacun_Click(object sender, EventArgs e)
+        {
+            ShowForm_VnosRacuna();
+        }
+
         private void lblGlavaDelo_MouseHover(object sender, EventArgs e)
         {
             lblGlavaDelo.ForeColor = Color.ForestGreen;
@@ -174,5 +191,6 @@ namespace Stantehnika.APP
             lblGlavaStranke.ForeColor = Color.Black;
         }
         #endregion events
+
     }
 }
