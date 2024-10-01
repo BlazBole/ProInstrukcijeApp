@@ -616,16 +616,20 @@ namespace Stantehnika.Dal
         {
             List<Stranka> predlogiStrank = new List<Stranka>();
 
+            // Uporabi LOWER() za iskanje neobčutljivo na velike/male črke
+            string iskalniPogojLower = "%" + iskalniPogoj.ToLower() + "%";
+
             using (var connection = dbConnection.GetConnection())
             {
                 connection.Open();
-                string query = @"SELECT StrankaID, COALESCE(NazivPodjetja, ImeInPriimek) AS Stranka, Email
-                         FROM Stranka
-                         WHERE NazivPodjetja LIKE @IskalniPogoj OR ImeInPriimek LIKE @IskalniPogoj";
+                string query = @"
+            SELECT StrankaID, COALESCE(NazivPodjetja, ImeInPriimek) AS Stranka, Email
+            FROM Stranka
+            WHERE LOWER(NazivPodjetja) LIKE @IskalniPogoj OR LOWER(ImeInPriimek) LIKE @IskalniPogoj OR LOWER(Email) LIKE @IskalniPogoj";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@IskalniPogoj", "%" + iskalniPogoj + "%");
+                    command.Parameters.AddWithValue("@IskalniPogoj", iskalniPogojLower);
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -645,6 +649,58 @@ namespace Stantehnika.Dal
                 }
             }
             return predlogiStrank;
+        }
+
+
+        public Stranka PridobiPodrobnostiStranke(string imeAliPodjetje)
+        {
+            Stranka stranka = null;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT StrankaID, NazivPodjetja, ImeInPriimek, UlicaInHisnaStevilka, PostaInKraj, DavcnaStevilka, SedezPodjetja, Email
+                         FROM Stranka
+                         WHERE COALESCE(NazivPodjetja, ImeInPriimek) = @ImeAliPodjetje";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ImeAliPodjetje", imeAliPodjetje);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            stranka = new Stranka
+                            {
+                                StrankaID = reader.GetInt32("StrankaID"),
+                                NazivPodjetja = reader.IsDBNull(reader.GetOrdinal("NazivPodjetja"))
+                                                 ? null
+                                                 : reader.GetString("NazivPodjetja"),
+                                ImeInPriimek = reader.IsDBNull(reader.GetOrdinal("ImeInPriimek"))
+                                                ? null
+                                                : reader.GetString("ImeInPriimek"),
+                                UlicaInHisnaStevilka = reader.IsDBNull(reader.GetOrdinal("UlicaInHisnaStevilka"))
+                                                        ? null
+                                                        : reader.GetString("UlicaInHisnaStevilka"),
+                                PostaInKraj = reader.IsDBNull(reader.GetOrdinal("PostaInKraj"))
+                                               ? null
+                                               : reader.GetString("PostaInKraj"),
+                                DavcnaStevilka = reader.IsDBNull(reader.GetOrdinal("DavcnaStevilka"))
+                                                  ? null
+                                                  : reader.GetString("DavcnaStevilka"),
+                                SedezPodjetja = reader.IsDBNull(reader.GetOrdinal("SedezPodjetja"))
+                                                 ? null
+                                                 : reader.GetString("SedezPodjetja"),
+                                Email = reader.IsDBNull(reader.GetOrdinal("Email"))
+                                        ? null
+                                        : reader.GetString("Email")
+                            };
+                        }
+                    }
+                }
+            }
+
+            return stranka;
         }
 
 

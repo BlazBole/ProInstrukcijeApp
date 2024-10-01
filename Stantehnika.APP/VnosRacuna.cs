@@ -20,6 +20,7 @@ namespace Stantehnika.APP
             PripraviIzbiroRacunov();
             PripraviDatumeZaRacun();
             PripraviZadetkeZaStranke();
+            PripraviTabeloPostavk();
         }
 
         #region private methods
@@ -27,8 +28,8 @@ namespace Stantehnika.APP
         {
             cmbVrstaRacuna.Items.Clear();
 
-            cmbVrstaRacuna.Items.Add("Račun");
-            cmbVrstaRacuna.Items.Add("Predračun");
+            cmbVrstaRacuna.Items.Add("RAČUN");
+            cmbVrstaRacuna.Items.Add("PREDRAČUN");
 
             cmbVrstaRacuna.SelectedIndex = 0;
         }
@@ -53,50 +54,49 @@ namespace Stantehnika.APP
         public void PripraviZadetkeZaStranke()
         {
             dataGridViewPredlogi.Visible = false;
-            lblNaslovnik.Visible = false;
+            lblNaslovnikPodjetje.Visible = false;
+            gbNaslovnikPodjetje.Visible= false;
+            lblIzberiStranko.Visible = false;
+            gbPodatkiFizicneOsebe.Visible = false;
         }
 
         public void ValidateStevikaRacuna()
         {
-            // Odstranite vse presledke iz vnosnega polja
             string racunStevilka = tbStevikaRacuna.Text.Replace(" ", "");
 
-            // Regex za format: LLLL-N ali LLLL-NN
             string pattern = @"^\d{4}-\d{1,2}$";
 
-            // Preverite, ali se vnos ujema z zahtevanim formatom
             if (System.Text.RegularExpressions.Regex.IsMatch(racunStevilka, pattern))
             {
-                // Ločimo leto in številko
                 string[] parts = racunStevilka.Split('-');
-                string leto = parts[0];  // LLLL (leto)
-                string stevilka = parts[1];  // N ali NN
+                string leto = parts[0];  
+                string stevilka = parts[1]; 
 
-                // Preverimo, če je številka manjša od 10 in odstranimo vodilno ničlo, če obstaja
                 if (int.TryParse(stevilka, out int number))
                 {
                     if (number < 10)
                     {
-                        stevilka = number.ToString();  // Zapišemo brez vodilne ničle
+                        stevilka = number.ToString();  
                     }
 
-                    // Posodobimo številko računa brez vodilne ničle, če je to potrebno
                     tbStevikaRacuna.Text = $"{leto}-{stevilka}";
 
-                    // Nastavite kazalec na konec besedila
                     tbStevikaRacuna.SelectionStart = tbStevikaRacuna.Text.Length;
                 }
             }
             else
             {
-                // Številka računa ni pravilna - prikažite sporočilo o napaki
                 MessageBox.Show("Številka računa mora biti v formatu LLLL-N ali LLLL-NN (npr. 2024-1 ali 2024-23).",
                                 "Napaka", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                // Ponastavite polje in fokusirajte polje
                 tbStevikaRacuna.Clear();
                 tbStevikaRacuna.Focus();
             }
+        }
+
+        public void PripraviTabeloPostavk()
+        {
+            //TODO
         }
 
         #endregion private methods
@@ -128,14 +128,24 @@ namespace Stantehnika.APP
         {
             string input = tbIsciStranko.Text;
 
-            if(input.Length >= 2 && input != "Izberi stranko...")
+            if(input.Length >= 2 && input != "Išči stranko...")
             {
-                dataGridViewPredlogi.Visible = true;
+
                 // Ustvari instanco RacunManager
                 RacunManager racunManager = new RacunManager();
 
                 // Pokliči funkcijo za iskanje strank in vrni predloge
                 List<Stranka> predlogiStrank = racunManager.IsciStranke(input);
+
+                if(predlogiStrank.Count > 0)
+                {
+                    dataGridViewPredlogi.Visible = true;
+                    lblIzberiStranko.Visible = true;
+                }
+                else
+                {
+                  
+                }
 
                 // Prikaz predlogov v DataGridView ali ListBox
                 dataGridViewPredlogi.DataSource = predlogiStrank;
@@ -159,6 +169,7 @@ namespace Stantehnika.APP
             else
             {
                 dataGridViewPredlogi.Visible = false;
+                lblIzberiStranko.Visible = false;
             }
         }
 
@@ -170,20 +181,50 @@ namespace Stantehnika.APP
                 var selectedRow = dataGridViewPredlogi.Rows[e.RowIndex];
                 string izbranaStranka = selectedRow.Cells["ImeInPriimek"].Value.ToString(); // Predpostavljamo, da je ime stranke v stolpcu z imenom "Stranka"
 
-                // Nastavimo tbIsciStranko na izbrano ime stranke
-                lblNaslovnik.Text = izbranaStranka;
 
+                // Nastavimo tbIsciStranko na izbrano ime stranke
+                lblNaslovnikPodjetje.Text = izbranaStranka;
+
+                lblIzberiStranko.Visible = false;
                 dataGridViewPredlogi.Visible = false;
-                tbIsciStranko.Text = "Izberi stranko...";
-                lblNaslovnik.Visible = true;
+                tbIsciStranko.Text = "Išči stranko...";
+                lblNaslovnikPodjetje.Visible = true;
+
+                RacunManager racunManager = new RacunManager();
+                Stranka izbranaStrankaPodatki = racunManager.PridobiPodrobnostiStranke(izbranaStranka);
+
+                // Preverimo, če je izbrano podjetje, ne fizicna oseba
+                if (izbranaStrankaPodatki != null && izbranaStrankaPodatki.NazivPodjetja != null)
+                {
+                    // Izpolnimo podatke za podjetje
+                    lblDavcnaStevilkaPodjetje.Text = izbranaStrankaPodatki.DavcnaStevilka;
+                    lblPEPodjetje.Text = izbranaStrankaPodatki.SedezPodjetja;
+                    lblEnaslovPodjetje.Text = izbranaStrankaPodatki.Email;
+                    gbNaslovnikPodjetje.Visible = true;
+
+                }
+                else
+                {
+                    // Izpolnimo podatke za fizično osebo
+                    lblStrankaFizicnaOseba.Text = izbranaStrankaPodatki.ImeInPriimek;
+                    lblNaslovFizicnaOseba.Text = $"{izbranaStrankaPodatki.UlicaInHisnaStevilka}, {izbranaStrankaPodatki.PostaInKraj}";
+                    lblEnaslovFizicnaOseba.Text = izbranaStrankaPodatki.Email;
+                    gbPodatkiFizicneOsebe.Visible = true;
+                }
+
+                // Skrij dataGridView in resetiraj iskalno polje
+                dataGridViewPredlogi.Visible = false;
+                tbIsciStranko.Text = "Išči stranko...";
             }
         }
 
         private void tbIsciStranko_Click(object sender, EventArgs e)
         {
-            if (tbIsciStranko.Text == "Izberi stranko...")
+            if (tbIsciStranko.Text == "Išči stranko...")
             {
                 tbIsciStranko.Text = "";
+                gbNaslovnikPodjetje.Visible = false;
+                gbPodatkiFizicneOsebe.Visible = false;
             }
         }
 
@@ -191,10 +232,34 @@ namespace Stantehnika.APP
         {
             if (tbIsciStranko.Text == "")
             {
-                tbIsciStranko.Text = "Izberi stranko...";
+                tbIsciStranko.Text = "Išči stranko...";
+            }
+        }
+
+
+        private void cmbVrstaRacuna_TextChanged(object sender, EventArgs e)
+        {
+            if(cmbVrstaRacuna.Text == "RAČUN")
+            {
+                lblŠtevilkaRacunaInfo.Visible = true;
+                tbStevikaRacuna.Visible = true;
+                lblDatumOpravljenoInfo.Visible = true;
+                dtpDatumOpravljeno.Visible = true;
+                lblDatumZapadeInfo.Visible = true;
+                dtpDatumZapade.Visible = true;
+            }
+            else if(cmbVrstaRacuna.Text == "PREDRAČUN")
+            {
+                lblŠtevilkaRacunaInfo.Visible = false;
+                tbStevikaRacuna.Visible = false;
+                lblDatumOpravljenoInfo.Visible = false;
+                dtpDatumOpravljeno.Visible = false;
+                lblDatumZapadeInfo.Visible = false;
+                dtpDatumZapade.Visible = false;
             }
         }
 
         #endregion events
+
     }
 }
