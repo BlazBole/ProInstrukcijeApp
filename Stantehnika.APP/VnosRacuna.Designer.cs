@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VnosRacuna));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -81,7 +84,8 @@
             this.btnKoncajRacun = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pbOdstraniVrstico = new System.Windows.Forms.PictureBox();
+            this.pbDodajVrstico = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -98,7 +102,8 @@
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).BeginInit();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).BeginInit();
             this.SuspendLayout();
@@ -346,41 +351,41 @@
             this.dataGridViewPredlogi.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewPredlogi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewPredlogi.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPredlogi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPredlogi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewPredlogi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.ForestGreen;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPredlogi.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.ForestGreen;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPredlogi.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewPredlogi.EnableHeadersVisualStyles = false;
             this.dataGridViewPredlogi.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridViewPredlogi.Location = new System.Drawing.Point(178, 192);
             this.dataGridViewPredlogi.Name = "dataGridViewPredlogi";
             this.dataGridViewPredlogi.ReadOnly = true;
             this.dataGridViewPredlogi.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPredlogi.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPredlogi.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewPredlogi.RowHeadersWidth = 30;
             this.dataGridViewPredlogi.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewPredlogi.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewPredlogi.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewPredlogi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPredlogi.Size = new System.Drawing.Size(478, 103);
             this.dataGridViewPredlogi.TabIndex = 38;
@@ -667,23 +672,37 @@
             // 
             // panel15
             // 
-            this.panel15.Controls.Add(this.pictureBox2);
+            this.panel15.Controls.Add(this.pbOdstraniVrstico);
+            this.panel15.Controls.Add(this.pbDodajVrstico);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(0, 0);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(934, 39);
             this.panel15.TabIndex = 5;
             // 
-            // pictureBox2
+            // pbOdstraniVrstico
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(891, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(53, 36);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.pbOdstraniVrstico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbOdstraniVrstico.Image = ((System.Drawing.Image)(resources.GetObject("pbOdstraniVrstico.Image")));
+            this.pbOdstraniVrstico.Location = new System.Drawing.Point(840, 1);
+            this.pbOdstraniVrstico.Name = "pbOdstraniVrstico";
+            this.pbOdstraniVrstico.Size = new System.Drawing.Size(55, 38);
+            this.pbOdstraniVrstico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOdstraniVrstico.TabIndex = 1;
+            this.pbOdstraniVrstico.TabStop = false;
+            this.pbOdstraniVrstico.Click += new System.EventHandler(this.pbOdstraniVrstico_Click);
+            // 
+            // pbDodajVrstico
+            // 
+            this.pbDodajVrstico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbDodajVrstico.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajVrstico.Image")));
+            this.pbDodajVrstico.Location = new System.Drawing.Point(891, 2);
+            this.pbDodajVrstico.Name = "pbDodajVrstico";
+            this.pbDodajVrstico.Size = new System.Drawing.Size(53, 36);
+            this.pbDodajVrstico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbDodajVrstico.TabIndex = 0;
+            this.pbDodajVrstico.TabStop = false;
+            this.pbDodajVrstico.Click += new System.EventHandler(this.pbDodajVrstico_Click);
             // 
             // panel14
             // 
@@ -713,10 +732,36 @@
             // dgvPostavke
             // 
             this.dgvPostavke.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPostavke.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPostavke.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPostavke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.MenuBar;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPostavke.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvPostavke.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPostavke.GridColor = System.Drawing.Color.WhiteSmoke;
             this.dgvPostavke.Location = new System.Drawing.Point(0, 0);
             this.dgvPostavke.Name = "dgvPostavke";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPostavke.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvPostavke.Size = new System.Drawing.Size(934, 382);
             this.dgvPostavke.TabIndex = 0;
             // 
@@ -752,7 +797,8 @@
             this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).EndInit();
             this.panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).EndInit();
             this.ResumeLayout(false);
@@ -804,7 +850,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pbDodajVrstico;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.DataGridView dgvPostavke;
@@ -814,5 +860,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pbOdstraniVrstico;
     }
 }

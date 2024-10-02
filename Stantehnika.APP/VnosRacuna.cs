@@ -20,7 +20,7 @@ namespace Stantehnika.APP
             PripraviIzbiroRacunov();
             PripraviDatumeZaRacun();
             PripraviZadetkeZaStranke();
-            PripraviTabeloPostavk();
+            NastaviTabeloPostavk();
         }
 
         #region private methods
@@ -94,11 +94,108 @@ namespace Stantehnika.APP
             }
         }
 
-        public void PripraviTabeloPostavk()
+        private void NastaviTabeloPostavk()
         {
-            //TODO
+            // Izpraznimo obstoječe stolpce, če obstajajo
+            dgvPostavke.Columns.Clear();
+
+            // Nastavi vizualne lastnosti DataGridView
+
+            dgvPostavke.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvPostavke.DefaultCellStyle.Font = new Font("Segoe UI", 14);
+
+            dgvPostavke.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dgvPostavke.EnableHeadersVisualStyles = false; // To mora biti false, da ročno nastavljena barva deluje
+
+
+
+
+            // Dodajanje stolpcev
+            dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Poz.",
+                Name = "Poz",
+                DataPropertyName = "StevilkaPostavke",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                ReadOnly = true
+            });
+
+            dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Vrsta Blaga - storitev",
+                DataPropertyName = "Storitev",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Kol.",
+                DataPropertyName = "Kolicina",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight }
+            });
+
+            dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "EM",
+                DataPropertyName = "EnotaMerjenja",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells 
+            });
+
+            dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Cena",
+                DataPropertyName = "CenaEneKolicine",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "C2" } // Prikaz v EUR
+            });
+
+            dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "EUR",
+                DataPropertyName = "CenaPostavke",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, 
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "C2" } // Prikaz v EUR
+            });
+
+            dgvPostavke.AllowUserToAddRows = false;
+            DodajVrstico();
+
+            dgvPostavke.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
+        public void DodajVrstico()
+        {
+            int newRowIndex = dgvPostavke.Rows.Add();
+
+            dgvPostavke.Rows[newRowIndex].Cells["Poz"].Value = newRowIndex + 1;
+        }
+
+        public void OdstraniVrstico()
+        {
+            // Preverimo, ali je izbrana vrstica
+            if (dgvPostavke.SelectedRows.Count > 0)
+            {
+                // Odstranimo izbrano vrstico
+                dgvPostavke.Rows.RemoveAt(dgvPostavke.SelectedRows[0].Index);
+
+                // Posodobi zaporedje številk
+                PosodobiStevilkaPostavke();
+            }
+            else
+            {
+                MessageBox.Show("Izberite vrstico, ki jo želite odstraniti.", "Napaka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        public void PosodobiStevilkaPostavke()
+        {
+            for (int i = 0; i < dgvPostavke.Rows.Count; i++)
+            {
+                // Posodobi vrednost v stolpcu StevilkaPostavke
+                dgvPostavke.Rows[i].Cells["Poz"].Value = i + 1; // Zaporedje se začne pri 1
+            }
+        }
         #endregion private methods
 
         #region events
@@ -259,7 +356,15 @@ namespace Stantehnika.APP
             }
         }
 
-        #endregion events
+        private void pbDodajVrstico_Click(object sender, EventArgs e)
+        {
+            DodajVrstico();
+        }
 
+        private void pbOdstraniVrstico_Click(object sender, EventArgs e)
+        {
+            OdstraniVrstico();
+        }
+        #endregion events
     }
 }
