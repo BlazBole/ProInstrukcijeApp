@@ -1,13 +1,10 @@
-﻿using Stantehnika.Dal;
+﻿using OfficeOpenXml;
+using Stantehnika.Dal;
 using Stantehnika.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Stantehnika.APP
@@ -96,21 +93,14 @@ namespace Stantehnika.APP
 
         private void NastaviTabeloPostavk()
         {
-            // Izpraznimo obstoječe stolpce, če obstajajo
             dgvPostavke.Columns.Clear();
-
-            // Nastavi vizualne lastnosti DataGridView
 
             dgvPostavke.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPostavke.DefaultCellStyle.Font = new Font("Segoe UI", 14);
 
             dgvPostavke.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
-            dgvPostavke.EnableHeadersVisualStyles = false; // To mora biti false, da ročno nastavljena barva deluje
+            dgvPostavke.EnableHeadersVisualStyles = false;
 
-
-
-
-            // Dodajanje stolpcev
             dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Poz.",
@@ -124,6 +114,7 @@ namespace Stantehnika.APP
             {
                 HeaderText = "Vrsta Blaga - storitev",
                 DataPropertyName = "Storitev",
+                Name = "storitev",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
@@ -131,37 +122,46 @@ namespace Stantehnika.APP
             {
                 HeaderText = "Kol.",
                 DataPropertyName = "Kolicina",
+                Name = "Kol",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight }
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft }
             });
 
-            dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
+            var comboBoxColumn = new DataGridViewComboBoxColumn
             {
-                HeaderText = "EM",
+                HeaderText = "Enota",
                 DataPropertyName = "EnotaMerjenja",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells 
-            });
+                Name = "EnotaMerjenja",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                DataSource = new string[] { "m²", "m", "tm", "kom.", "kpl.", "ura", "kos"}
+            };
+            dgvPostavke.Columns.Add(comboBoxColumn);
 
             dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Cena",
                 DataPropertyName = "CenaEneKolicine",
+                Name = "CenaEneKolicine",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "C2" } // Prikaz v EUR
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft, Format = "C2" } 
             });
 
             dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "EUR",
                 DataPropertyName = "CenaPostavke",
+                Name = "CenaPostavke",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, 
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "C2" } // Prikaz v EUR
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft, Format = "C2" }
             });
 
             dgvPostavke.AllowUserToAddRows = false;
             DodajVrstico();
 
             dgvPostavke.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvPostavke.CellValidating += dgvPostavke_CellValidating;
+            dgvPostavke.CellValueChanged += dgvPostavke_CellValueChanged;
+
         }
 
         public void DodajVrstico()
@@ -173,14 +173,11 @@ namespace Stantehnika.APP
 
         public void OdstraniVrstico()
         {
-            // Preverimo, ali je izbrana vrstica
             if (dgvPostavke.SelectedRows.Count > 0)
             {
-                // Odstranimo izbrano vrstico
                 dgvPostavke.Rows.RemoveAt(dgvPostavke.SelectedRows[0].Index);
-
-                // Posodobi zaporedje številk
                 PosodobiStevilkaPostavke();
+                IzracunajSkupnoCeno();
             }
             else
             {
@@ -192,10 +189,135 @@ namespace Stantehnika.APP
         {
             for (int i = 0; i < dgvPostavke.Rows.Count; i++)
             {
-                // Posodobi vrednost v stolpcu StevilkaPostavke
-                dgvPostavke.Rows[i].Cells["Poz"].Value = i + 1; // Zaporedje se začne pri 1
+                dgvPostavke.Rows[i].Cells["Poz"].Value = i + 1;
             }
         }
+
+        public void IzracunajSkupnoCeno()
+        {
+            decimal skupnaCena = 0;
+            foreach (DataGridViewRow row in dgvPostavke.Rows)
+            {
+                if (row.Cells["CenaPostavke"].Value != null && decimal.TryParse(row.Cells["CenaPostavke"].Value.ToString(), out decimal cena))
+                {
+                    skupnaCena += cena;
+                }
+            }
+            lblSkupajzaPlacilo.Text = $"{skupnaCena:N2} €";
+        }
+
+        private void ShraniVExcel()
+        {
+            string imeDatoteke = "račun_" + tbStevikaRacuna.Text + ".xlsx";
+
+            // Ustvarite shranjevanje datoteke
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = imeDatoteke; // Nastavite ime datoteke
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveFileDialog.Title = "Shrani Excel datoteko";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Ustvarite novo Excel datoteko
+                using (ExcelPackage excelPackage = new ExcelPackage())
+                {
+                    // Ustvarite nov delovni list
+                    ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Račun");
+
+                    // 1. Podatki stranke (fizična ali pravna)
+                    int currentRow = 1;
+
+                    if (gbNaslovnikPodjetje.Visible)
+                    {
+                        worksheet.Cells[currentRow, 1].Value = "Naziv podjetja:";
+                        worksheet.Cells[currentRow, 2].Value = lblNaslovnikPodjetje.Text;
+
+                        currentRow++;
+                        worksheet.Cells[currentRow, 1].Value = "Davčna številka:";
+                        worksheet.Cells[currentRow, 2].Value = lblDavcnaStevilkaPodjetje.Text;
+
+                        currentRow++;
+                        worksheet.Cells[currentRow, 1].Value = "PE:";
+                        worksheet.Cells[currentRow, 2].Value = lblPEPodjetje.Text;
+
+                        currentRow++;
+                        worksheet.Cells[currentRow, 1].Value = "E-naslov:";
+                        worksheet.Cells[currentRow, 2].Value = lblEnaslovPodjetje.Text;
+                    }
+
+                    if (gbPodatkiFizicneOsebe.Visible)
+                    {
+                        worksheet.Cells[currentRow, 1].Value = "Fizična oseba:";
+                        worksheet.Cells[currentRow, 2].Value = lblStrankaFizicnaOseba.Text;
+
+                        currentRow++;
+                        worksheet.Cells[currentRow, 1].Value = "Naslov:";
+                        worksheet.Cells[currentRow, 2].Value = lblNaslovFizicnaOseba.Text;
+
+                        currentRow++;
+                        worksheet.Cells[currentRow, 1].Value = "E-naslov:";
+                        worksheet.Cells[currentRow, 2].Value = lblEnaslovFizicnaOseba.Text;
+                    }
+
+                    currentRow++; // Prazna vrstica za ločevanje
+
+                    // 2. Podatki glave računa
+                    worksheet.Cells[currentRow, 1].Value = "Številka računa:";
+                    worksheet.Cells[currentRow, 2].Value = tbStevikaRacuna.Text;
+
+                    currentRow++;
+                    worksheet.Cells[currentRow, 1].Value = "Kraj:";
+                    worksheet.Cells[currentRow, 2].Value = lblKraj.Text;
+
+                    currentRow++;
+                    worksheet.Cells[currentRow, 1].Value = "Datum:";
+                    worksheet.Cells[currentRow, 2].Value = dtpDatum.Value.ToShortDateString();
+
+                    currentRow++;
+                    worksheet.Cells[currentRow, 1].Value = "Datum opravljeno:";
+                    worksheet.Cells[currentRow, 2].Value = dtpDatumOpravljeno.Value.ToShortDateString();
+
+                    currentRow++;
+                    worksheet.Cells[currentRow, 1].Value = "Datum zapade:";
+                    worksheet.Cells[currentRow, 2].Value = dtpDatumZapade.Value.ToShortDateString();
+
+                    currentRow++; // Prazna vrstica za ločevanje
+
+                    // 3. Tabela postavk
+                    worksheet.Cells[currentRow, 1].Value = "EM"; // Ustrezni naslovi stolpcev
+                    worksheet.Cells[currentRow, 2].Value = "Kol.";
+                    worksheet.Cells[currentRow, 3].Value = "Cena";
+                    worksheet.Cells[currentRow, 4].Value = "CenaPostavke";
+
+                    currentRow++; // Pojdite na naslednjo vrstico
+
+                    // Dodajte podatke iz DataGridView
+                    for (int i = 0; i < dgvPostavke.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dgvPostavke.Columns.Count; j++)
+                        {
+                            worksheet.Cells[currentRow, j + 1].Value = dgvPostavke.Rows[i].Cells[j].Value;
+                        }
+                        currentRow++; // Premaknite se na naslednjo vrstico po dodajanju postavke
+                    }
+
+                    currentRow++; // Prazna vrstica za ločevanje
+
+                    // 4. Skupaj za plačilo
+                    worksheet.Cells[currentRow, 1].Value = "Skupaj za plačilo:";
+                    worksheet.Cells[currentRow, 2].Value = lblSkupajzaPlacilo.Text;
+
+                    // Shranite Excel datoteko
+                    FileInfo excelFile = new FileInfo(saveFileDialog.FileName);
+                    excelPackage.SaveAs(excelFile);
+
+                    MessageBox.Show("Datoteka je bila uspešno shranjena.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+
+
         #endregion private methods
 
         #region events
@@ -228,10 +350,8 @@ namespace Stantehnika.APP
             if(input.Length >= 2 && input != "Išči stranko...")
             {
 
-                // Ustvari instanco RacunManager
                 RacunManager racunManager = new RacunManager();
 
-                // Pokliči funkcijo za iskanje strank in vrni predloge
                 List<Stranka> predlogiStrank = racunManager.IsciStranke(input);
 
                 if(predlogiStrank.Count > 0)
@@ -243,8 +363,6 @@ namespace Stantehnika.APP
                 {
                   
                 }
-
-                // Prikaz predlogov v DataGridView ali ListBox
                 dataGridViewPredlogi.DataSource = predlogiStrank;
 
                 dataGridViewPredlogi.Columns["ImeInPriimek"].HeaderText = "Stranka";
@@ -274,12 +392,10 @@ namespace Stantehnika.APP
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                // Pridobimo izbrano stranko
                 var selectedRow = dataGridViewPredlogi.Rows[e.RowIndex];
-                string izbranaStranka = selectedRow.Cells["ImeInPriimek"].Value.ToString(); // Predpostavljamo, da je ime stranke v stolpcu z imenom "Stranka"
+                string izbranaStranka = selectedRow.Cells["ImeInPriimek"].Value.ToString();
 
 
-                // Nastavimo tbIsciStranko na izbrano ime stranke
                 lblNaslovnikPodjetje.Text = izbranaStranka;
 
                 lblIzberiStranko.Visible = false;
@@ -290,10 +406,8 @@ namespace Stantehnika.APP
                 RacunManager racunManager = new RacunManager();
                 Stranka izbranaStrankaPodatki = racunManager.PridobiPodrobnostiStranke(izbranaStranka);
 
-                // Preverimo, če je izbrano podjetje, ne fizicna oseba
                 if (izbranaStrankaPodatki != null && izbranaStrankaPodatki.NazivPodjetja != null)
                 {
-                    // Izpolnimo podatke za podjetje
                     lblDavcnaStevilkaPodjetje.Text = izbranaStrankaPodatki.DavcnaStevilka;
                     lblPEPodjetje.Text = izbranaStrankaPodatki.SedezPodjetja;
                     lblEnaslovPodjetje.Text = izbranaStrankaPodatki.Email;
@@ -302,14 +416,12 @@ namespace Stantehnika.APP
                 }
                 else
                 {
-                    // Izpolnimo podatke za fizično osebo
                     lblStrankaFizicnaOseba.Text = izbranaStrankaPodatki.ImeInPriimek;
                     lblNaslovFizicnaOseba.Text = $"{izbranaStrankaPodatki.UlicaInHisnaStevilka}, {izbranaStrankaPodatki.PostaInKraj}";
                     lblEnaslovFizicnaOseba.Text = izbranaStrankaPodatki.Email;
                     gbPodatkiFizicneOsebe.Visible = true;
                 }
 
-                // Skrij dataGridView in resetiraj iskalno polje
                 dataGridViewPredlogi.Visible = false;
                 tbIsciStranko.Text = "Išči stranko...";
             }
@@ -364,6 +476,91 @@ namespace Stantehnika.APP
         private void pbOdstraniVrstico_Click(object sender, EventArgs e)
         {
             OdstraniVrstico();
+        }
+
+        private void dgvPostavke_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (dgvPostavke.Columns[e.ColumnIndex].Name == "Kol")
+            {
+                string inputValue = e.FormattedValue.ToString();
+
+                if (inputValue.Contains("."))
+                {
+                    inputValue = inputValue.Replace(".", ",");
+                }
+
+                if (decimal.TryParse(inputValue, out decimal result))
+                {
+                    if (result % 1 != 0)
+                    {
+                        dgvPostavke.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = result.ToString("F2");
+                    }
+                    else
+                    {
+                        dgvPostavke.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = result.ToString();
+                    }
+
+                    dgvPostavke.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    dgvPostavke.EndEdit();
+                    dgvPostavke.Refresh();
+
+                    dgvPostavke.Rows[e.RowIndex].ErrorText = string.Empty;
+                }
+                else
+                {
+                    dgvPostavke.Rows[e.RowIndex].ErrorText = "Vnesite veljavno število.";
+                }
+            }
+
+            if (dgvPostavke.Columns[e.ColumnIndex].Name == "CenaEneKolicine")
+            {
+                string inputValue = e.FormattedValue.ToString();
+
+                if (inputValue.Contains("."))
+                {
+                    inputValue = inputValue.Replace(".", ",");
+                }
+
+                if (decimal.TryParse(inputValue, out decimal result))
+                {
+                    dgvPostavke.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = result.ToString("N2");
+
+                    dgvPostavke.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    dgvPostavke.EndEdit();
+                    dgvPostavke.Refresh();
+
+                    dgvPostavke.Rows[e.RowIndex].ErrorText = string.Empty;
+                }
+                else
+                {
+                    dgvPostavke.Rows[e.RowIndex].ErrorText = "Vnesite veljavno število.";
+                }
+            }
+
+        }
+
+        private void dgvPostavke_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPostavke.Columns[e.ColumnIndex].Name == "Kol" || dgvPostavke.Columns[e.ColumnIndex].Name == "CenaEneKolicine")
+            {
+                var kolValue = dgvPostavke.Rows[e.RowIndex].Cells["Kol"].Value;
+                var cenaValue = dgvPostavke.Rows[e.RowIndex].Cells["CenaEneKolicine"].Value;
+
+                if (kolValue != null && decimal.TryParse(kolValue.ToString(), out decimal kolicina) &&
+                    cenaValue != null && decimal.TryParse(cenaValue.ToString().Replace(".", ","), out decimal cena))
+                {
+                    decimal cenaPostavke = kolicina * cena;
+
+                    dgvPostavke.Rows[e.RowIndex].Cells["CenaPostavke"].Value = cenaPostavke.ToString("N2");
+
+                    IzracunajSkupnoCeno();
+                }
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            ShraniVExcel();
         }
         #endregion events
     }
