@@ -140,9 +140,10 @@ namespace Stantehnika.Dal
             {
                 connection.Open();
                 string query = @"SELECT StevilkaRacuna 
-                         FROM RacunGlava 
-                         ORDER BY Datum DESC 
-                         LIMIT 1";
+            FROM RacunGlava 
+            ORDER BY Datum DESC, 
+                     CAST(SUBSTRING_INDEX(StevilkaRacuna, '-', -1) AS UNSIGNED) DESC 
+            LIMIT 1";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
@@ -218,11 +219,12 @@ namespace Stantehnika.Dal
             {
                 connection.Open();
 
-                // Pridobitev ID zadnjega računa
+                // Pridobitev ID zadnjega računa (upoštevaj datum in številko računa)
                 string queryRacunID = @"
             SELECT RacunGlavaID 
             FROM RacunGlava 
-            ORDER BY Datum DESC 
+            ORDER BY Datum DESC, 
+                     CAST(SUBSTRING_INDEX(StevilkaRacuna, '-', -1) AS UNSIGNED) DESC 
             LIMIT 1";
 
                 int? racunGlavaID = null;
@@ -258,6 +260,7 @@ namespace Stantehnika.Dal
 
             return skupnaCena;
         }
+
 
 
         public List<RacunGlava> GetAllRacuni()
@@ -803,11 +806,23 @@ namespace Stantehnika.Dal
             }
         }
 
+        public void DodajRacunMaterial(string nazivMateriala, int racunGlavaID)
+        {
+            using (var connection = dbConnection.GetConnection())
+            {
+                string query = @"INSERT INTO RacunMaterial (NazivMateriala, RacunGlavaID)
+                         VALUES (@NazivMateriala, @RacunGlavaID)";
 
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NazivMateriala", nazivMateriala);
+                    command.Parameters.AddWithValue("@RacunGlavaID", racunGlavaID);
 
-
-
-
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         #endregion methods
     }

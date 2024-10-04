@@ -6,11 +6,17 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Windows.Media.Media3D;
+using System.Xml;
 
 namespace Stantehnika.APP
 {
     public partial class VnosRacuna : Form
     {
+        #region private members
+        private List<string> materialiList = new List<string>();
+        #endregion private members
+
         public VnosRacuna()
         {
             InitializeComponent();
@@ -332,10 +338,86 @@ namespace Stantehnika.APP
             return postavke;
         }
 
+        public void pripraviPodatkeXML()
+        {
+            // Zberi podatke iz forme
+            string nazivPodjetja = gbNaslovnikPodjetje.Visible ? lblNaslovnikPodjetje.Text : null;
+            string davcnaStevilka = gbNaslovnikPodjetje.Visible ? lblDavcnaStevilkaPodjetje.Text : null;
+            string pe = gbNaslovnikPodjetje.Visible ? lblPEPodjetje.Text : null;
+            string eNaslovPodjetja = gbNaslovnikPodjetje.Visible ? lblEnaslovPodjetje.Text : null;
+
+            string fizicnaOseba = gbPodatkiFizicneOsebe.Visible ? lblStrankaFizicnaOseba.Text : null;
+            string naslovFizicneOsebe = gbPodatkiFizicneOsebe.Visible ? lblNaslovFizicnaOseba.Text : null;
+            string eNaslovFizicneOsebe = gbPodatkiFizicneOsebe.Visible ? lblEnaslovFizicnaOseba.Text : null;
+
+            string stevilkaRacuna = tbStevikaRacuna.Text;
+            string kraj = lblKraj.Text;
+            string datum = dtpDatum.Value.ToShortDateString();
+            string datumOpravljeno = dtpDatumOpravljeno.Value.ToShortDateString();
+            string datumZapade = dtpDatumZapade.Value.ToShortDateString();
+            string skupajZaPlacilo = lblSkupajzaPlacilo.Text;
+
+            // Ustvari XML datoteko
+            string xmlPath = @"..\..\Solution Items\racun_podatki.xml";
 
 
+            using (XmlWriter writer = XmlWriter.Create(xmlPath))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Racun");
 
+                // Podjetje
+                if (gbNaslovnikPodjetje.Visible)
+                {
+                    writer.WriteStartElement("Podjetje");
+                    writer.WriteElementString("Naziv", nazivPodjetja);
+                    writer.WriteElementString("DavcnaStevilka", davcnaStevilka);
+                    writer.WriteElementString("PE", pe);
+                    writer.WriteElementString("ENaslov", eNaslovPodjetja);
+                    writer.WriteEndElement(); // Podjetje
+                }
 
+                // Fizična oseba
+                if (gbPodatkiFizicneOsebe.Visible)
+                {
+                    writer.WriteStartElement("FizicnaOseba");
+                    writer.WriteElementString("Ime", fizicnaOseba);
+                    writer.WriteElementString("Naslov", naslovFizicneOsebe);
+                    writer.WriteElementString("ENaslov", eNaslovFizicneOsebe);
+                    writer.WriteEndElement(); // FizicnaOseba
+                }
+
+                // Račun
+                writer.WriteStartElement("RacunPodatki");
+                writer.WriteElementString("Stevilka", stevilkaRacuna);
+                writer.WriteElementString("Kraj", kraj);
+                writer.WriteElementString("Datum", datum);
+                writer.WriteElementString("DatumOpravljeno", datumOpravljeno);
+                writer.WriteElementString("DatumZapade", datumZapade);
+                writer.WriteElementString("SkupajZaPlacilo", skupajZaPlacilo);
+                writer.WriteEndElement(); // RacunPodatki
+
+                // Postavke
+                writer.WriteStartElement("Postavke");
+                for (int i = 0; i < dgvPostavke.Rows.Count; i++)
+                {
+                    writer.WriteStartElement("Postavka");
+                    writer.WriteElementString("EM", dgvPostavke.Rows[i].Cells[0].Value.ToString());
+                    writer.WriteElementString("Kolicina", dgvPostavke.Rows[i].Cells[1].Value.ToString());
+                    writer.WriteElementString("Cena", dgvPostavke.Rows[i].Cells[2].Value.ToString());
+                    writer.WriteElementString("CenaPostavke", dgvPostavke.Rows[i].Cells[3].Value.ToString());
+                    writer.WriteEndElement(); // Postavka
+                }
+                writer.WriteEndElement(); // Postavke
+
+                // Zaključek
+                writer.WriteEndElement(); // Racun
+                writer.WriteEndDocument();
+            }
+
+            MessageBox.Show("Podatki so bili shranjeni v XML datoteko!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
         #endregion private methods
 
         #region events
@@ -358,10 +440,8 @@ namespace Stantehnika.APP
 
         private void btnKoncajRacun_Click_1(object sender, EventArgs e)
         {
-            // Ustvari RacunManager objekt
             RacunManager racunManager = new RacunManager();
 
-            // Določi, ali gre za podjetje ali fizično osebo
             string strankaIme = "";
             bool jePodjetje = gbNaslovnikPodjetje.Visible;
 
@@ -374,26 +454,28 @@ namespace Stantehnika.APP
                 strankaIme = lblStrankaFizicnaOseba.Text;
             }
 
-            // Pridobi ostale podatke (če je podjetje, dodaj še davčno številko in sedež podjetja)
             string ulica = jePodjetje ? null : lblNaslovFizicnaOseba.Text;
             string email = jePodjetje ? lblEnaslovPodjetje.Text : lblEnaslovFizicnaOseba.Text;
             string davcnaStevilka = jePodjetje ? lblDavcnaStevilkaPodjetje.Text : null;
             string sedezPodjetja = jePodjetje ? lblPEPodjetje.Text : null;
 
-            // Pridobi ID stranke s klicem funkcije v RacunManagerju
             int strankaID = racunManager.GetStrankaID(strankaIme, jePodjetje, ulica, email, davcnaStevilka, sedezPodjetja);
 
-            // Dodaj glavo računa in pridobi ID računa (RacunGlavaID)
             int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
 
-            // Pridobi postavke iz DataGridView
             List<Stantehnika.Model.RacunPostavka> postavke = PridobiPostavkeIzDataGridView();
 
-            // Dodaj postavke računa v bazo
             racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
 
-            // Prikaži obvestilo o uspešnem shranjevanju
-            MessageBox.Show("Račun in postavke uspešno shranjene.");
+            // Shranjevanje materialov v bazo
+            foreach (var material in materialiList)
+            {
+                racunManager.DodajRacunMaterial(material, racunGlavaID);
+            }
+
+            //pripraviPodatkeXML();
+
+            MessageBox.Show("Račun uspešno ustvarjen");
         }
 
 
@@ -616,6 +698,27 @@ namespace Stantehnika.APP
         {
             ShraniVExcel();
         }
+
+        private void pbDodajMaterial_Click(object sender, EventArgs e)
+        {
+            // Ustvari novo okno za dodajanje materiala
+            using (var dodajMaterialForm = new DodajMaterial())
+            {
+                // Odpri okno in preveri, ali je uporabnik potrdil dodajanje
+                if (dodajMaterialForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Pridobi ime materiala iz okna
+                    string material = dodajMaterialForm.MaterialName;
+
+                    // Dodaj material v RichTextBox
+                    rtbmaterial.AppendText("• " + material + Environment.NewLine);
+
+                    // Dodaj material v seznam
+                    materialiList.Add(material);
+                }
+            }
+        }
+
         #endregion events
     }
 }

@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VnosRacuna));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -59,8 +59,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewPredlogi = new System.Windows.Forms.DataGridView();
             this.tbIsciStranko = new System.Windows.Forms.TextBox();
-            this.pbPrikaziVecInfoPodjetja = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPodjetje = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dtpDatumZapade = new System.Windows.Forms.DateTimePicker();
@@ -84,30 +82,43 @@
             this.btnKoncajRacun = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pbOdstraniVrstico = new System.Windows.Forms.PictureBox();
-            this.pbDodajVrstico = new System.Windows.Forms.PictureBox();
-            this.panel14 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.dgvPostavke = new System.Windows.Forms.DataGridView();
+            this.rtbmaterial = new System.Windows.Forms.RichTextBox();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.pbDodajMaterial = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pbOdstraniVrstico = new System.Windows.Forms.PictureBox();
+            this.pbDodajVrstico = new System.Windows.Forms.PictureBox();
+            this.pbPrikaziVecInfoPodjetja = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.gbPodatkiFizicneOsebe.SuspendLayout();
             this.gbNaslovnikPodjetje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPredlogi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel15.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).BeginInit();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDodajMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).BeginInit();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -163,7 +174,7 @@
             this.gbPodatkiFizicneOsebe.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.gbPodatkiFizicneOsebe.Location = new System.Drawing.Point(1, 240);
             this.gbPodatkiFizicneOsebe.Name = "gbPodatkiFizicneOsebe";
-            this.gbPodatkiFizicneOsebe.Size = new System.Drawing.Size(353, 117);
+            this.gbPodatkiFizicneOsebe.Size = new System.Drawing.Size(414, 117);
             this.gbPodatkiFizicneOsebe.TabIndex = 41;
             this.gbPodatkiFizicneOsebe.TabStop = false;
             this.gbPodatkiFizicneOsebe.Text = "Podatki stranke";
@@ -257,7 +268,7 @@
             this.gbNaslovnikPodjetje.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.gbNaslovnikPodjetje.Location = new System.Drawing.Point(1, 240);
             this.gbNaslovnikPodjetje.Name = "gbNaslovnikPodjetje";
-            this.gbNaslovnikPodjetje.Size = new System.Drawing.Size(353, 142);
+            this.gbNaslovnikPodjetje.Size = new System.Drawing.Size(414, 142);
             this.gbNaslovnikPodjetje.TabIndex = 39;
             this.gbNaslovnikPodjetje.TabStop = false;
             this.gbNaslovnikPodjetje.Text = "Podatki podjetja";
@@ -353,41 +364,41 @@
             this.dataGridViewPredlogi.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewPredlogi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewPredlogi.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPredlogi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPredlogi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewPredlogi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.ForestGreen;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPredlogi.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.ForestGreen;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPredlogi.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewPredlogi.EnableHeadersVisualStyles = false;
             this.dataGridViewPredlogi.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridViewPredlogi.Location = new System.Drawing.Point(178, 192);
             this.dataGridViewPredlogi.Name = "dataGridViewPredlogi";
             this.dataGridViewPredlogi.ReadOnly = true;
             this.dataGridViewPredlogi.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPredlogi.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPredlogi.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewPredlogi.RowHeadersWidth = 30;
             this.dataGridViewPredlogi.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewPredlogi.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewPredlogi.RowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewPredlogi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPredlogi.Size = new System.Drawing.Size(478, 103);
             this.dataGridViewPredlogi.TabIndex = 38;
@@ -407,29 +418,6 @@
             this.tbIsciStranko.Click += new System.EventHandler(this.tbIsciStranko_Click);
             this.tbIsciStranko.TextChanged += new System.EventHandler(this.tbIsciStranko_TextChanged_1);
             this.tbIsciStranko.Leave += new System.EventHandler(this.tbIsciStranko_Leave);
-            // 
-            // pbPrikaziVecInfoPodjetja
-            // 
-            this.pbPrikaziVecInfoPodjetja.Image = ((System.Drawing.Image)(resources.GetObject("pbPrikaziVecInfoPodjetja.Image")));
-            this.pbPrikaziVecInfoPodjetja.Location = new System.Drawing.Point(255, 146);
-            this.pbPrikaziVecInfoPodjetja.Name = "pbPrikaziVecInfoPodjetja";
-            this.pbPrikaziVecInfoPodjetja.Size = new System.Drawing.Size(29, 32);
-            this.pbPrikaziVecInfoPodjetja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbPrikaziVecInfoPodjetja.TabIndex = 17;
-            this.pbPrikaziVecInfoPodjetja.TabStop = false;
-            this.pbPrikaziVecInfoPodjetja.Click += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_Click_1);
-            this.pbPrikaziVecInfoPodjetja.MouseEnter += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseEnter_1);
-            this.pbPrikaziVecInfoPodjetja.MouseLeave += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseLeave_1);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(42, 34);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(151, 99);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
             // 
             // lblPodjetje
             // 
@@ -455,16 +443,16 @@
             this.panel4.Controls.Add(this.lblKraj);
             this.panel4.Controls.Add(this.lblDatumRacunaInfo);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(934, 0);
+            this.panel4.Location = new System.Drawing.Point(839, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(270, 391);
+            this.panel4.Size = new System.Drawing.Size(365, 391);
             this.panel4.TabIndex = 17;
             // 
             // dtpDatumZapade
             // 
             this.dtpDatumZapade.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpDatumZapade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDatumZapade.Location = new System.Drawing.Point(100, 346);
+            this.dtpDatumZapade.Location = new System.Drawing.Point(127, 346);
             this.dtpDatumZapade.Name = "dtpDatumZapade";
             this.dtpDatumZapade.Size = new System.Drawing.Size(123, 29);
             this.dtpDatumZapade.TabIndex = 39;
@@ -504,7 +492,7 @@
             // 
             this.dtpDatum.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpDatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDatum.Location = new System.Drawing.Point(95, 280);
+            this.dtpDatum.Location = new System.Drawing.Point(126, 280);
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(123, 29);
             this.dtpDatum.TabIndex = 37;
@@ -513,7 +501,7 @@
             // 
             this.tbStevikaRacuna.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbStevikaRacuna.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tbStevikaRacuna.Location = new System.Drawing.Point(102, 219);
+            this.tbStevikaRacuna.Location = new System.Drawing.Point(125, 219);
             this.tbStevikaRacuna.Name = "tbStevikaRacuna";
             this.tbStevikaRacuna.Size = new System.Drawing.Size(118, 27);
             this.tbStevikaRacuna.TabIndex = 31;
@@ -552,7 +540,7 @@
             // 
             this.lblKraj.AutoSize = true;
             this.lblKraj.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblKraj.Location = new System.Drawing.Point(65, 251);
+            this.lblKraj.Location = new System.Drawing.Point(121, 251);
             this.lblKraj.Name = "lblKraj";
             this.lblKraj.Size = new System.Drawing.Size(83, 23);
             this.lblKraj.TabIndex = 33;
@@ -587,7 +575,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.label8.Location = new System.Drawing.Point(113, 25);
+            this.label8.Location = new System.Drawing.Point(113, 38);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(127, 23);
             this.label8.TabIndex = 47;
@@ -597,7 +585,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(-2, 24);
+            this.label6.Location = new System.Drawing.Point(-2, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 23);
             this.label6.TabIndex = 46;
@@ -609,7 +597,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(581, 40);
+            this.label3.Location = new System.Drawing.Point(503, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(331, 20);
             this.label3.TabIndex = 45;
@@ -620,7 +608,7 @@
             this.lblSkupajzaPlacilo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSkupajzaPlacilo.AutoSize = true;
             this.lblSkupajzaPlacilo.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblSkupajzaPlacilo.Location = new System.Drawing.Point(800, 13);
+            this.lblSkupajzaPlacilo.Location = new System.Drawing.Point(731, 12);
             this.lblSkupajzaPlacilo.Name = "lblSkupajzaPlacilo";
             this.lblSkupajzaPlacilo.Size = new System.Drawing.Size(55, 30);
             this.lblSkupajzaPlacilo.TabIndex = 44;
@@ -631,7 +619,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(579, 13);
+            this.label2.Location = new System.Drawing.Point(503, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(222, 30);
             this.label2.TabIndex = 42;
@@ -641,24 +629,25 @@
             // 
             this.panel9.Controls.Add(this.btnKoncajRacun);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(934, 0);
+            this.panel9.Location = new System.Drawing.Point(839, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(270, 76);
+            this.panel9.Size = new System.Drawing.Size(365, 76);
             this.panel9.TabIndex = 0;
             // 
             // btnKoncajRacun
             // 
+            this.btnKoncajRacun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnKoncajRacun.BackColor = System.Drawing.Color.ForestGreen;
             this.btnKoncajRacun.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnKoncajRacun.FlatAppearance.BorderSize = 0;
             this.btnKoncajRacun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKoncajRacun.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnKoncajRacun.ForeColor = System.Drawing.Color.White;
-            this.btnKoncajRacun.Location = new System.Drawing.Point(177, 6);
+            this.btnKoncajRacun.Location = new System.Drawing.Point(277, 13);
             this.btnKoncajRacun.Name = "btnKoncajRacun";
             this.btnKoncajRacun.Size = new System.Drawing.Size(87, 34);
             this.btnKoncajRacun.TabIndex = 30;
-            this.btnKoncajRacun.Text = "Izberi";
+            this.btnKoncajRacun.Text = "Zaključi";
             this.btnKoncajRacun.UseVisualStyleBackColor = false;
             this.btnKoncajRacun.Click += new System.EventHandler(this.btnKoncajRacun_Click_1);
             // 
@@ -680,14 +669,114 @@
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(0, 0);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(934, 50);
+            this.panel15.Size = new System.Drawing.Size(839, 50);
             this.panel15.TabIndex = 5;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.panel11);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(929, 441);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(365, 344);
+            this.panel8.TabIndex = 17;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.dgvPostavke);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(90, 441);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(839, 344);
+            this.panel10.TabIndex = 18;
+            // 
+            // dgvPostavke
+            // 
+            this.dgvPostavke.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPostavke.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPostavke.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dgvPostavke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.MenuBar;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPostavke.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvPostavke.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPostavke.GridColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvPostavke.Location = new System.Drawing.Point(0, 0);
+            this.dgvPostavke.Name = "dgvPostavke";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPostavke.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvPostavke.Size = new System.Drawing.Size(839, 344);
+            this.dgvPostavke.TabIndex = 0;
+            this.dgvPostavke.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvPostavke_CellValidating);
+            this.dgvPostavke.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPostavke_CellValueChanged);
+            // 
+            // rtbmaterial
+            // 
+            this.rtbmaterial.BackColor = System.Drawing.SystemColors.Control;
+            this.rtbmaterial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbmaterial.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.rtbmaterial.Location = new System.Drawing.Point(0, 34);
+            this.rtbmaterial.Name = "rtbmaterial";
+            this.rtbmaterial.ReadOnly = true;
+            this.rtbmaterial.Size = new System.Drawing.Size(347, 310);
+            this.rtbmaterial.TabIndex = 0;
+            this.rtbmaterial.Text = "";
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.rtbmaterial);
+            this.panel11.Controls.Add(this.panel12);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel11.Location = new System.Drawing.Point(18, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(347, 344);
+            this.panel11.TabIndex = 0;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.pictureBox3);
+            this.panel12.Controls.Add(this.label4);
+            this.panel12.Controls.Add(this.pbDodajMaterial);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(347, 34);
+            this.panel12.TabIndex = 0;
+            // 
+            // pbDodajMaterial
+            // 
+            this.pbDodajMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbDodajMaterial.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajMaterial.Image")));
+            this.pbDodajMaterial.Location = new System.Drawing.Point(305, 2);
+            this.pbDodajMaterial.Name = "pbDodajMaterial";
+            this.pbDodajMaterial.Size = new System.Drawing.Size(41, 30);
+            this.pbDodajMaterial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbDodajMaterial.TabIndex = 1;
+            this.pbDodajMaterial.TabStop = false;
+            this.pbDodajMaterial.Click += new System.EventHandler(this.pbDodajMaterial_Click);
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(3, 1);
+            this.pictureBox2.Location = new System.Drawing.Point(6, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(34, 38);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -699,7 +788,7 @@
             // 
             this.pbOdstraniVrstico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbOdstraniVrstico.Image = ((System.Drawing.Image)(resources.GetObject("pbOdstraniVrstico.Image")));
-            this.pbOdstraniVrstico.Location = new System.Drawing.Point(839, 2);
+            this.pbOdstraniVrstico.Location = new System.Drawing.Point(744, 2);
             this.pbOdstraniVrstico.Name = "pbOdstraniVrstico";
             this.pbOdstraniVrstico.Size = new System.Drawing.Size(55, 38);
             this.pbOdstraniVrstico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -711,7 +800,7 @@
             // 
             this.pbDodajVrstico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbDodajVrstico.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajVrstico.Image")));
-            this.pbDodajVrstico.Location = new System.Drawing.Point(890, 3);
+            this.pbDodajVrstico.Location = new System.Drawing.Point(795, 3);
             this.pbDodajVrstico.Name = "pbDodajVrstico";
             this.pbDodajVrstico.Size = new System.Drawing.Size(53, 36);
             this.pbDodajVrstico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -719,68 +808,57 @@
             this.pbDodajVrstico.TabStop = false;
             this.pbDodajVrstico.Click += new System.EventHandler(this.pbDodajVrstico_Click);
             // 
+            // pbPrikaziVecInfoPodjetja
+            // 
+            this.pbPrikaziVecInfoPodjetja.Image = ((System.Drawing.Image)(resources.GetObject("pbPrikaziVecInfoPodjetja.Image")));
+            this.pbPrikaziVecInfoPodjetja.Location = new System.Drawing.Point(255, 146);
+            this.pbPrikaziVecInfoPodjetja.Name = "pbPrikaziVecInfoPodjetja";
+            this.pbPrikaziVecInfoPodjetja.Size = new System.Drawing.Size(29, 32);
+            this.pbPrikaziVecInfoPodjetja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPrikaziVecInfoPodjetja.TabIndex = 17;
+            this.pbPrikaziVecInfoPodjetja.TabStop = false;
+            this.pbPrikaziVecInfoPodjetja.Click += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_Click_1);
+            this.pbPrikaziVecInfoPodjetja.MouseEnter += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseEnter_1);
+            this.pbPrikaziVecInfoPodjetja.MouseLeave += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseLeave_1);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(42, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(151, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // panel14
             // 
             this.panel14.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel14.Location = new System.Drawing.Point(934, 0);
+            this.panel14.Location = new System.Drawing.Point(839, 0);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(270, 50);
+            this.panel14.Size = new System.Drawing.Size(365, 50);
             this.panel14.TabIndex = 4;
             // 
-            // panel8
+            // label4
             // 
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(1024, 441);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(270, 344);
-            this.panel8.TabIndex = 17;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(42, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(146, 28);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Vnos materiala";
             // 
-            // panel10
+            // pictureBox3
             // 
-            this.panel10.Controls.Add(this.dgvPostavke);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(90, 441);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(934, 344);
-            this.panel10.TabIndex = 18;
-            // 
-            // dgvPostavke
-            // 
-            this.dgvPostavke.BackgroundColor = System.Drawing.Color.White;
-            this.dgvPostavke.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPostavke.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvPostavke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.MenuBar;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPostavke.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvPostavke.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPostavke.GridColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvPostavke.Location = new System.Drawing.Point(0, 0);
-            this.dgvPostavke.Name = "dgvPostavke";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPostavke.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvPostavke.Size = new System.Drawing.Size(934, 344);
-            this.dgvPostavke.TabIndex = 0;
-            this.dgvPostavke.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvPostavke_CellValidating);
-            this.dgvPostavke.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPostavke_CellValueChanged);
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(5, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(41, 30);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
             // 
             // VnosRacuna
             // 
@@ -805,8 +883,6 @@
             this.gbNaslovnikPodjetje.ResumeLayout(false);
             this.gbNaslovnikPodjetje.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPredlogi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -814,11 +890,19 @@
             this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).EndInit();
+            this.panel11.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDodajMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).EndInit();
-            this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -874,11 +958,17 @@
         private System.Windows.Forms.DataGridView dgvPostavke;
         private System.Windows.Forms.Label lblSkupajzaPlacilo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pbOdstraniVrstico;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.RichTextBox rtbmaterial;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.PictureBox pbDodajMaterial;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
