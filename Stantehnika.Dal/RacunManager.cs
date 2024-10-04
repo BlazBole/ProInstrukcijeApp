@@ -703,6 +703,110 @@ namespace Stantehnika.Dal
             return stranka;
         }
 
+        public int DodajRacunGlava(string stevilkaRacuna, string kraj, DateTime datum, DateTime datumOpravljeno, DateTime datumZapade, int strankaID)
+        {
+            using (var connection = dbConnection.GetConnection())
+            {
+                string query = @"INSERT INTO RacunGlava (StevilkaRacuna, Kraj, Datum, DatumOpravljeno, DatumZapade, StrankaID)
+                         VALUES (@StevilkaRacuna, @Kraj, @Datum, @DatumOpravljeno, @DatumZapade, @StrankaID)";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@StevilkaRacuna", stevilkaRacuna);
+                    command.Parameters.AddWithValue("@Kraj", kraj);
+                    command.Parameters.AddWithValue("@Datum", datum);
+                    command.Parameters.AddWithValue("@DatumOpravljeno", datumOpravljeno);
+                    command.Parameters.AddWithValue("@DatumZapade", datumZapade);
+                    command.Parameters.AddWithValue("@StrankaID", strankaID);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    // Pridobi ID novovstavljene glave računa
+                    return (int)command.LastInsertedId;
+                }
+            }
+        }
+
+
+        public int GetStrankaID(string strankaIme, bool jePodjetje, string ulica = null, string email = null, string davcnaStevilka = null, string sedezPodjetja = null)
+        {
+            int strankaID = -1;
+
+            using (var connection = dbConnection.GetConnection())
+            {
+                string query = "SELECT StrankaID FROM Stranka WHERE ImeInPriimek = @ImeInPriimek OR NazivPodjetja = @ImeInPriimek";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ImeInPriimek", strankaIme);
+                    connection.Open();
+
+                    var result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        strankaID = Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        // Pridobi ID nove vnešene stranke
+                        strankaID = GetLastInsertedStrankaID();
+                    }
+                }
+            }
+
+            return strankaID;
+        }
+
+
+        public int GetLastInsertedStrankaID()
+        {
+            using (var connection = dbConnection.GetConnection())
+            {
+                string query = "SELECT LAST_INSERT_ID()";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+
+                    return Convert.ToInt32(result);
+                }
+            }
+        }
+
+        public void DodajPostavkeZaRacun(int racunGlavaID, List<Stantehnika.Model.RacunPostavka> postavke)
+        {
+            using (var connection = dbConnection.GetConnection())
+            {
+                connection.Open();
+
+                foreach (var postavka in postavke)
+                {
+                    string query = @"INSERT INTO RacunPostavka (StevilkaPostavke, Storitev, Kolicina, EnotaMerjenja, CenaEneKolicine, CenaPostavke, RacunGlavaID)
+                             VALUES (@StevilkaPostavke, @Storitev, @Kolicina, @EnotaMerjenja, @CenaEneKolicine, @CenaPostavke, @RacunGlavaID)";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@StevilkaPostavke", postavka.StevilkaPostavke);
+                        command.Parameters.AddWithValue("@Storitev", postavka.Storitev);
+                        command.Parameters.AddWithValue("@Kolicina", postavka.Kolicina);
+                        command.Parameters.AddWithValue("@EnotaMerjenja", postavka.EnotaMerjenja);
+                        command.Parameters.AddWithValue("@CenaEneKolicine", postavka.CenaEneKolicine);
+                        command.Parameters.AddWithValue("@CenaPostavke", postavka.CenaPostavke);
+                        command.Parameters.AddWithValue("@RacunGlavaID", racunGlavaID);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+
+
+
+
 
 
         #endregion methods

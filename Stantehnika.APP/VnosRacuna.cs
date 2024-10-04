@@ -210,21 +210,17 @@ namespace Stantehnika.APP
         {
             string imeDatoteke = "račun_" + tbStevikaRacuna.Text + ".xlsx";
 
-            // Ustvarite shranjevanje datoteke
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = imeDatoteke; // Nastavite ime datoteke
+            saveFileDialog.FileName = imeDatoteke; 
             saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
             saveFileDialog.Title = "Shrani Excel datoteko";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Ustvarite novo Excel datoteko
                 using (ExcelPackage excelPackage = new ExcelPackage())
                 {
-                    // Ustvarite nov delovni list
                     ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Račun");
 
-                    // 1. Podatki stranke (fizična ali pravna)
                     int currentRow = 1;
 
                     if (gbNaslovnikPodjetje.Visible)
@@ -259,9 +255,8 @@ namespace Stantehnika.APP
                         worksheet.Cells[currentRow, 2].Value = lblEnaslovFizicnaOseba.Text;
                     }
 
-                    currentRow++; // Prazna vrstica za ločevanje
+                    currentRow++; 
 
-                    // 2. Podatki glave računa
                     worksheet.Cells[currentRow, 1].Value = "Številka računa:";
                     worksheet.Cells[currentRow, 2].Value = tbStevikaRacuna.Text;
 
@@ -281,33 +276,30 @@ namespace Stantehnika.APP
                     worksheet.Cells[currentRow, 1].Value = "Datum zapade:";
                     worksheet.Cells[currentRow, 2].Value = dtpDatumZapade.Value.ToShortDateString();
 
-                    currentRow++; // Prazna vrstica za ločevanje
+                    currentRow++; 
 
                     // 3. Tabela postavk
-                    worksheet.Cells[currentRow, 1].Value = "EM"; // Ustrezni naslovi stolpcev
+                    worksheet.Cells[currentRow, 1].Value = "EM"; 
                     worksheet.Cells[currentRow, 2].Value = "Kol.";
                     worksheet.Cells[currentRow, 3].Value = "Cena";
                     worksheet.Cells[currentRow, 4].Value = "CenaPostavke";
 
-                    currentRow++; // Pojdite na naslednjo vrstico
+                    currentRow++; 
 
-                    // Dodajte podatke iz DataGridView
                     for (int i = 0; i < dgvPostavke.Rows.Count; i++)
                     {
                         for (int j = 0; j < dgvPostavke.Columns.Count; j++)
                         {
                             worksheet.Cells[currentRow, j + 1].Value = dgvPostavke.Rows[i].Cells[j].Value;
                         }
-                        currentRow++; // Premaknite se na naslednjo vrstico po dodajanju postavke
+                        currentRow++; 
                     }
 
-                    currentRow++; // Prazna vrstica za ločevanje
+                    currentRow++; 
 
-                    // 4. Skupaj za plačilo
                     worksheet.Cells[currentRow, 1].Value = "Skupaj za plačilo:";
                     worksheet.Cells[currentRow, 2].Value = lblSkupajzaPlacilo.Text;
 
-                    // Shranite Excel datoteko
                     FileInfo excelFile = new FileInfo(saveFileDialog.FileName);
                     excelPackage.SaveAs(excelFile);
 
@@ -315,6 +307,32 @@ namespace Stantehnika.APP
                 }
             }
         }
+
+        private List<Stantehnika.Model.RacunPostavka> PridobiPostavkeIzDataGridView()
+        {
+            List<Stantehnika.Model.RacunPostavka> postavke = new List<Stantehnika.Model.RacunPostavka>();
+
+            foreach (DataGridViewRow row in dgvPostavke.Rows)
+            {
+                if (row.IsNewRow) continue; // Preskoči prazne vrstice
+
+                Stantehnika.Model.RacunPostavka postavka = new Stantehnika.Model.RacunPostavka
+                {
+                    StevilkaPostavke = Convert.ToInt32(row.Cells["Poz"].Value),
+                    Storitev = row.Cells["storitev"].Value.ToString(),
+                    Kolicina = Convert.ToDecimal(row.Cells["Kol"].Value),
+                    EnotaMerjenja = row.Cells["EnotaMerjenja"].Value.ToString(),
+                    CenaEneKolicine = Convert.ToDecimal(row.Cells["CenaEneKolicine"].Value),
+                    CenaPostavke = Convert.ToDecimal(row.Cells["CenaPostavke"].Value)
+                };
+
+                postavke.Add(postavka);
+            }
+
+            return postavke;
+        }
+
+
 
 
 
@@ -340,8 +358,44 @@ namespace Stantehnika.APP
 
         private void btnKoncajRacun_Click_1(object sender, EventArgs e)
         {
-            ValidateStevikaRacuna();
+            // Ustvari RacunManager objekt
+            RacunManager racunManager = new RacunManager();
+
+            // Določi, ali gre za podjetje ali fizično osebo
+            string strankaIme = "";
+            bool jePodjetje = gbNaslovnikPodjetje.Visible;
+
+            if (jePodjetje)
+            {
+                strankaIme = lblNaslovnikPodjetje.Text;
+            }
+            else
+            {
+                strankaIme = lblStrankaFizicnaOseba.Text;
+            }
+
+            // Pridobi ostale podatke (če je podjetje, dodaj še davčno številko in sedež podjetja)
+            string ulica = jePodjetje ? null : lblNaslovFizicnaOseba.Text;
+            string email = jePodjetje ? lblEnaslovPodjetje.Text : lblEnaslovFizicnaOseba.Text;
+            string davcnaStevilka = jePodjetje ? lblDavcnaStevilkaPodjetje.Text : null;
+            string sedezPodjetja = jePodjetje ? lblPEPodjetje.Text : null;
+
+            // Pridobi ID stranke s klicem funkcije v RacunManagerju
+            int strankaID = racunManager.GetStrankaID(strankaIme, jePodjetje, ulica, email, davcnaStevilka, sedezPodjetja);
+
+            // Dodaj glavo računa in pridobi ID računa (RacunGlavaID)
+            int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
+
+            // Pridobi postavke iz DataGridView
+            List<Stantehnika.Model.RacunPostavka> postavke = PridobiPostavkeIzDataGridView();
+
+            // Dodaj postavke računa v bazo
+            racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
+
+            // Prikaži obvestilo o uspešnem shranjevanju
+            MessageBox.Show("Račun in postavke uspešno shranjene.");
         }
+
 
         private void tbIsciStranko_TextChanged_1(object sender, EventArgs e)
         {
