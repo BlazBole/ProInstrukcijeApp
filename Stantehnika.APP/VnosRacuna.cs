@@ -338,7 +338,7 @@ namespace Stantehnika.APP
             return postavke;
         }
 
-        public void pripraviPodatkeXML()
+        public string pripraviPodatkeXML()
         {
             // Zberi podatke iz forme
             string nazivPodjetja = gbNaslovnikPodjetje.Visible ? lblNaslovnikPodjetje.Text : null;
@@ -357,67 +357,73 @@ namespace Stantehnika.APP
             string datumZapade = dtpDatumZapade.Value.ToShortDateString();
             string skupajZaPlacilo = lblSkupajzaPlacilo.Text;
 
-            // Ustvari XML datoteko
-            string xmlPath = @"..\..\Solution Items\racun_podatki.xml";
-
-
-            using (XmlWriter writer = XmlWriter.Create(xmlPath))
+            // Uporabi StringWriter za zapisovanje XML-ja
+            using (StringWriter stringWriter = new StringWriter())
             {
-                writer.WriteStartDocument();
-                writer.WriteStartElement("Racun");
-
-                // Podjetje
-                if (gbNaslovnikPodjetje.Visible)
+                using (XmlWriter writer = XmlWriter.Create(stringWriter))
                 {
-                    writer.WriteStartElement("Podjetje");
-                    writer.WriteElementString("Naziv", nazivPodjetja);
-                    writer.WriteElementString("DavcnaStevilka", davcnaStevilka);
-                    writer.WriteElementString("PE", pe);
-                    writer.WriteElementString("ENaslov", eNaslovPodjetja);
-                    writer.WriteEndElement(); // Podjetje
+                    writer.WriteStartDocument();
+                    writer.WriteStartElement("Racun");
+
+                    // Podjetje
+                    if (gbNaslovnikPodjetje.Visible)
+                    {
+                        writer.WriteStartElement("Podjetje");
+                        writer.WriteElementString("Naziv", nazivPodjetja);
+                        writer.WriteElementString("DavcnaStevilka", davcnaStevilka);
+                        writer.WriteElementString("PE", pe);
+                        writer.WriteElementString("ENaslov", eNaslovPodjetja);
+                        writer.WriteEndElement(); // Podjetje
+                    }
+
+                    // Fizična oseba
+                    if (gbPodatkiFizicneOsebe.Visible)
+                    {
+                        writer.WriteStartElement("FizicnaOseba");
+                        writer.WriteElementString("Ime", fizicnaOseba);
+                        writer.WriteElementString("Naslov", naslovFizicneOsebe);
+                        writer.WriteElementString("ENaslov", eNaslovFizicneOsebe);
+                        writer.WriteEndElement(); // FizicnaOseba
+                    }
+
+                    // Račun
+                    writer.WriteStartElement("RacunPodatki");
+                    writer.WriteElementString("Stevilka", stevilkaRacuna);
+                    writer.WriteElementString("Kraj", kraj);
+                    writer.WriteElementString("Datum", datum);
+                    writer.WriteElementString("DatumOpravljeno", datumOpravljeno);
+                    writer.WriteElementString("DatumZapade", datumZapade);
+                    writer.WriteElementString("SkupajZaPlacilo", skupajZaPlacilo);
+                    writer.WriteEndElement(); // RacunPodatki
+
+                    // Postavke
+                    writer.WriteStartElement("Postavke");
+                    for (int i = 0; i < dgvPostavke.Rows.Count; i++)
+                    {
+                        writer.WriteStartElement("Poz", dgvPostavke.Rows[i].Cells[0].Value.ToString());
+                        writer.WriteElementString("Storitev", dgvPostavke.Rows[i].Cells[1].Value.ToString());
+                        writer.WriteElementString("Kolicina", dgvPostavke.Rows[i].Cells[2].Value.ToString());
+                        writer.WriteElementString("EM", dgvPostavke.Rows[i].Cells[3].Value.ToString());
+                        writer.WriteElementString("Cena", dgvPostavke.Rows[i].Cells[4].Value.ToString());
+                        writer.WriteElementString("CenaPostavke", dgvPostavke.Rows[i].Cells[5].Value.ToString());
+                        writer.WriteEndElement(); // Postavka
+                    }
+                    writer.WriteEndElement(); // Postavke
+
+                    // Zaključek
+                    writer.WriteEndElement(); // Racun
+                    writer.WriteEndDocument();
                 }
 
-                // Fizična oseba
-                if (gbPodatkiFizicneOsebe.Visible)
-                {
-                    writer.WriteStartElement("FizicnaOseba");
-                    writer.WriteElementString("Ime", fizicnaOseba);
-                    writer.WriteElementString("Naslov", naslovFizicneOsebe);
-                    writer.WriteElementString("ENaslov", eNaslovFizicneOsebe);
-                    writer.WriteEndElement(); // FizicnaOseba
-                }
+                // Pridobi niz iz StringWriter
+                string xmlString = stringWriter.ToString();
 
-                // Račun
-                writer.WriteStartElement("RacunPodatki");
-                writer.WriteElementString("Stevilka", stevilkaRacuna);
-                writer.WriteElementString("Kraj", kraj);
-                writer.WriteElementString("Datum", datum);
-                writer.WriteElementString("DatumOpravljeno", datumOpravljeno);
-                writer.WriteElementString("DatumZapade", datumZapade);
-                writer.WriteElementString("SkupajZaPlacilo", skupajZaPlacilo);
-                writer.WriteEndElement(); // RacunPodatki
-
-                // Postavke
-                writer.WriteStartElement("Postavke");
-                for (int i = 0; i < dgvPostavke.Rows.Count; i++)
-                {
-                    writer.WriteStartElement("Postavka");
-                    writer.WriteElementString("EM", dgvPostavke.Rows[i].Cells[0].Value.ToString());
-                    writer.WriteElementString("Kolicina", dgvPostavke.Rows[i].Cells[1].Value.ToString());
-                    writer.WriteElementString("Cena", dgvPostavke.Rows[i].Cells[2].Value.ToString());
-                    writer.WriteElementString("CenaPostavke", dgvPostavke.Rows[i].Cells[3].Value.ToString());
-                    writer.WriteEndElement(); // Postavka
-                }
-                writer.WriteEndElement(); // Postavke
-
-                // Zaključek
-                writer.WriteEndElement(); // Racun
-                writer.WriteEndDocument();
+                // Vrni ustvarjeni XML niz
+                return xmlString;
             }
-
-            MessageBox.Show("Podatki so bili shranjeni v XML datoteko!", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
+
+
         #endregion private methods
 
         #region events
@@ -473,9 +479,13 @@ namespace Stantehnika.APP
                 racunManager.DodajRacunMaterial(material, racunGlavaID);
             }
 
-            //pripraviPodatkeXML();
+            string xmlPodatki = pripraviPodatkeXML();
+
+            //TODO transformacija v pdf
 
             MessageBox.Show("Račun uspešno ustvarjen");
+
+
         }
 
 

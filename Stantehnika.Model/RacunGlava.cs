@@ -15,6 +15,7 @@ namespace Stantehnika.Model
         public string DatumOpravljeno { get; set; }
         public string Datumzapade { get; set; }
         public int StrankaID { get; set; } // Tuji kljuc
+        public string XMLPodatki { get; set; }
 
         public Stranka Stranka { get; set; } // Navigacijska lastnost
         public string NazivPodjetja { get; set; }

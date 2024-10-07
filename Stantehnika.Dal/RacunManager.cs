@@ -824,6 +824,28 @@ namespace Stantehnika.Dal
             }
         }
 
+        public void ShraniXmlPodatke(string stevilkaRacuna, string xmlPodatki)
+        {
+            using (var connection = dbConnection.GetConnection())
+            {
+                string query = @"UPDATE RacunGlava 
+                         SET XMLPodatki = @XMLPodatki 
+                         WHERE StevilkaRacuna = @StevilkaRacuna";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    // Dodaj parametre za posodobitev
+                    command.Parameters.AddWithValue("@XMLPodatki", xmlPodatki);
+                    command.Parameters.AddWithValue("@StevilkaRacuna", stevilkaRacuna);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
         #endregion methods
     }
 }

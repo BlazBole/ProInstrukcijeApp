@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<!--<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">-->
+	<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns="http://www.w3.org/1999/xhtml"
+				version="1.0"
+				xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+                                xmlns:ms="urn:schemas-microsoft-com:xslt"
+                                exclude-result-prefixes="msxsl"
+                                xmlns:user="urn:my-scripts"
+				xmlns:cs="urn:cs"
+>
+
+
+		<xsl:output method="html" encoding="windows-1250" indent="yes"/>
 	<xsl:template match="/">
 		<html>
 			<head>
@@ -20,10 +32,9 @@
 				</style>
 			</head>
 			<body>
-				<!-- HEADER SECTION -->
+				 HEADER SECTION 
 				<div class="header">
 					<div class="company-info">
-						<!-- Podjetje, ki izdaja račun -->
 						<p>
 							<strong>STANTEHNIKA, Gregor Bole s.p.</strong><br />
 							Borova ulica 9<br />
@@ -35,40 +46,40 @@
 						</p>
 					</div>
 					<div class="invoice-info">
-						<!-- Podatki o računu -->
+						 Podatki o računu 
 						<p>
 							Številka: <strong>
-								<xsl:value-of select="Racun/StevilkaRacuna" />
+								<xsl:value-of select="RacunPodatki/Stevilka" />
 							</strong><br />
 							Kraj: <strong>
-								<xsl:value-of select="Racun/Kraj" />
+								<xsl:value-of select="RacunPodatki/Kraj" />
 							</strong><br />
 							Datum: <strong>
-								<xsl:value-of select="Racun/Datum" />
+								<xsl:value-of select="RacunPodatki/Datum" />
 							</strong><br />
 							Opravljeno: <strong>
-								<xsl:value-of select="Racun/Opravljeno" />
+								<xsl:value-of select="RacunPodatki/DatumOpravljeno" />
 							</strong><br />
 							Zapade: <strong>
-								<xsl:value-of select="Racun/Zapade" />
+								<xsl:value-of select="RacunPodatki/DatumZapade" />
 							</strong>
 						</p>
 					</div>
 					<div class="clear"></div>
 				</div>
 
-				<!-- STRANKA -->
+				 STRANKA 
 				<div class="customer-info">
 					<p>
 						<strong>
-							<xsl:value-of select="Racun/Stranka/Ime" />
+							<xsl:value-of select="Racun/FizicnaOseba/Ime" />
 						</strong><br />
-						<xsl:value-of select="Racun/Stranka/Naslov" /><br />
-						Email: <xsl:value-of select="Racun/Stranka/Email" />
+						<xsl:value-of select="Racun/FizicnaOseba/Naslov" /><br />
+						Email: <xsl:value-of select="Racun/FizicnaOseba/ENaslov" />
 					</p>
 				</div>
 
-				<!-- POSTAVKE -->
+				 POSTAVKE 
 				<table>
 					<thead>
 						<tr>
@@ -81,22 +92,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<xsl:for-each select="Racun/Postavke/Postavka">
+						<xsl:for-each select="Racun/Postavke/Storitev">
 							<tr>
 								<td>
-									<xsl:value-of select="Pozicija" />
-								</td>
-								<td>
-									<xsl:value-of select="VrstaBlaga" />
+									<xsl:value-of select="EM" />
 								</td>
 								<td>
 									<xsl:value-of select="Kolicina" />
 								</td>
 								<td>
-									<xsl:value-of select="EnotaMere" />
-								</td>
-								<td>
-									<xsl:value-of select="CenaNaEnoto" />
+									<xsl:value-of select="Cena" />
 								</td>
 								<td>
 									<xsl:value-of select="CenaPostavke" />
@@ -106,35 +111,7 @@
 					</tbody>
 				</table>
 
-				<!-- MATERIAL -->
-				<div>
-					<p>
-						<strong>Material</strong>
-					</p>
-					<ul class="material-list">
-						<xsl:for-each select="Racun/Material/Postavka">
-							<li>
-								<xsl:value-of select="NazivMateriala" />
-							</li>
-						</xsl:for-each>
-					</ul>
-				</div>
-
-				<!-- SKUPNA CENA -->
-				<div class="total">
-					<p>
-						Delo: <strong>
-							<xsl:value-of select="Racun/DeloSkupaj" />
-						</strong>
-					</p>
-					<p>
-						SKUPAJ ZA PLAČILO: <strong>
-							<xsl:value-of select="Racun/SkupnaCena" />
-						</strong> EUR
-					</p>
-				</div>
-
-				<!-- FOOTER -->
+				 FOOTER 
 				<div class="footer">
 					<p>Račun izdala: STANTEHNIKA</p>
 					<p>DDV ni obračunan v skladu s 94. členom ZDDV-1</p>
