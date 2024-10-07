@@ -161,6 +161,7 @@ namespace Stantehnika.APP.UsersControls
             dataGridView.Columns["RacunGlavaID"].Visible = false;
             dataGridView.Columns["StrankaID"].Visible = false;
             dataGridView.Columns["Stranka"].Visible = false;
+            dataGridView.Columns["ImeInPriimek"].Visible = false;
             dataGridView.Columns["XMLPodatki"].Visible = false;
 
             if (racuni.Count > 0)

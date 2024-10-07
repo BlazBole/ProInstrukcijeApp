@@ -148,7 +148,7 @@ namespace Stantehnika.Dal
                 using (var command = new MySqlCommand(query, connection))
                 {
                     object result = command.ExecuteScalar();
-                    if (result != DBNull.Value)
+                    if (result != DBNull.Value && stevilkaRacuna != null)
                     {
                         stevilkaRacuna = result.ToString();
                     }
@@ -175,7 +175,7 @@ namespace Stantehnika.Dal
                 using (var command = new MySqlCommand(query, connection))
                 {
                     object result = command.ExecuteScalar();
-                    if (result != DBNull.Value)
+                    if (result != DBNull.Value && stranka!= null)
                     {
                         stranka = result.ToString();
                     }
