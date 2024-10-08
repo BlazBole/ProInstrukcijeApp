@@ -148,10 +148,15 @@ namespace Stantehnika.Dal
                 using (var command = new MySqlCommand(query, connection))
                 {
                     object result = command.ExecuteScalar();
-                    if (result != DBNull.Value && stevilkaRacuna != null)
+                    if (result != null)
                     {
                         stevilkaRacuna = result.ToString();
                     }
+                    else
+                    {
+                        stevilkaRacuna = "Ni vpisa";
+                    }
+
                 }
             }
 
@@ -162,28 +167,41 @@ namespace Stantehnika.Dal
         {
             string stranka = null;
 
-            using (var connection = dbConnection.GetConnection())
+            try
             {
-                connection.Open();
-                string query = @"
-                        SELECT COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka
-                        FROM RacunGlava rg
-                        JOIN Stranka s ON rg.StrankaID = s.StrankaID
-                        ORDER BY rg.Datum DESC
-                        LIMIT 1";
-
-                using (var command = new MySqlCommand(query, connection))
+                using (var connection = dbConnection.GetConnection())
                 {
-                    object result = command.ExecuteScalar();
-                    if (result != DBNull.Value && stranka!= null)
+                    connection.Open();
+                    string query = @"
+                SELECT COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka
+                FROM RacunGlava rg
+                JOIN Stranka s ON rg.StrankaID = s.StrankaID
+                ORDER BY rg.Datum DESC, CAST(SUBSTRING_INDEX(rg.StevilkaRacuna, '-', -1) AS UNSIGNED) DESC
+                LIMIT 1";
+
+                    using (var command = new MySqlCommand(query, connection))
                     {
-                        stranka = result.ToString();
+                        object result = command.ExecuteScalar();
+                        if (result != null)
+                        {
+                            stranka = result.ToString();
+                        }
+                        else
+                        {
+                            stranka = "Ni vpisa";
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+               // MessageBox.Show("Napaka pri pridobivanju stranke: " + ex.Message, "Napaka", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return stranka;
         }
+
+
 
         public DateTime? GetDatumZadnjegaRacuna()
         {
@@ -273,19 +291,20 @@ namespace Stantehnika.Dal
                 {
                     connection.Open();
                     string query = @"SELECT rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
-                            rg.StrankaID, 
-                            COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka, 
-                            SUM(rp.CenaPostavke) AS SkupnaCena,
-                            (SELECT SUM(rp1.CenaPostavke) 
-                            FROM RacunPostavka rp1 
-                            WHERE rp1.RacunGlavaID = rg.RacunGlavaID 
-                            AND rp1.Storitev = 'material') AS CenaMaterial
-                                FROM RacunGlava rg
-                                JOIN Stranka s ON rg.StrankaID = s.StrankaID
-                                LEFT JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
-                                GROUP BY rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
-                                rg.StrankaID, s.NazivPodjetja, s.ImeInPriimek
-                                ORDER BY rg.Datum DESC
+       rg.StrankaID, 
+       COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka, 
+       SUM(rp.CenaPostavke) AS SkupnaCena,
+       (SELECT SUM(rp1.CenaPostavke) 
+        FROM RacunPostavka rp1 
+        WHERE rp1.RacunGlavaID = rg.RacunGlavaID 
+        AND rp1.Storitev = 'material') AS CenaMaterial
+FROM RacunGlava rg
+JOIN Stranka s ON rg.StrankaID = s.StrankaID
+LEFT JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
+GROUP BY rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+         rg.StrankaID, s.NazivPodjetja, s.ImeInPriimek
+ORDER BY rg.Datum DESC, CAST(SUBSTRING_INDEX(rg.StevilkaRacuna, '-', -1) AS UNSIGNED) DESC;
+
                                 ";
 
                     using (var command = new MySqlCommand(query, connection))

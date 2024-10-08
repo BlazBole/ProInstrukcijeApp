@@ -400,15 +400,58 @@ namespace Stantehnika.APP
                     writer.WriteStartElement("Postavke");
                     for (int i = 0; i < dgvPostavke.Rows.Count; i++)
                     {
-                        writer.WriteStartElement("Poz", dgvPostavke.Rows[i].Cells[0].Value.ToString());
-                        writer.WriteElementString("Storitev", dgvPostavke.Rows[i].Cells[1].Value.ToString());
-                        writer.WriteElementString("Kolicina", dgvPostavke.Rows[i].Cells[2].Value.ToString());
-                        writer.WriteElementString("EM", dgvPostavke.Rows[i].Cells[3].Value.ToString());
-                        writer.WriteElementString("Cena", dgvPostavke.Rows[i].Cells[4].Value.ToString());
-                        writer.WriteElementString("CenaPostavke", dgvPostavke.Rows[i].Cells[5].Value.ToString());
-                        writer.WriteEndElement(); // Postavka
+                        writer.WriteStartElement("Postavka");
+
+                        // Preveri, ali celice vsebujejo vrednosti
+                        if (dgvPostavke.Rows[i].Cells[0].Value != null)
+                        {
+                            writer.WriteElementString("Poz", dgvPostavke.Rows[i].Cells[0].Value.ToString());
+                        }
+                        if (dgvPostavke.Rows[i].Cells[1].Value != null)
+                        {
+                            writer.WriteElementString("Storitev", dgvPostavke.Rows[i].Cells[1].Value.ToString());
+                        }
+                        if (dgvPostavke.Rows[i].Cells[2].Value != null)
+                        {
+                            writer.WriteElementString("Kol", dgvPostavke.Rows[i].Cells[2].Value.ToString());
+                        }
+                        if (dgvPostavke.Rows[i].Cells[3].Value != null)
+                        {
+                            writer.WriteElementString("Enota", dgvPostavke.Rows[i].Cells[3].Value.ToString());
+                        }
+                        if (dgvPostavke.Rows[i].Cells[4].Value != null)
+                        {
+                            writer.WriteElementString("Cena", dgvPostavke.Rows[i].Cells[4].Value.ToString());
+                        }
+                        if (dgvPostavke.Rows[i].Cells[5].Value != null)
+                        {
+                            writer.WriteElementString("Skupno", dgvPostavke.Rows[i].Cells[5].Value.ToString());
+                        }
+
+                        writer.WriteEndElement();
                     }
-                    writer.WriteEndElement(); // Postavke
+                    writer.WriteEndElement();
+
+                    // Dodajanje materiala
+                    writer.WriteStartElement("Material"); // material
+
+                    // Pridobi vse vrstice iz RichTextBox
+                    string[] materials = rtbmaterial.Lines;
+                    foreach (var material in materials)
+                    {
+                        if (!string.IsNullOrWhiteSpace(material)) // Preveri, ali vrstica ni prazna
+                        {
+                            // Odstrani prvo pikico in presledek (npr. "• " postane "")
+                            string cleanedMaterial = material.TrimStart('•', ' '); // Odstrani '•' in presledek
+
+                            // Zapiši material kot element
+                            writer.WriteElementString("MaterialItem", cleanedMaterial);
+                        }
+                    }
+
+                    writer.WriteEndElement(); // Končaj element Material
+
+
 
                     // Zaključek
                     writer.WriteEndElement(); // Racun
