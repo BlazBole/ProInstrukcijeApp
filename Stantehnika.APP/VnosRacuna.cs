@@ -454,8 +454,6 @@ namespace Stantehnika.APP
 
                     writer.WriteEndElement(); // Končaj element Material
 
-
-
                     // Zaključek
                     writer.WriteEndElement(); // Racun
                     writer.WriteEndDocument();
@@ -512,16 +510,16 @@ namespace Stantehnika.APP
 
             int strankaID = racunManager.GetStrankaID(strankaIme, jePodjetje, ulica, email, davcnaStevilka, sedezPodjetja);
 
-            //int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
+            int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
 
             List<Stantehnika.Model.RacunPostavka> postavke = PridobiPostavkeIzDataGridView();
 
-            //racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
+            racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
 
             // Shranjevanje materialov v bazo
             foreach (var material in materialiList)
             {
-                //racunManager.DodajRacunMaterial(material, racunGlavaID);
+                racunManager.DodajRacunMaterial(material, racunGlavaID);
             }
 
             // Pripravi podatke XML
