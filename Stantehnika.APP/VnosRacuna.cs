@@ -1,4 +1,5 @@
-﻿using OfficeOpenXml;
+﻿using iText.Html2pdf;
+using OfficeOpenXml;
 using Stantehnika.Dal;
 using Stantehnika.Model;
 using System;
@@ -8,6 +9,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Windows.Media.Media3D;
 using System.Xml;
+using System.Xml.Xsl;
 
 namespace Stantehnika.APP
 {
@@ -24,6 +26,7 @@ namespace Stantehnika.APP
             PripraviDatumeZaRacun();
             PripraviZadetkeZaStranke();
             NastaviTabeloPostavk();
+
         }
 
         #region private methods
@@ -379,7 +382,7 @@ namespace Stantehnika.APP
                     // Fizična oseba
                     if (gbPodatkiFizicneOsebe.Visible)
                     {
-                        writer.WriteStartElement("FizicnaOseba");
+                        writer.WriteStartElement("Stranka");
                         writer.WriteElementString("Ime", fizicnaOseba);
                         writer.WriteElementString("Naslov", naslovFizicneOsebe);
                         writer.WriteElementString("ENaslov", eNaslovFizicneOsebe);
@@ -466,7 +469,6 @@ namespace Stantehnika.APP
             }
         }
 
-
         #endregion private methods
 
         #region events
@@ -510,24 +512,52 @@ namespace Stantehnika.APP
 
             int strankaID = racunManager.GetStrankaID(strankaIme, jePodjetje, ulica, email, davcnaStevilka, sedezPodjetja);
 
-            int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
+            //int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
 
             List<Stantehnika.Model.RacunPostavka> postavke = PridobiPostavkeIzDataGridView();
 
-            racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
+            //racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
 
             // Shranjevanje materialov v bazo
             foreach (var material in materialiList)
             {
-                racunManager.DodajRacunMaterial(material, racunGlavaID);
+                //racunManager.DodajRacunMaterial(material, racunGlavaID);
             }
 
-            string xmlPodatki = pripraviPodatkeXML();
+            // Pripravi podatke XML
+            string xmlPodatki = pripraviPodatkeXML(); // Generirajte XML podatke
 
-            //TODO transformacija v pdf
+            // Transformirajte XML v HTML
+            try
+            {
+                XslCompiledTransform xslt = new XslCompiledTransform();
+                xslt.Load("RacunPredloga.xslt"); // Pot do vašega XSLT datoteke
 
-            MessageBox.Show("Račun uspešno ustvarjen");
+                string htmlContent;
+                using (StringWriter stringWriter = new StringWriter())
+                {
+                    using (XmlWriter writer = XmlWriter.Create(stringWriter))
+                    {
+                        using (StringReader sr = new StringReader(xmlPodatki))
+                        {
+                            XmlDocument xmlDoc = new XmlDocument();
+                            xmlDoc.LoadXml(sr.ReadToEnd());
+                            xslt.Transform(xmlDoc, writer);
+                        }
+                    }
+                    htmlContent = stringWriter.ToString(); // Pridobite HTML vsebino
+                }
 
+                // Shranite HTML v datoteko
+                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "racun.html");
+                File.WriteAllText(filePath, htmlContent); // Shrani HTML v datoteko
+
+                MessageBox.Show($"HTML uspešno shranjen na: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Napaka pri generiranju HTML: {ex.Message}");
+            }
 
         }
 

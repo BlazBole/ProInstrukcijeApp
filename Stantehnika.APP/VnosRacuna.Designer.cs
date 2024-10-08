@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VnosRacuna));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -59,6 +59,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewPredlogi = new System.Windows.Forms.DataGridView();
             this.tbIsciStranko = new System.Windows.Forms.TextBox();
+            this.pbPrikaziVecInfoPodjetja = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPodjetje = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dtpDatumZapade = new System.Windows.Forms.DateTimePicker();
@@ -82,43 +84,41 @@
             this.btnKoncajRacun = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.dgvPostavke = new System.Windows.Forms.DataGridView();
-            this.rtbmaterial = new System.Windows.Forms.RichTextBox();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.pbDodajMaterial = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pbOdstraniVrstico = new System.Windows.Forms.PictureBox();
             this.pbDodajVrstico = new System.Windows.Forms.PictureBox();
-            this.pbPrikaziVecInfoPodjetja = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.rtbmaterial = new System.Windows.Forms.RichTextBox();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pbDodajMaterial = new System.Windows.Forms.PictureBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.dgvPostavke = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.gbPodatkiFizicneOsebe.SuspendLayout();
             this.gbNaslovnikPodjetje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPredlogi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel15.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).BeginInit();
-            this.panel11.SuspendLayout();
-            this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDodajMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel8.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDodajMaterial)).BeginInit();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -364,41 +364,41 @@
             this.dataGridViewPredlogi.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewPredlogi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewPredlogi.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPredlogi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPredlogi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridViewPredlogi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.ForestGreen;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPredlogi.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.ForestGreen;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPredlogi.DefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridViewPredlogi.EnableHeadersVisualStyles = false;
             this.dataGridViewPredlogi.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridViewPredlogi.Location = new System.Drawing.Point(178, 192);
             this.dataGridViewPredlogi.Name = "dataGridViewPredlogi";
             this.dataGridViewPredlogi.ReadOnly = true;
             this.dataGridViewPredlogi.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPredlogi.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPredlogi.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridViewPredlogi.RowHeadersWidth = 30;
             this.dataGridViewPredlogi.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewPredlogi.RowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewPredlogi.RowsDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridViewPredlogi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPredlogi.Size = new System.Drawing.Size(478, 103);
             this.dataGridViewPredlogi.TabIndex = 38;
@@ -418,6 +418,29 @@
             this.tbIsciStranko.Click += new System.EventHandler(this.tbIsciStranko_Click);
             this.tbIsciStranko.TextChanged += new System.EventHandler(this.tbIsciStranko_TextChanged_1);
             this.tbIsciStranko.Leave += new System.EventHandler(this.tbIsciStranko_Leave);
+            // 
+            // pbPrikaziVecInfoPodjetja
+            // 
+            this.pbPrikaziVecInfoPodjetja.Image = ((System.Drawing.Image)(resources.GetObject("pbPrikaziVecInfoPodjetja.Image")));
+            this.pbPrikaziVecInfoPodjetja.Location = new System.Drawing.Point(255, 146);
+            this.pbPrikaziVecInfoPodjetja.Name = "pbPrikaziVecInfoPodjetja";
+            this.pbPrikaziVecInfoPodjetja.Size = new System.Drawing.Size(29, 32);
+            this.pbPrikaziVecInfoPodjetja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPrikaziVecInfoPodjetja.TabIndex = 17;
+            this.pbPrikaziVecInfoPodjetja.TabStop = false;
+            this.pbPrikaziVecInfoPodjetja.Click += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_Click_1);
+            this.pbPrikaziVecInfoPodjetja.MouseEnter += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseEnter_1);
+            this.pbPrikaziVecInfoPodjetja.MouseLeave += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseLeave_1);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(42, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(151, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // lblPodjetje
             // 
@@ -672,107 +695,6 @@
             this.panel15.Size = new System.Drawing.Size(839, 50);
             this.panel15.TabIndex = 5;
             // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.panel11);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(929, 441);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(365, 344);
-            this.panel8.TabIndex = 17;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.dgvPostavke);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(90, 441);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(839, 344);
-            this.panel10.TabIndex = 18;
-            // 
-            // dgvPostavke
-            // 
-            this.dgvPostavke.BackgroundColor = System.Drawing.Color.White;
-            this.dgvPostavke.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPostavke.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dgvPostavke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.MenuBar;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPostavke.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dgvPostavke.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPostavke.GridColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvPostavke.Location = new System.Drawing.Point(0, 0);
-            this.dgvPostavke.Name = "dgvPostavke";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPostavke.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            this.dgvPostavke.Size = new System.Drawing.Size(839, 344);
-            this.dgvPostavke.TabIndex = 0;
-            this.dgvPostavke.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvPostavke_CellValidating);
-            this.dgvPostavke.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPostavke_CellValueChanged);
-            // 
-            // rtbmaterial
-            // 
-            this.rtbmaterial.BackColor = System.Drawing.SystemColors.Control;
-            this.rtbmaterial.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbmaterial.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.rtbmaterial.Location = new System.Drawing.Point(0, 34);
-            this.rtbmaterial.Name = "rtbmaterial";
-            this.rtbmaterial.ReadOnly = true;
-            this.rtbmaterial.Size = new System.Drawing.Size(347, 310);
-            this.rtbmaterial.TabIndex = 0;
-            this.rtbmaterial.Text = "";
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.rtbmaterial);
-            this.panel11.Controls.Add(this.panel12);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel11.Location = new System.Drawing.Point(18, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(347, 344);
-            this.panel11.TabIndex = 0;
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.pictureBox3);
-            this.panel12.Controls.Add(this.label4);
-            this.panel12.Controls.Add(this.pbDodajMaterial);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(347, 34);
-            this.panel12.TabIndex = 0;
-            // 
-            // pbDodajMaterial
-            // 
-            this.pbDodajMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbDodajMaterial.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajMaterial.Image")));
-            this.pbDodajMaterial.Location = new System.Drawing.Point(305, 2);
-            this.pbDodajMaterial.Name = "pbDodajMaterial";
-            this.pbDodajMaterial.Size = new System.Drawing.Size(41, 30);
-            this.pbDodajMaterial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbDodajMaterial.TabIndex = 1;
-            this.pbDodajMaterial.TabStop = false;
-            this.pbDodajMaterial.Click += new System.EventHandler(this.pbDodajMaterial_Click);
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
@@ -808,29 +730,6 @@
             this.pbDodajVrstico.TabStop = false;
             this.pbDodajVrstico.Click += new System.EventHandler(this.pbDodajVrstico_Click);
             // 
-            // pbPrikaziVecInfoPodjetja
-            // 
-            this.pbPrikaziVecInfoPodjetja.Image = ((System.Drawing.Image)(resources.GetObject("pbPrikaziVecInfoPodjetja.Image")));
-            this.pbPrikaziVecInfoPodjetja.Location = new System.Drawing.Point(255, 146);
-            this.pbPrikaziVecInfoPodjetja.Name = "pbPrikaziVecInfoPodjetja";
-            this.pbPrikaziVecInfoPodjetja.Size = new System.Drawing.Size(29, 32);
-            this.pbPrikaziVecInfoPodjetja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbPrikaziVecInfoPodjetja.TabIndex = 17;
-            this.pbPrikaziVecInfoPodjetja.TabStop = false;
-            this.pbPrikaziVecInfoPodjetja.Click += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_Click_1);
-            this.pbPrikaziVecInfoPodjetja.MouseEnter += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseEnter_1);
-            this.pbPrikaziVecInfoPodjetja.MouseLeave += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseLeave_1);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(42, 34);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(151, 99);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel14
             // 
             this.panel14.Dock = System.Windows.Forms.DockStyle.Right;
@@ -838,6 +737,58 @@
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(365, 50);
             this.panel14.TabIndex = 4;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.panel11);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(929, 441);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(365, 344);
+            this.panel8.TabIndex = 17;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.rtbmaterial);
+            this.panel11.Controls.Add(this.panel12);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel11.Location = new System.Drawing.Point(18, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(347, 344);
+            this.panel11.TabIndex = 0;
+            // 
+            // rtbmaterial
+            // 
+            this.rtbmaterial.BackColor = System.Drawing.SystemColors.Control;
+            this.rtbmaterial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbmaterial.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.rtbmaterial.Location = new System.Drawing.Point(0, 34);
+            this.rtbmaterial.Name = "rtbmaterial";
+            this.rtbmaterial.ReadOnly = true;
+            this.rtbmaterial.Size = new System.Drawing.Size(347, 310);
+            this.rtbmaterial.TabIndex = 0;
+            this.rtbmaterial.Text = "";
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.pictureBox3);
+            this.panel12.Controls.Add(this.label4);
+            this.panel12.Controls.Add(this.pbDodajMaterial);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(347, 34);
+            this.panel12.TabIndex = 0;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(5, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(41, 30);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
             // 
             // label4
             // 
@@ -850,15 +801,64 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Vnos materiala";
             // 
-            // pictureBox3
+            // pbDodajMaterial
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(5, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(41, 30);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
+            this.pbDodajMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbDodajMaterial.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajMaterial.Image")));
+            this.pbDodajMaterial.Location = new System.Drawing.Point(305, 2);
+            this.pbDodajMaterial.Name = "pbDodajMaterial";
+            this.pbDodajMaterial.Size = new System.Drawing.Size(41, 30);
+            this.pbDodajMaterial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbDodajMaterial.TabIndex = 1;
+            this.pbDodajMaterial.TabStop = false;
+            this.pbDodajMaterial.Click += new System.EventHandler(this.pbDodajMaterial_Click);
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.dgvPostavke);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(90, 441);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(839, 344);
+            this.panel10.TabIndex = 18;
+            // 
+            // dgvPostavke
+            // 
+            this.dgvPostavke.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPostavke.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPostavke.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            this.dgvPostavke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.MenuBar;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPostavke.DefaultCellStyle = dataGridViewCellStyle27;
+            this.dgvPostavke.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPostavke.GridColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvPostavke.Location = new System.Drawing.Point(0, 0);
+            this.dgvPostavke.Name = "dgvPostavke";
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPostavke.RowHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            this.dgvPostavke.Size = new System.Drawing.Size(839, 344);
+            this.dgvPostavke.TabIndex = 0;
+            this.dgvPostavke.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvPostavke_CellValidating);
+            this.dgvPostavke.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPostavke_CellValueChanged);
             // 
             // VnosRacuna
             // 
@@ -883,6 +883,8 @@
             this.gbNaslovnikPodjetje.ResumeLayout(false);
             this.gbNaslovnikPodjetje.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPredlogi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -890,19 +892,17 @@
             this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).EndInit();
-            this.panel11.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDodajMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDodajMaterial)).EndInit();
+            this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).EndInit();
             this.ResumeLayout(false);
 
         }
