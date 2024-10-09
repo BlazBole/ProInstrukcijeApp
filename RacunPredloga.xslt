@@ -32,6 +32,7 @@
                     }
 					
                     th, td {
+						border: 1px solid gray;
                         padding: 2px;
                     }
 					
@@ -66,6 +67,15 @@
 					.tableItems td, .tableItems th {
 						<!--border: 1px solid gray;-->
 						padding: 8px;
+						border: none;
+					}
+					
+					.tableItems thead {
+						display: table-row-group; /* Ne ponavljaj glave na več straneh */
+					}
+					
+					.tableItems, .tableItems tr, .tableItems td {
+						page-break-inside: avoid;
 					}
 
 					.HeaderItem {
@@ -79,6 +89,25 @@
 					.dataItemName {
 						text-align: left;
 					}
+				
+					.tablePrice{
+						border-collapse: collapse;
+						width: 100%;
+					}
+					
+				    .tablePrice th,  .tablePrice td{
+						padding-right: 8px;
+						border: none;
+					}
+					
+					.alignRight{
+						text-align: right;
+					}
+					
+					.alignLeft{
+						text-align: left;
+					}
+					
                 </style>
             </head>
             <body>
@@ -126,7 +155,7 @@
 						    <td><strong>Datum: </strong> <xsl:value-of select="Racun/RacunPodatki/Datum" /> </td>
 						</tr>
 						<tr>
-							<td>Email: bole@stantehnika.si</td>
+							<td>E-mail: bole@stantehnika.si</td>
 							<td id="betwenColumn"></td>
 						    <td><strong>Opravljeno: </strong> <xsl:value-of select="Racun/RacunPodatki/DatumOpravljeno" /> </td>
 						</tr>
@@ -136,18 +165,36 @@
 						    <td><strong>Zapade: </strong> <xsl:value-of select="Racun/RacunPodatki/DatumZapade" /> </td>
 						</tr>
 						<!-- Podatki stranke -->
-						<tr>
-							<td colspan="3" style="height: 30px;"></td> <!-- Prazna vrstica z višino -->
-						</tr>
-						<tr>
-							<td colspan="3"><xsl:value-of select="Racun/Stranka/Ime" /></td>
-						</tr>
-						<tr>
-							<td colspan="3"><xsl:value-of select="Racun/Stranka/Naslov" /></td>
-						</tr>
-						<tr>
-							<td colspan="3"><xsl:value-of select="Racun/Stranka/ENaslov" /></td>
-						</tr>
+						<xsl:choose>
+							<xsl:when test="Racun/FizicnaOseba">
+								<tr>
+									<td colspan="3" style="height: 30px;"></td> <!-- Prazna vrstica z višino -->
+								</tr>
+								<tr>
+									<td colspan="3"><xsl:value-of select="Racun/FizicnaOseba/Ime" /></td>
+								</tr>
+								<tr>
+									<td colspan="3"><xsl:value-of select="Racun/FizicnaOseba/Naslov" /></td>
+								</tr>
+								<tr>
+									<td colspan="3"><xsl:value-of select="Racun/FizicnaOseba/ENaslov" /></td>
+								</tr>
+							</xsl:when>
+						        <xsl:otherwise>
+								<tr>
+									<td colspan="3"><xsl:value-of select="Racun/Podjetje/Naziv" /></td>
+								</tr>
+								<tr>
+									<td colspan="3"><xsl:value-of select="Racun/Podjetje/PE" /></td>
+								</tr>
+								<tr>
+									<td colspan="3"><xsl:value-of select="Racun/Podjetje/DavcnaStevilka" /></td>
+								</tr>
+								<tr>
+									<td colspan="3"><xsl:value-of select="Racun/Podjetje/ENaslov" /></td>
+								</tr>
+						</xsl:otherwise>
+					</xsl:choose>
 					</tbody>
                 </table>
 
@@ -194,7 +241,39 @@
 				</table>
 				
 				<hr/>
-			
+				
+				<table class="tablePrice">
+					<thead>
+						<tr>
+							<th class="alignRight" colspan="2" style="font-size: 15xpt;"><strong>SKUPAJ ZA PLAČILO: <xsl:value-of select="Racun/RacunPodatki/SkupajZaPlacilo"/></strong></th>
+						</tr>
+					</thead>
+					<tboady>
+						<tr>
+							<td class="alignRight" colspan="2">DDV ni obračunan v skladu s 94. členom ZDDV-1</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="height: 30px;"></td>
+						</tr>
+						<tr>
+							<td class="alignLeft" colspan="2">
+							<span style="font-size: 12pt;">Račun izdala: </span>
+							<span style="font-size: 12pt; color:gray"><strong>STANTEHNIKA</strong></span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="height: 30px;"></td>
+						</tr>
+						<tr>
+							<td>
+							<span style="font-size: 12pt;">Podpis: </span>
+							<span style="font-size: 12pt;">Gregor Bole</span>
+							</td>
+							<td>
+							</td>
+						</tr>
+					</tboady>
+				</table>
             </body>
         </html>
 	</xsl:template>

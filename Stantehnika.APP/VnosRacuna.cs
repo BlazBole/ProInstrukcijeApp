@@ -1,15 +1,25 @@
 ﻿using iText.Html2pdf;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
 using OfficeOpenXml;
+using Spire.Doc.Documents;
+using Spire.Doc;
 using Stantehnika.Dal;
 using Stantehnika.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Net.Http;
 using System.Windows.Forms;
 using System.Windows.Media.Media3D;
 using System.Xml;
 using System.Xml.Xsl;
+using System.Web.UI.WebControls.WebParts;
+using System.Web;
+
+using ceTe.DynamicPDF.HtmlConverter;
+
 
 namespace Stantehnika.APP
 {
@@ -373,8 +383,8 @@ namespace Stantehnika.APP
                     {
                         writer.WriteStartElement("Podjetje");
                         writer.WriteElementString("Naziv", nazivPodjetja);
-                        writer.WriteElementString("DavcnaStevilka", davcnaStevilka);
                         writer.WriteElementString("PE", pe);
+                        writer.WriteElementString("DavcnaStevilka", davcnaStevilka);
                         writer.WriteElementString("ENaslov", eNaslovPodjetja);
                         writer.WriteEndElement(); // Podjetje
                     }
@@ -382,7 +392,7 @@ namespace Stantehnika.APP
                     // Fizična oseba
                     if (gbPodatkiFizicneOsebe.Visible)
                     {
-                        writer.WriteStartElement("Stranka");
+                        writer.WriteStartElement("FizicnaOseba");
                         writer.WriteElementString("Ime", fizicnaOseba);
                         writer.WriteElementString("Naslov", naslovFizicneOsebe);
                         writer.WriteElementString("ENaslov", eNaslovFizicneOsebe);
@@ -467,6 +477,16 @@ namespace Stantehnika.APP
             }
         }
 
+        public void PretvoriV_PDF()
+        {
+            Uri htmlFilePath = new Uri(@"C:\Users\bole\source\repos\Stantehnika.APP\Stantehnika.APP\bin\Debug\racun.html"); // Pot do vaše HTML datoteke
+
+            string pdfFilePath = @"C:\Users\bole\source\repos\Stantehnika.APP\Stantehnika.APP\bin\Debug\racun.pdf";
+
+            Converter.Convert(htmlFilePath, pdfFilePath);
+        }
+
+
         #endregion private methods
 
         #region events
@@ -510,20 +530,21 @@ namespace Stantehnika.APP
 
             int strankaID = racunManager.GetStrankaID(strankaIme, jePodjetje, ulica, email, davcnaStevilka, sedezPodjetja);
 
-            int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
+            //int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
 
             List<Stantehnika.Model.RacunPostavka> postavke = PridobiPostavkeIzDataGridView();
 
-            racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
+            //racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
 
             // Shranjevanje materialov v bazo
             foreach (var material in materialiList)
             {
-                racunManager.DodajRacunMaterial(material, racunGlavaID);
+                //racunManager.DodajRacunMaterial(material, racunGlavaID);
             }
 
             // Pripravi podatke XML
             string xmlPodatki = pripraviPodatkeXML(); // Generirajte XML podatke
+            string htmlContent = "";
 
             // Transformirajte XML v HTML
             try
@@ -531,7 +552,6 @@ namespace Stantehnika.APP
                 XslCompiledTransform xslt = new XslCompiledTransform();
                 xslt.Load("RacunPredloga.xslt"); // Pot do vašega XSLT datoteke
 
-                string htmlContent;
                 using (StringWriter stringWriter = new StringWriter())
                 {
                     using (XmlWriter writer = XmlWriter.Create(stringWriter))
@@ -547,10 +567,11 @@ namespace Stantehnika.APP
                 }
 
                 // Shranite HTML v datoteko
-                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "racun.html");
+                string filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "C:\\Users\\bole\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.html");
                 File.WriteAllText(filePath, htmlContent); // Shrani HTML v datoteko
+                PretvoriV_PDF();
 
-                MessageBox.Show($"HTML uspešno shranjen na: {filePath}");
+                MessageBox.Show($"Racun uspešno shranjen!");
             }
             catch (Exception ex)
             {
@@ -558,7 +579,6 @@ namespace Stantehnika.APP
             }
 
         }
-
 
         private void tbIsciStranko_TextChanged_1(object sender, EventArgs e)
         {
@@ -801,5 +821,6 @@ namespace Stantehnika.APP
         }
 
         #endregion events
+
     }
 }
