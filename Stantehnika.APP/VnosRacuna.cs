@@ -1,24 +1,20 @@
-﻿using iText.Html2pdf;
-using iText.Kernel.Geom;
-using iText.Kernel.Pdf;
-using OfficeOpenXml;
-using Spire.Doc.Documents;
-using Spire.Doc;
+﻿using OfficeOpenXml;
 using Stantehnika.Dal;
 using Stantehnika.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Net.Http;
 using System.Windows.Forms;
-using System.Windows.Media.Media3D;
 using System.Xml;
 using System.Xml.Xsl;
-using System.Web.UI.WebControls.WebParts;
-using System.Web;
-
 using ceTe.DynamicPDF.HtmlConverter;
+using Apitron.PDF.Kit.FixedLayout.Content;
+using Apitron.PDF.Kit.FixedLayout.ContentElements;
+using Apitron.PDF.Kit;
+using System.Diagnostics;
+
+
 
 
 namespace Stantehnika.APP
@@ -486,6 +482,53 @@ namespace Stantehnika.APP
             Converter.Convert(htmlFilePath, pdfFilePath);
         }
 
+        public void ReplaceText(string inputFilePath, string oldText, string newText)
+        {
+            string outputFileName = "racun_modified.pdf"; // Specify the output file name
+
+            using (Stream inputStream = File.Open(inputFilePath, FileMode.Open, FileAccess.Read))
+            {
+                using (FixedDocument doc = new FixedDocument(inputStream))
+                {
+                    // Enumerate content elements found on each page
+                    foreach (var page in doc.Pages)
+                    {
+                        foreach (IContentElement element in page.Elements)
+                        {
+                            // Handle the text element case
+                            if (element.ElementType == ElementType.Text)
+                            {
+                                TextContentElement textElement = element as TextContentElement;
+                                if (textElement != null)
+                                {
+                                    // Go through all the text segments and replace
+                                    foreach (TextSegment textSegment in textElement.Segments)
+                                    {
+                                        if (textSegment.Text.Contains(oldText))
+                                        {
+                                            // Create a new text object with the new text
+                                            TextObject newTextObject =
+                                                new TextObject(textSegment.FontName, textSegment.FontSize);
+                                            newTextObject.AppendText(newText); // Add the new text
+                                            textSegment.ReplaceText(0, textSegment.Text.Length, newTextObject);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Save the modified file
+                    using (Stream outputStream = File.Create(outputFileName))
+                    {
+                        doc.Save(outputStream);
+                    }
+                }
+            }
+
+            // Open the modified PDF file
+            Process.Start(outputFileName);
+        }
 
         #endregion private methods
 
@@ -570,6 +613,7 @@ namespace Stantehnika.APP
                 string filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "C:\\Users\\bole\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.html");
                 File.WriteAllText(filePath, htmlContent); // Shrani HTML v datoteko
                 PretvoriV_PDF();
+                ReplaceText("C:\\Users\\bole\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.pdf", "Created with the DynamicPDF Essentials Edition.", "");
 
                 MessageBox.Show($"Racun uspešno shranjen!");
             }
