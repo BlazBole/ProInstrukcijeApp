@@ -13,6 +13,9 @@ using Apitron.PDF.Kit.FixedLayout.Content;
 using Apitron.PDF.Kit.FixedLayout.ContentElements;
 using Apitron.PDF.Kit;
 using System.Diagnostics;
+using Aspose.Words.Bibliography;
+using ceTe.DynamicPDF.LayoutEngine;
+using ceTe.DynamicPDF;
 
 
 
@@ -32,6 +35,7 @@ namespace Stantehnika.APP
             PripraviDatumeZaRacun();
             PripraviZadetkeZaStranke();
             NastaviTabeloPostavk();
+            NastaviTabeloMateriala();
 
         }
 
@@ -111,9 +115,9 @@ namespace Stantehnika.APP
             dgvPostavke.Columns.Clear();
 
             dgvPostavke.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvPostavke.DefaultCellStyle.Font = new Font("Segoe UI", 14);
+            dgvPostavke.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 14);
 
-            dgvPostavke.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dgvPostavke.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
             dgvPostavke.EnableHeadersVisualStyles = false;
 
             dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
@@ -179,6 +183,32 @@ namespace Stantehnika.APP
 
         }
 
+        private void NastaviTabeloMateriala()
+        {
+            dgvMaterial.Columns.Clear();
+
+            dgvMaterial.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvMaterial.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 14);
+
+            dgvMaterial.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dgvMaterial.EnableHeadersVisualStyles = false;
+
+            dgvMaterial.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Naziv",
+                Name = "Naziv",
+                DataPropertyName = "Naziv",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            // Onemogočite dodajanje vrstic, če je potrebno
+            dgvMaterial.AllowUserToAddRows = false;
+
+            // Samodejno prilagajanje višin vrstic
+            dgvMaterial.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            // Dodajte obravnavo dogodkov, če je potrebno
+        }
         public void DodajVrstico()
         {
             int newRowIndex = dgvPostavke.Rows.Add();
@@ -193,6 +223,25 @@ namespace Stantehnika.APP
                 dgvPostavke.Rows.RemoveAt(dgvPostavke.SelectedRows[0].Index);
                 PosodobiStevilkaPostavke();
                 IzracunajSkupnoCeno();
+            }
+            else
+            {
+                MessageBox.Show("Izberite vrstico, ki jo želite odstraniti.", "Napaka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        public void DodajVrsticoMaterial()
+        {
+            int newRowIndex = dgvMaterial.Rows.Add(); // Dodajte novo vrstico
+
+        }
+
+        public void OdstraniVrsticoMaterial()
+        {
+            if (dgvMaterial.SelectedRows.Count > 0)
+            {
+                // Odstranite izbrano vrstico
+                dgvMaterial.Rows.RemoveAt(dgvMaterial.SelectedRows[0].Index);
             }
             else
             {
@@ -219,108 +268,6 @@ namespace Stantehnika.APP
                 }
             }
             lblSkupajzaPlacilo.Text = $"{skupnaCena:N2} €";
-        }
-
-        private void ShraniVExcel()
-        {
-            string imeDatoteke = "račun_" + tbStevikaRacuna.Text + ".xlsx";
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = imeDatoteke; 
-            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-            saveFileDialog.Title = "Shrani Excel datoteko";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (ExcelPackage excelPackage = new ExcelPackage())
-                {
-                    ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Račun");
-
-                    int currentRow = 1;
-
-                    if (gbNaslovnikPodjetje.Visible)
-                    {
-                        worksheet.Cells[currentRow, 1].Value = "Naziv podjetja:";
-                        worksheet.Cells[currentRow, 2].Value = lblNaslovnikPodjetje.Text;
-
-                        currentRow++;
-                        worksheet.Cells[currentRow, 1].Value = "Davčna številka:";
-                        worksheet.Cells[currentRow, 2].Value = lblDavcnaStevilkaPodjetje.Text;
-
-                        currentRow++;
-                        worksheet.Cells[currentRow, 1].Value = "PE:";
-                        worksheet.Cells[currentRow, 2].Value = lblPEPodjetje.Text;
-
-                        currentRow++;
-                        worksheet.Cells[currentRow, 1].Value = "E-naslov:";
-                        worksheet.Cells[currentRow, 2].Value = lblEnaslovPodjetje.Text;
-                    }
-
-                    if (gbPodatkiFizicneOsebe.Visible)
-                    {
-                        worksheet.Cells[currentRow, 1].Value = "Fizična oseba:";
-                        worksheet.Cells[currentRow, 2].Value = lblStrankaFizicnaOseba.Text;
-
-                        currentRow++;
-                        worksheet.Cells[currentRow, 1].Value = "Naslov:";
-                        worksheet.Cells[currentRow, 2].Value = lblNaslovFizicnaOseba.Text;
-
-                        currentRow++;
-                        worksheet.Cells[currentRow, 1].Value = "E-naslov:";
-                        worksheet.Cells[currentRow, 2].Value = lblEnaslovFizicnaOseba.Text;
-                    }
-
-                    currentRow++; 
-
-                    worksheet.Cells[currentRow, 1].Value = "Številka računa:";
-                    worksheet.Cells[currentRow, 2].Value = tbStevikaRacuna.Text;
-
-                    currentRow++;
-                    worksheet.Cells[currentRow, 1].Value = "Kraj:";
-                    worksheet.Cells[currentRow, 2].Value = lblKraj.Text;
-
-                    currentRow++;
-                    worksheet.Cells[currentRow, 1].Value = "Datum:";
-                    worksheet.Cells[currentRow, 2].Value = dtpDatum.Value.ToShortDateString();
-
-                    currentRow++;
-                    worksheet.Cells[currentRow, 1].Value = "Datum opravljeno:";
-                    worksheet.Cells[currentRow, 2].Value = dtpDatumOpravljeno.Value.ToShortDateString();
-
-                    currentRow++;
-                    worksheet.Cells[currentRow, 1].Value = "Datum zapade:";
-                    worksheet.Cells[currentRow, 2].Value = dtpDatumZapade.Value.ToShortDateString();
-
-                    currentRow++; 
-
-                    // 3. Tabela postavk
-                    worksheet.Cells[currentRow, 1].Value = "EM"; 
-                    worksheet.Cells[currentRow, 2].Value = "Kol.";
-                    worksheet.Cells[currentRow, 3].Value = "Cena";
-                    worksheet.Cells[currentRow, 4].Value = "CenaPostavke";
-
-                    currentRow++; 
-
-                    for (int i = 0; i < dgvPostavke.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dgvPostavke.Columns.Count; j++)
-                        {
-                            worksheet.Cells[currentRow, j + 1].Value = dgvPostavke.Rows[i].Cells[j].Value;
-                        }
-                        currentRow++; 
-                    }
-
-                    currentRow++; 
-
-                    worksheet.Cells[currentRow, 1].Value = "Skupaj za plačilo:";
-                    worksheet.Cells[currentRow, 2].Value = lblSkupajzaPlacilo.Text;
-
-                    FileInfo excelFile = new FileInfo(saveFileDialog.FileName);
-                    excelPackage.SaveAs(excelFile);
-
-                    MessageBox.Show("Datoteka je bila uspešno shranjena.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
         }
 
         private List<Stantehnika.Model.RacunPostavka> PridobiPostavkeIzDataGridView()
@@ -442,23 +389,33 @@ namespace Stantehnika.APP
                     writer.WriteEndElement();
 
                     // Dodajanje materiala
-                    writer.WriteStartElement("Material"); // material
+                    writer.WriteStartElement("Material"); // Začne element Material
 
-                    // Pridobi vse vrstice iz RichTextBox
-                    string[] materials = rtbmaterial.Lines;
-                    foreach (var material in materials)
+                    // Preveri, ali obstajajo vrstice v dgvMaterial
+                    for (int i = 0; i < dgvMaterial.Rows.Count; i++)
                     {
-                        if (!string.IsNullOrWhiteSpace(material)) // Preveri, ali vrstica ni prazna
+                        // Preveri, ali vrstica ni nova (ne vsebuje podatkov)
+                        if (!dgvMaterial.Rows[i].IsNewRow)
                         {
-                            // Odstrani prvo pikico in presledek (npr. "• " postane "")
-                            string cleanedMaterial = material.TrimStart('•', ' '); // Odstrani '•' in presledek
+                            writer.WriteStartElement("MaterialItem"); // Začne element MaterialItem
 
-                            // Zapiši material kot element
-                            writer.WriteElementString("MaterialItem", cleanedMaterial);
+                            // Preveri, ali celice vsebujejo vrednosti
+                            if (dgvMaterial.Rows[i].Cells["Naziv"].Value != null)
+                            {
+                                writer.WriteElementString("Naziv", dgvMaterial.Rows[i].Cells["Naziv"].Value.ToString());
+                            }
+
+                            // Dodajte morebitne druge celice, ki jih želite shraniti v XML
+                            // Če imate več stolpcev, jih lahko dodate tukaj
+                            // Na primer:
+                            // if (dgvMaterial.Rows[i].Cells["DrugStolpec"].Value != null)
+                            // {
+                            //     writer.WriteElementString("DrugStolpec", dgvMaterial.Rows[i].Cells["DrugStolpec"].Value.ToString());
+                            // }
+
+                            writer.WriteEndElement(); // Končaj element MaterialItem
                         }
                     }
-
-                    writer.WriteEndElement(); // Končaj element Material
 
                     // Zaključek
                     writer.WriteEndElement(); // Racun
@@ -484,7 +441,7 @@ namespace Stantehnika.APP
 
         public void ReplaceText(string inputFilePath, string oldText, string newText)
         {
-            string outputFileName = "racun_modified.pdf"; // Specify the output file name
+            string outputFileName = "racunStantehnika.pdf"; // Specify the output file name
 
             using (Stream inputStream = File.Open(inputFilePath, FileMode.Open, FileAccess.Read))
             {
@@ -530,6 +487,32 @@ namespace Stantehnika.APP
             Process.Start(outputFileName);
         }
 
+        public void IzberiPotZaShranjenRacun()
+        {
+            string originalPath = @"racunStantehnika.pdf"; 
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf"; 
+                saveFileDialog.Title = "Shrani račun kot";
+                saveFileDialog.FileName = "racunStantehnika.pdf"; 
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Kopiraj datoteko na izbrano mesto
+                    try
+                    {
+                        File.Copy(originalPath, saveFileDialog.FileName, true); 
+                        MessageBox.Show("Račun uspešno shranjen.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Napaka pri shranjevanju računa: " + ex.Message, "Napaka", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         #endregion private methods
 
         #region events
@@ -550,7 +533,7 @@ namespace Stantehnika.APP
             pbPrikaziVecInfoPodjetja.Cursor = Cursors.Default;
         }
 
-        private void btnKoncajRacun_Click_1(object sender, EventArgs e)
+        public void shraniPodatkeVracun()
         {
             RacunManager racunManager = new RacunManager();
 
@@ -573,18 +556,20 @@ namespace Stantehnika.APP
 
             int strankaID = racunManager.GetStrankaID(strankaIme, jePodjetje, ulica, email, davcnaStevilka, sedezPodjetja);
 
-            //int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
+            int racunGlavaID = racunManager.DodajRacunGlava(tbStevikaRacuna.Text, lblKraj.Text, dtpDatum.Value, dtpDatumOpravljeno.Value, dtpDatumZapade.Value, strankaID);
 
             List<Stantehnika.Model.RacunPostavka> postavke = PridobiPostavkeIzDataGridView();
 
-            //racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
+            racunManager.DodajPostavkeZaRacun(racunGlavaID, postavke);
 
             // Shranjevanje materialov v bazo
             foreach (var material in materialiList)
             {
-                //racunManager.DodajRacunMaterial(material, racunGlavaID);
+                racunManager.DodajRacunMaterial(material, racunGlavaID);
             }
-
+        }
+        public void generirajRacun()
+        {
             // Pripravi podatke XML
             string xmlPodatki = pripraviPodatkeXML(); // Generirajte XML podatke
             string htmlContent = "";
@@ -615,13 +600,26 @@ namespace Stantehnika.APP
                 PretvoriV_PDF();
                 ReplaceText("C:\\Users\\bole\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.pdf", "Created with the DynamicPDF Essentials Edition.", "");
 
-                MessageBox.Show($"Racun uspešno shranjen!");
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Napaka pri generiranju HTML: {ex.Message}");
+                MessageBox.Show($"Napaka! {ex.Message}");
             }
+        }
 
+        private void btnKoncajRacun_Click_1(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Ste prepričani, da želite zaključiti račun?", "Potrditev", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                shraniPodatkeVracun();    
+                generirajRacun();        
+                IzberiPotZaShranjenRacun();
+
+                this.Close();
+            }
         }
 
         private void tbIsciStranko_TextChanged_1(object sender, EventArgs e)
@@ -759,6 +757,17 @@ namespace Stantehnika.APP
             OdstraniVrstico();
         }
 
+
+        private void pbDodajvrsticoMaterial_Click(object sender, EventArgs e)
+        {
+            DodajVrsticoMaterial();
+        }
+
+        private void pbOdstraniVrsticoMaterial_Click(object sender, EventArgs e)
+        {
+            OdstraniVrsticoMaterial();
+        }
+
         private void dgvPostavke_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (dgvPostavke.Columns[e.ColumnIndex].Name == "Kol")
@@ -839,32 +848,17 @@ namespace Stantehnika.APP
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void lblShraniRacun_Click(object sender, EventArgs e)
         {
-            ShraniVExcel();
+            generirajRacun();
+            IzberiPotZaShranjenRacun();
         }
 
-        private void pbDodajMaterial_Click(object sender, EventArgs e)
+        private void btnGenerirajRacun_Click(object sender, EventArgs e)
         {
-            // Ustvari novo okno za dodajanje materiala
-            using (var dodajMaterialForm = new DodajMaterial())
-            {
-                // Odpri okno in preveri, ali je uporabnik potrdil dodajanje
-                if (dodajMaterialForm.ShowDialog() == DialogResult.OK)
-                {
-                    // Pridobi ime materiala iz okna
-                    string material = dodajMaterialForm.MaterialName;
-
-                    // Dodaj material v RichTextBox
-                    rtbmaterial.AppendText("• " + material + Environment.NewLine);
-
-                    // Dodaj material v seznam
-                    materialiList.Add(material);
-                }
-            }
+            generirajRacun();
         }
 
         #endregion events
-
     }
 }
