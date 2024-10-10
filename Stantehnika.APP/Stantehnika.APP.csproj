@@ -410,6 +410,12 @@
     <Compile Include="DodajMaterial.Designer.cs">
       <DependentUpon>DodajMaterial.cs</DependentUpon>
     </Compile>
+    <Compile Include="DodajOpombo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DodajOpombo.Designer.cs">
+      <DependentUpon>DodajOpombo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FizicnaOsebaVnos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -462,6 +468,9 @@
     </Compile>
     <EmbeddedResource Include="DodajMaterial.resx">
       <DependentUpon>DodajMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DodajOpombo.resx">
+      <DependentUpon>DodajOpombo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FizicnaOsebaVnos.resx">
       <DependentUpon>FizicnaOsebaVnos.cs</DependentUpon>

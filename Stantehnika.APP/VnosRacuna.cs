@@ -16,6 +16,7 @@ using System.Diagnostics;
 using Aspose.Words.Bibliography;
 using ceTe.DynamicPDF.LayoutEngine;
 using ceTe.DynamicPDF;
+using Stantehnika.APP.UsersControls;
 
 
 
@@ -26,6 +27,7 @@ namespace Stantehnika.APP
     {
         #region private members
         private List<string> materialiList = new List<string>();
+        string opomba;
         #endregion private members
 
         public VnosRacuna()
@@ -416,6 +418,11 @@ namespace Stantehnika.APP
                             writer.WriteEndElement(); // Končaj element MaterialItem
                         }
                     }
+                    writer.WriteEndElement(); // Dodatno
+
+                    writer.WriteStartElement("Dodatno"); // Začne element Material
+                    writer.WriteElementString("Naziv", opomba);
+                    writer.WriteEndElement(); // Dodatno
 
                     // Zaključek
                     writer.WriteEndElement(); // Racun
@@ -854,11 +861,27 @@ namespace Stantehnika.APP
             IzberiPotZaShranjenRacun();
         }
 
+        private void pbShraniRacun_Click(object sender, EventArgs e)
+        {
+            generirajRacun();
+            IzberiPotZaShranjenRacun();
+        }
+
         private void btnGenerirajRacun_Click(object sender, EventArgs e)
         {
             generirajRacun();
         }
 
+        private void lblDodajOpombo_Click(object sender, EventArgs e)
+        {
+            DodajOpombo opombaForm = new DodajOpombo();
+
+            if (opombaForm.ShowDialog() == DialogResult.OK)
+            {
+                // Shranimo opombo iz opombaForm na začetni obrazec
+                opomba = opombaForm.Opomba;
+            }
+        }
         #endregion events
     }
 }
