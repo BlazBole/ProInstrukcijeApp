@@ -265,6 +265,7 @@
     <Compile Include="RacunMaterial.cs" />
     <Compile Include="RacunPostavka.cs" />
     <Compile Include="Stranka.cs" />
+    <Compile Include="UPNplacilniNalog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

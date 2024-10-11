@@ -1,0 +1,6 @@
+@Stantehnika.QrGenrator_HostAddress = http://localhost:5236
+
+GET {{Stantehnika.QrGenrator_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

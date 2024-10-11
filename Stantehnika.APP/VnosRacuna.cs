@@ -17,6 +17,7 @@ using Aspose.Words.Bibliography;
 using ceTe.DynamicPDF.LayoutEngine;
 using ceTe.DynamicPDF;
 using Stantehnika.APP.UsersControls;
+using QRCoder;
 
 
 
@@ -73,7 +74,7 @@ namespace Stantehnika.APP
         {
             dataGridViewPredlogi.Visible = false;
             lblNaslovnikPodjetje.Visible = false;
-            gbNaslovnikPodjetje.Visible= false;
+            gbNaslovnikPodjetje.Visible = false;
             lblIzberiStranko.Visible = false;
             gbPodatkiFizicneOsebe.Visible = false;
         }
@@ -87,14 +88,14 @@ namespace Stantehnika.APP
             if (System.Text.RegularExpressions.Regex.IsMatch(racunStevilka, pattern))
             {
                 string[] parts = racunStevilka.Split('-');
-                string leto = parts[0];  
-                string stevilka = parts[1]; 
+                string leto = parts[0];
+                string stevilka = parts[1];
 
                 if (int.TryParse(stevilka, out int number))
                 {
                     if (number < 10)
                     {
-                        stevilka = number.ToString();  
+                        stevilka = number.ToString();
                     }
 
                     tbStevikaRacuna.Text = $"{leto}-{stevilka}";
@@ -154,7 +155,7 @@ namespace Stantehnika.APP
                 DataPropertyName = "EnotaMerjenja",
                 Name = "EnotaMerjenja",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                DataSource = new string[] { "m²", "m", "tm", "kom.", "kpl.", "ura", "kos"}
+                DataSource = new string[] { "m²", "m", "tm", "kom.", "kpl.", "ura", "kos" }
             };
             dgvPostavke.Columns.Add(comboBoxColumn);
 
@@ -164,7 +165,7 @@ namespace Stantehnika.APP
                 DataPropertyName = "CenaEneKolicine",
                 Name = "CenaEneKolicine",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft, Format = "C2" } 
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft, Format = "C2" }
             });
 
             dgvPostavke.Columns.Add(new DataGridViewTextBoxColumn
@@ -172,7 +173,7 @@ namespace Stantehnika.APP
                 HeaderText = "EUR",
                 DataPropertyName = "CenaPostavke",
                 Name = "CenaPostavke",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, 
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft, Format = "C2" }
             });
 
@@ -315,6 +316,8 @@ namespace Stantehnika.APP
             string datumZapade = dtpDatumZapade.Value.ToShortDateString();
             string skupajZaPlacilo = lblSkupajzaPlacilo.Text;
 
+            VpisiPodatkeQRZaPravnoOsebo(skupajZaPlacilo);
+
             // Uporabi StringWriter za zapisovanje XML-ja
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -342,6 +345,7 @@ namespace Stantehnika.APP
                         writer.WriteElementString("Naslov", naslovFizicneOsebe);
                         writer.WriteElementString("ENaslov", eNaslovFizicneOsebe);
                         writer.WriteEndElement(); // FizicnaOseba
+                        //VpisiPodatkeQRZaFizicnoOsebo(fizicnaOseba, datum, datumZapade);
                     }
 
                     // Račun
@@ -407,14 +411,6 @@ namespace Stantehnika.APP
                                 writer.WriteElementString("Naziv", dgvMaterial.Rows[i].Cells["Naziv"].Value.ToString());
                             }
 
-                            // Dodajte morebitne druge celice, ki jih želite shraniti v XML
-                            // Če imate več stolpcev, jih lahko dodate tukaj
-                            // Na primer:
-                            // if (dgvMaterial.Rows[i].Cells["DrugStolpec"].Value != null)
-                            // {
-                            //     writer.WriteElementString("DrugStolpec", dgvMaterial.Rows[i].Cells["DrugStolpec"].Value.ToString());
-                            // }
-
                             writer.WriteEndElement(); // Končaj element MaterialItem
                         }
                     }
@@ -423,6 +419,8 @@ namespace Stantehnika.APP
                     writer.WriteStartElement("Dodatno"); // Začne element Material
                     writer.WriteElementString("Naziv", opomba);
                     writer.WriteEndElement(); // Dodatno
+
+ 
 
                     // Zaključek
                     writer.WriteEndElement(); // Racun
@@ -434,6 +432,99 @@ namespace Stantehnika.APP
 
                 // Vrni ustvarjeni XML niz
                 return xmlString;
+            }
+        }
+
+        public void VpisiPodatkeQRZaPravnoOsebo(string znesekZaPlacilo)
+        {
+            var formattedAmount = ConvertToBankFormat(znesekZaPlacilo);
+            var upn = new UPNplacilniNalog
+            {
+                UPNQR = "UPNQR",
+                IBANPlačnika = "",
+                Polog = "",
+                Dvig = "",
+                ReferencaPlačnika = "SI1227",
+                ImePlačnika = "",
+                UlicaInŠtevilkaPlačnika = "",
+                KrajPlačnika = "",
+                Znesek = formattedAmount,
+                DatumPlačila = "10.12.2003",
+                Nujno = "",
+                KodaNamena = "OTHR",
+                NamenPlačila = "Plačilo računa",
+                RokPlačila = "",
+                IBANPrejemnika = "SI56101000060376869",
+                ReferencaPrejemnika = "",
+                ImePrejemnika = "STANTEHNIKA Gregor Bole s.p.",
+                UlicaInŠtevilkaPrejemnika = "Borova ulica 9",
+                KrajPrejemnika = "2204 Miklavž na Dravskem polju",
+                VsotaZnakov = 0
+            };
+
+            // Generate QR code with data on separate lines
+            var qrData = string.Join(Environment.NewLine, new[]
+            {
+                upn.UPNQR,
+                upn.IBANPlačnika,
+                upn.Polog,
+                upn.Dvig,
+                upn.ReferencaPlačnika,
+                upn.ImePlačnika,
+                upn.UlicaInŠtevilkaPlačnika,
+                upn.KrajPlačnika,
+                upn.Znesek,
+                upn.DatumPlačila,
+                upn.Nujno,
+                upn.KodaNamena,
+                upn.NamenPlačila,
+                upn.RokPlačila,
+                upn.IBANPrejemnika,
+                upn.ReferencaPrejemnika,
+                upn.ImePrejemnika,
+                upn.UlicaInŠtevilkaPrejemnika,
+                upn.KrajPrejemnika,
+                upn.VsotaZnakov.ToString() //TODO
+             });
+
+            upn.VsotaZnakov = qrData.Length - 20; // Count the total characters
+
+            // Optionally: If you want to include VsotaZnakov in the qrData output
+            qrData += Environment.NewLine + upn.VsotaZnakov;
+            // Call the method to generate the QR code image
+            GenerateQRCode(qrData);
+        }
+
+        private string ConvertToBankFormat(string amount)
+        {
+            // Remove euro sign and spaces, replace comma with dot
+            amount = amount.Replace("€", "").Trim().Replace(",", ".");
+
+            // Parse the amount to a decimal
+            if (decimal.TryParse(amount, out decimal decimalAmount))
+            {
+                // Convert to cents and format to a 10-character zero-padded string
+                long cents = (long)(decimalAmount * 1);
+                return cents.ToString("D10"); // D10 means zero-padded to 10 digits
+            }
+
+            // Return "0000000000" if parsing fails (invalid input)
+            return "0000000000";
+        }
+
+        private void GenerateQRCode(string data)
+        {
+            using (var qrGenerator = new QRCodeGenerator())
+            {
+                var qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+                using (var qrCode = new QRCode(qrCodeData))
+                {
+                    using (var bitmap = qrCode.GetGraphic(20))
+                    {
+                        // Save or display the QR code bitmap as needed
+                        bitmap.Save("upn_qr_code.png", System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                }
             }
         }
 
@@ -496,20 +587,20 @@ namespace Stantehnika.APP
 
         public void IzberiPotZaShranjenRacun()
         {
-            string originalPath = @"racunStantehnika.pdf"; 
+            string originalPath = @"racunStantehnika.pdf";
 
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf"; 
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
                 saveFileDialog.Title = "Shrani račun kot";
-                saveFileDialog.FileName = "racunStantehnika.pdf"; 
+                saveFileDialog.FileName = "racunStantehnika.pdf";
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     // Kopiraj datoteko na izbrano mesto
                     try
                     {
-                        File.Copy(originalPath, saveFileDialog.FileName, true); 
+                        File.Copy(originalPath, saveFileDialog.FileName, true);
                         MessageBox.Show("Račun uspešno shranjen.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -607,7 +698,7 @@ namespace Stantehnika.APP
                 PretvoriV_PDF();
                 ReplaceText("C:\\Users\\bole\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.pdf", "Created with the DynamicPDF Essentials Edition.", "");
 
-               
+
             }
             catch (Exception ex)
             {
@@ -621,8 +712,8 @@ namespace Stantehnika.APP
 
             if (dialogResult == DialogResult.Yes)
             {
-                shraniPodatkeVracun();    
-                generirajRacun();        
+                shraniPodatkeVracun();
+                generirajRacun();
                 IzberiPotZaShranjenRacun();
 
                 this.Close();
@@ -633,21 +724,21 @@ namespace Stantehnika.APP
         {
             string input = tbIsciStranko.Text;
 
-            if(input.Length >= 2 && input != "Išči stranko...")
+            if (input.Length >= 2 && input != "Išči stranko...")
             {
 
                 RacunManager racunManager = new RacunManager();
 
                 List<Stranka> predlogiStrank = racunManager.IsciStranke(input);
 
-                if(predlogiStrank.Count > 0)
+                if (predlogiStrank.Count > 0)
                 {
                     dataGridViewPredlogi.Visible = true;
                     lblIzberiStranko.Visible = true;
                 }
                 else
                 {
-                  
+
                 }
                 dataGridViewPredlogi.DataSource = predlogiStrank;
 
@@ -734,7 +825,7 @@ namespace Stantehnika.APP
 
         private void cmbVrstaRacuna_TextChanged(object sender, EventArgs e)
         {
-            if(cmbVrstaRacuna.Text == "RAČUN")
+            if (cmbVrstaRacuna.Text == "RAČUN")
             {
                 lblŠtevilkaRacunaInfo.Visible = true;
                 tbStevikaRacuna.Visible = true;
@@ -743,7 +834,7 @@ namespace Stantehnika.APP
                 lblDatumZapadeInfo.Visible = true;
                 dtpDatumZapade.Visible = true;
             }
-            else if(cmbVrstaRacuna.Text == "PREDRAČUN")
+            else if (cmbVrstaRacuna.Text == "PREDRAČUN")
             {
                 lblŠtevilkaRacunaInfo.Visible = false;
                 tbStevikaRacuna.Visible = false;
@@ -855,10 +946,16 @@ namespace Stantehnika.APP
             }
         }
 
+        
+
         private void lblShraniRacun_Click(object sender, EventArgs e)
         {
             generirajRacun();
             IzberiPotZaShranjenRacun();
+            //TODO generiraj qr kodo za UPN
+
+
+
         }
 
         private void pbShraniRacun_Click(object sender, EventArgs e)
