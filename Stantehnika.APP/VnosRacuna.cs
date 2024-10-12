@@ -18,6 +18,7 @@ using ceTe.DynamicPDF.LayoutEngine;
 using ceTe.DynamicPDF;
 using Stantehnika.APP.UsersControls;
 using QRCoder;
+using EO.Internal;
 
 
 
@@ -29,6 +30,12 @@ namespace Stantehnika.APP
         #region private members
         private List<string> materialiList = new List<string>();
         string opomba;
+        string objekt;
+        string ulicaObjekt;
+        string hisnaStevilkaObjekt;
+        string krajObjekt;
+        string postaObjekt;
+
         #endregion private members
 
         public VnosRacuna()
@@ -357,6 +364,23 @@ namespace Stantehnika.APP
                     writer.WriteElementString("DatumZapade", datumZapade);
                     writer.WriteElementString("SkupajZaPlacilo", skupajZaPlacilo);
                     writer.WriteEndElement(); // RacunPodatki
+
+                    // Objekt
+                    if (!string.IsNullOrWhiteSpace(objekt) &&
+                        !string.IsNullOrWhiteSpace(ulicaObjekt) &&
+                        ulicaObjekt != "ulica" && // Preverjanje, da ni placeholder
+                        !string.IsNullOrWhiteSpace(hisnaStevilkaObjekt) &&
+                        hisnaStevilkaObjekt != "hišna številka" && // Preverjanje, da ni placeholder
+                        !string.IsNullOrWhiteSpace(krajObjekt) &&
+                        krajObjekt != "kraj" && // Preverjanje, da ni placeholder
+                        !string.IsNullOrWhiteSpace(postaObjekt) &&
+                        postaObjekt != "poštna številka") // Preverjanje, da ni placeholder
+                    {
+                        writer.WriteStartElement("Objekt");
+                        writer.WriteElementString("Naziv", objekt); // Naziv objekta
+                        writer.WriteElementString("Naslov", $"{ulicaObjekt} {hisnaStevilkaObjekt}, {krajObjekt} {postaObjekt}"); // Združen naslov
+                        writer.WriteEndElement(); // Objekt
+                    }
 
                     // Postavke
                     writer.WriteStartElement("Postavke");
@@ -971,7 +995,7 @@ namespace Stantehnika.APP
 
         private void lblDodajOpombo_Click(object sender, EventArgs e)
         {
-            DodajOpombo opombaForm = new DodajOpombo();
+            DodajOpombo opombaForm = new DodajOpombo(opomba);
 
             if (opombaForm.ShowDialog() == DialogResult.OK)
             {
@@ -979,6 +1003,31 @@ namespace Stantehnika.APP
                 opomba = opombaForm.Opomba;
             }
         }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            DodajOpombo opombaForm = new DodajOpombo(opomba);
+
+            if (opombaForm.ShowDialog() == DialogResult.OK)
+            {
+                opomba = opombaForm.Opomba;
+            }
+        }
         #endregion events
+
+        private void lblDodajObjekt_Click(object sender, EventArgs e)
+        {
+            DodajObjekt objektForm = new DodajObjekt(objekt, ulicaObjekt, hisnaStevilkaObjekt, krajObjekt, postaObjekt);
+
+            if (objektForm.ShowDialog() == DialogResult.OK)
+            {
+                objekt = objektForm.Objekt;
+                ulicaObjekt = objektForm.UlicaObjekt;
+                hisnaStevilkaObjekt = objektForm.HisnaStevilkaObjekt;
+                krajObjekt = objektForm.KrajObjekt;
+                postaObjekt = objektForm.PostaObjekt;
+            }
+
+        }
     }
 }

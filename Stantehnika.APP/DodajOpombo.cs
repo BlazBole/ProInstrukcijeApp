@@ -14,14 +14,21 @@ namespace Stantehnika.APP
     {
         #region private members
         public string Opomba { get; private set; }
-        #endregion
+        #endregion private members
 
         #region constructor
-        public DodajOpombo()
+        public DodajOpombo(string trenutnaOpomba)
         {
             InitializeComponent();
+            tbOpomba.Text = trenutnaOpomba;
         }
         #endregion constructor
+
+        #region private methods
+
+
+
+        #endregion private methods
 
         #region events
         private void btnVnesiOpombo_Click(object sender, EventArgs e)

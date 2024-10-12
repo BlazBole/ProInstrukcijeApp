@@ -32,18 +32,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VnosRacuna));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VnosRacuna));
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.pictureBoxQR = new System.Windows.Forms.PictureBox();
             this.gbPodatkiFizicneOsebe = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblEnaslovFizicnaOseba = new System.Windows.Forms.Label();
@@ -63,8 +62,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewPredlogi = new System.Windows.Forms.DataGridView();
             this.tbIsciStranko = new System.Windows.Forms.TextBox();
-            this.pbPrikaziVecInfoPodjetja = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPodjetje = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dtpDatumZapade = new System.Windows.Forms.DateTimePicker();
@@ -91,56 +88,57 @@
             this.btnGenerirajRacun = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblDodajOpombo = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblDodajObjekt = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.gbGlavaDelo = new System.Windows.Forms.GroupBox();
             this.lblShraniRacun = new System.Windows.Forms.Label();
-            this.pbShraniRacun = new System.Windows.Forms.PictureBox();
-            this.pbOdstraniVrstico = new System.Windows.Forms.PictureBox();
-            this.pbDodajVrstico = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.dgvMaterial = new System.Windows.Forms.DataGridView();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.pbOdstraniVrsticoMaterial = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.pbDodajvrsticoMaterial = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.dgvPostavke = new System.Windows.Forms.DataGridView();
+            this.pbOdstraniVrsticoMaterial = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pbDodajvrsticoMaterial = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pbShraniRacun = new System.Windows.Forms.PictureBox();
+            this.pbOdstraniVrstico = new System.Windows.Forms.PictureBox();
+            this.pbDodajVrstico = new System.Windows.Forms.PictureBox();
+            this.pbPrikaziVecInfoPodjetja = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQR)).BeginInit();
             this.gbPodatkiFizicneOsebe.SuspendLayout();
             this.gbNaslovnikPodjetje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPredlogi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel15.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.gbGlavaDelo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbShraniRacun)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             this.panel12.SuspendLayout();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrsticoMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDodajvrsticoMaterial)).BeginInit();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShraniRacun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -171,7 +169,6 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.pictureBoxQR);
             this.panel5.Controls.Add(this.gbPodatkiFizicneOsebe);
             this.panel5.Controls.Add(this.lblIzberiStranko);
             this.panel5.Controls.Add(this.gbNaslovnikPodjetje);
@@ -185,15 +182,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(745, 391);
             this.panel5.TabIndex = 18;
-            // 
-            // pictureBoxQR
-            // 
-            this.pictureBoxQR.Location = new System.Drawing.Point(314, 22);
-            this.pictureBoxQR.Name = "pictureBoxQR";
-            this.pictureBoxQR.Size = new System.Drawing.Size(196, 167);
-            this.pictureBoxQR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxQR.TabIndex = 42;
-            this.pictureBoxQR.TabStop = false;
             // 
             // gbPodatkiFizicneOsebe
             // 
@@ -450,29 +438,6 @@
             this.tbIsciStranko.Click += new System.EventHandler(this.tbIsciStranko_Click);
             this.tbIsciStranko.TextChanged += new System.EventHandler(this.tbIsciStranko_TextChanged_1);
             this.tbIsciStranko.Leave += new System.EventHandler(this.tbIsciStranko_Leave);
-            // 
-            // pbPrikaziVecInfoPodjetja
-            // 
-            this.pbPrikaziVecInfoPodjetja.Image = ((System.Drawing.Image)(resources.GetObject("pbPrikaziVecInfoPodjetja.Image")));
-            this.pbPrikaziVecInfoPodjetja.Location = new System.Drawing.Point(255, 146);
-            this.pbPrikaziVecInfoPodjetja.Name = "pbPrikaziVecInfoPodjetja";
-            this.pbPrikaziVecInfoPodjetja.Size = new System.Drawing.Size(29, 32);
-            this.pbPrikaziVecInfoPodjetja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbPrikaziVecInfoPodjetja.TabIndex = 17;
-            this.pbPrikaziVecInfoPodjetja.TabStop = false;
-            this.pbPrikaziVecInfoPodjetja.Click += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_Click_1);
-            this.pbPrikaziVecInfoPodjetja.MouseEnter += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseEnter_1);
-            this.pbPrikaziVecInfoPodjetja.MouseLeave += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseLeave_1);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(42, 34);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(151, 99);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
             // 
             // lblPodjetje
             // 
@@ -767,16 +732,6 @@
             this.lblDodajOpombo.Text = "Dodaj opombo";
             this.lblDodajOpombo.Click += new System.EventHandler(this.lblDodajOpombo_Click);
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(6, 10);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(31, 28);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblDodajObjekt);
@@ -796,16 +751,7 @@
             this.lblDodajObjekt.Size = new System.Drawing.Size(107, 23);
             this.lblDodajObjekt.TabIndex = 1;
             this.lblDodajObjekt.Text = "Dodaj objekt";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(6, 10);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(31, 28);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.lblDodajObjekt.Click += new System.EventHandler(this.lblDodajObjekt_Click);
             // 
             // gbGlavaDelo
             // 
@@ -827,41 +773,6 @@
             this.lblShraniRacun.TabIndex = 1;
             this.lblShraniRacun.Text = "Shrani račun";
             this.lblShraniRacun.Click += new System.EventHandler(this.lblShraniRacun_Click);
-            // 
-            // pbShraniRacun
-            // 
-            this.pbShraniRacun.Image = ((System.Drawing.Image)(resources.GetObject("pbShraniRacun.Image")));
-            this.pbShraniRacun.Location = new System.Drawing.Point(6, 10);
-            this.pbShraniRacun.Name = "pbShraniRacun";
-            this.pbShraniRacun.Size = new System.Drawing.Size(31, 28);
-            this.pbShraniRacun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbShraniRacun.TabIndex = 0;
-            this.pbShraniRacun.TabStop = false;
-            this.pbShraniRacun.Click += new System.EventHandler(this.pbShraniRacun_Click);
-            // 
-            // pbOdstraniVrstico
-            // 
-            this.pbOdstraniVrstico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbOdstraniVrstico.Image = ((System.Drawing.Image)(resources.GetObject("pbOdstraniVrstico.Image")));
-            this.pbOdstraniVrstico.Location = new System.Drawing.Point(744, 2);
-            this.pbOdstraniVrstico.Name = "pbOdstraniVrstico";
-            this.pbOdstraniVrstico.Size = new System.Drawing.Size(55, 38);
-            this.pbOdstraniVrstico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOdstraniVrstico.TabIndex = 1;
-            this.pbOdstraniVrstico.TabStop = false;
-            this.pbOdstraniVrstico.Click += new System.EventHandler(this.pbOdstraniVrstico_Click);
-            // 
-            // pbDodajVrstico
-            // 
-            this.pbDodajVrstico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbDodajVrstico.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajVrstico.Image")));
-            this.pbDodajVrstico.Location = new System.Drawing.Point(795, 3);
-            this.pbDodajVrstico.Name = "pbDodajVrstico";
-            this.pbDodajVrstico.Size = new System.Drawing.Size(53, 36);
-            this.pbDodajVrstico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbDodajVrstico.TabIndex = 0;
-            this.pbDodajVrstico.TabStop = false;
-            this.pbDodajVrstico.Click += new System.EventHandler(this.pbDodajVrstico_Click);
             // 
             // panel14
             // 
@@ -938,28 +849,6 @@
             this.panel12.Size = new System.Drawing.Size(347, 34);
             this.panel12.TabIndex = 0;
             // 
-            // pbOdstraniVrsticoMaterial
-            // 
-            this.pbOdstraniVrsticoMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbOdstraniVrsticoMaterial.Image = ((System.Drawing.Image)(resources.GetObject("pbOdstraniVrsticoMaterial.Image")));
-            this.pbOdstraniVrsticoMaterial.Location = new System.Drawing.Point(264, 3);
-            this.pbOdstraniVrsticoMaterial.Name = "pbOdstraniVrsticoMaterial";
-            this.pbOdstraniVrsticoMaterial.Size = new System.Drawing.Size(42, 30);
-            this.pbOdstraniVrsticoMaterial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOdstraniVrsticoMaterial.TabIndex = 4;
-            this.pbOdstraniVrsticoMaterial.TabStop = false;
-            this.pbOdstraniVrsticoMaterial.Click += new System.EventHandler(this.pbOdstraniVrsticoMaterial_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(5, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(41, 30);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -970,18 +859,6 @@
             this.label4.Size = new System.Drawing.Size(146, 28);
             this.label4.TabIndex = 2;
             this.label4.Text = "Vnos materiala";
-            // 
-            // pbDodajvrsticoMaterial
-            // 
-            this.pbDodajvrsticoMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbDodajvrsticoMaterial.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajvrsticoMaterial.Image")));
-            this.pbDodajvrsticoMaterial.Location = new System.Drawing.Point(305, 2);
-            this.pbDodajvrsticoMaterial.Name = "pbDodajvrsticoMaterial";
-            this.pbDodajvrsticoMaterial.Size = new System.Drawing.Size(41, 30);
-            this.pbDodajvrsticoMaterial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbDodajvrsticoMaterial.TabIndex = 1;
-            this.pbDodajvrsticoMaterial.TabStop = false;
-            this.pbDodajvrsticoMaterial.Click += new System.EventHandler(this.pbDodajvrsticoMaterial_Click);
             // 
             // panel10
             // 
@@ -1030,6 +907,119 @@
             this.dgvPostavke.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvPostavke_CellValidating);
             this.dgvPostavke.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPostavke_CellValueChanged);
             // 
+            // pbOdstraniVrsticoMaterial
+            // 
+            this.pbOdstraniVrsticoMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbOdstraniVrsticoMaterial.Image = ((System.Drawing.Image)(resources.GetObject("pbOdstraniVrsticoMaterial.Image")));
+            this.pbOdstraniVrsticoMaterial.Location = new System.Drawing.Point(264, 3);
+            this.pbOdstraniVrsticoMaterial.Name = "pbOdstraniVrsticoMaterial";
+            this.pbOdstraniVrsticoMaterial.Size = new System.Drawing.Size(42, 30);
+            this.pbOdstraniVrsticoMaterial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOdstraniVrsticoMaterial.TabIndex = 4;
+            this.pbOdstraniVrsticoMaterial.TabStop = false;
+            this.pbOdstraniVrsticoMaterial.Click += new System.EventHandler(this.pbOdstraniVrsticoMaterial_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(5, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(41, 30);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pbDodajvrsticoMaterial
+            // 
+            this.pbDodajvrsticoMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbDodajvrsticoMaterial.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajvrsticoMaterial.Image")));
+            this.pbDodajvrsticoMaterial.Location = new System.Drawing.Point(305, 2);
+            this.pbDodajvrsticoMaterial.Name = "pbDodajvrsticoMaterial";
+            this.pbDodajvrsticoMaterial.Size = new System.Drawing.Size(41, 30);
+            this.pbDodajvrsticoMaterial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbDodajvrsticoMaterial.TabIndex = 1;
+            this.pbDodajvrsticoMaterial.TabStop = false;
+            this.pbDodajvrsticoMaterial.Click += new System.EventHandler(this.pbDodajvrsticoMaterial_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(6, 10);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(31, 28);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(6, 10);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(31, 28);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pbShraniRacun
+            // 
+            this.pbShraniRacun.Image = ((System.Drawing.Image)(resources.GetObject("pbShraniRacun.Image")));
+            this.pbShraniRacun.Location = new System.Drawing.Point(6, 10);
+            this.pbShraniRacun.Name = "pbShraniRacun";
+            this.pbShraniRacun.Size = new System.Drawing.Size(31, 28);
+            this.pbShraniRacun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbShraniRacun.TabIndex = 0;
+            this.pbShraniRacun.TabStop = false;
+            this.pbShraniRacun.Click += new System.EventHandler(this.pbShraniRacun_Click);
+            // 
+            // pbOdstraniVrstico
+            // 
+            this.pbOdstraniVrstico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbOdstraniVrstico.Image = ((System.Drawing.Image)(resources.GetObject("pbOdstraniVrstico.Image")));
+            this.pbOdstraniVrstico.Location = new System.Drawing.Point(744, 2);
+            this.pbOdstraniVrstico.Name = "pbOdstraniVrstico";
+            this.pbOdstraniVrstico.Size = new System.Drawing.Size(55, 38);
+            this.pbOdstraniVrstico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOdstraniVrstico.TabIndex = 1;
+            this.pbOdstraniVrstico.TabStop = false;
+            this.pbOdstraniVrstico.Click += new System.EventHandler(this.pbOdstraniVrstico_Click);
+            // 
+            // pbDodajVrstico
+            // 
+            this.pbDodajVrstico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbDodajVrstico.Image = ((System.Drawing.Image)(resources.GetObject("pbDodajVrstico.Image")));
+            this.pbDodajVrstico.Location = new System.Drawing.Point(795, 3);
+            this.pbDodajVrstico.Name = "pbDodajVrstico";
+            this.pbDodajVrstico.Size = new System.Drawing.Size(53, 36);
+            this.pbDodajVrstico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbDodajVrstico.TabIndex = 0;
+            this.pbDodajVrstico.TabStop = false;
+            this.pbDodajVrstico.Click += new System.EventHandler(this.pbDodajVrstico_Click);
+            // 
+            // pbPrikaziVecInfoPodjetja
+            // 
+            this.pbPrikaziVecInfoPodjetja.Image = ((System.Drawing.Image)(resources.GetObject("pbPrikaziVecInfoPodjetja.Image")));
+            this.pbPrikaziVecInfoPodjetja.Location = new System.Drawing.Point(255, 146);
+            this.pbPrikaziVecInfoPodjetja.Name = "pbPrikaziVecInfoPodjetja";
+            this.pbPrikaziVecInfoPodjetja.Size = new System.Drawing.Size(29, 32);
+            this.pbPrikaziVecInfoPodjetja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPrikaziVecInfoPodjetja.TabIndex = 17;
+            this.pbPrikaziVecInfoPodjetja.TabStop = false;
+            this.pbPrikaziVecInfoPodjetja.Click += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_Click_1);
+            this.pbPrikaziVecInfoPodjetja.MouseEnter += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseEnter_1);
+            this.pbPrikaziVecInfoPodjetja.MouseLeave += new System.EventHandler(this.pbPrikaziVecInfoPodjetja_MouseLeave_1);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(42, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(151, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // VnosRacuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1048,14 +1038,11 @@
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQR)).EndInit();
             this.gbPodatkiFizicneOsebe.ResumeLayout(false);
             this.gbPodatkiFizicneOsebe.PerformLayout();
             this.gbNaslovnikPodjetje.ResumeLayout(false);
             this.gbNaslovnikPodjetje.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPredlogi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -1065,25 +1052,27 @@
             this.panel15.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.gbGlavaDelo.ResumeLayout(false);
             this.gbGlavaDelo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbShraniRacun)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrsticoMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDodajvrsticoMaterial)).EndInit();
-            this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPostavke)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShraniRacun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOdstraniVrstico)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDodajVrstico)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrikaziVecInfoPodjetja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1161,6 +1150,5 @@
         private System.Windows.Forms.GroupBox gbGlavaDelo;
         private System.Windows.Forms.Label lblShraniRacun;
         private System.Windows.Forms.PictureBox pbShraniRacun;
-        private System.Windows.Forms.PictureBox pictureBoxQR;
     }
 }

@@ -1,0 +1,39 @@
+﻿"<?xml version=\"1.0\" encoding=\"utf-16\"?>
+<Racun>
+	<Podjetje>
+		<Naziv>Termosolar d.o.o.</Naziv>
+		<PE>Tržaška cesta 39, 2000 Maribor</PE>
+		<DavcnaStevilka>SI60692928</DavcnaStevilka>
+		<ENaslov>info@termosolar.si</ENaslov>
+	</Podjetje>
+	<RacunPodatki>
+		<Stevilka>2024-1</Stevilka>
+		<Kraj>Dobrovce</Kraj>
+		<Datum>12. 10. 2024</Datum>
+		<DatumOpravljeno>12. 10. 2024</DatumOpravljeno>
+		<DatumZapade>17. 10. 2024</DatumZapade>
+		<SkupajZaPlacilo>672,00 €</SkupajZaPlacilo>
+	</RacunPodatki>
+	<Objekt>
+		<Naziv>Luka Majer</Naziv>
+		<Naslov>Boršnikova ulica 23a, Maribor 2000</Naslov>
+	</Objekt>
+	<Postavke>
+		<Postavka>
+			<Poz>1</Poz>
+			<Storitev>Polaganje keramike</Storitev>
+			<Kol>21</Kol>
+			<Enota>m²</Enota>
+			<Cena>32,00</Cena>
+			<Skupno>672,00</Skupno>
+		</Postavka>
+	</Postavke>
+	<Material>
+		<MaterialItem>
+			<Naziv>Keramika</Naziv>
+		</MaterialItem>
+	</Material>
+	<Dodatno>
+		<Naziv>Material je vključen v ceno</Naziv>
+	</Dodatno>
+</Racun>"
