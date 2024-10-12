@@ -530,9 +530,9 @@ namespace Stantehnika.APP
 
         public void PretvoriV_PDF()
         {
-            Uri htmlFilePath = new Uri(@"C:\Users\bole\source\repos\Stantehnika.APP\Stantehnika.APP\bin\Debug\racun.html"); // Pot do vaše HTML datoteke
+            Uri htmlFilePath = new Uri(@"C:\Users\blazb\source\repos\Stantehnika.APP\Stantehnika.APP\bin\Debug\racun.html"); // Pot do vaše HTML datoteke
 
-            string pdfFilePath = @"C:\Users\bole\source\repos\Stantehnika.APP\Stantehnika.APP\bin\Debug\racun.pdf";
+            string pdfFilePath = @"C:\Users\blazb\source\repos\Stantehnika.APP\Stantehnika.APP\bin\Debug\racun.pdf";
 
             Converter.Convert(htmlFilePath, pdfFilePath);
         }
@@ -693,10 +693,10 @@ namespace Stantehnika.APP
                 }
 
                 // Shranite HTML v datoteko
-                string filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "C:\\Users\\bole\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.html");
+                string filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "C:\\Users\\blazb\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.html");
                 File.WriteAllText(filePath, htmlContent); // Shrani HTML v datoteko
                 PretvoriV_PDF();
-                ReplaceText("C:\\Users\\bole\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.pdf", "Created with the DynamicPDF Essentials Edition.", "");
+                ReplaceText("C:\\Users\\blazb\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.pdf", "Created with the DynamicPDF Essentials Edition.", "");
 
 
             }
