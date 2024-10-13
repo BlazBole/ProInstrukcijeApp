@@ -47,7 +47,7 @@
             // btnVnesiStranko
             // 
             this.btnVnesiStranko.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVnesiStranko.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnVnesiStranko.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnVnesiStranko.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnVnesiStranko.FlatAppearance.BorderSize = 0;
             this.btnVnesiStranko.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -93,7 +93,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.ForestGreen;
+            this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
             this.label1.Location = new System.Drawing.Point(34, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 30);

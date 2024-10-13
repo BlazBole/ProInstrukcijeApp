@@ -512,26 +512,6 @@ namespace Stantehnika.APP.UsersControls
             lblFilterHelp.Visible = false;
         }
 
-        private void pbHelpDodajRacun_MouseHover(object sender, EventArgs e)
-        {
-            lblDodajRacunHelp.Visible = true;
-        }
-
-        private void pbHelpDodajRacun_MouseLeave(object sender, EventArgs e)
-        {
-            lblDodajRacunHelp.Visible = false;
-        }
-
-        private void pbHelpDodajRacun_MouseHover_1(object sender, EventArgs e)
-        {
-            lblDodajRacunHelp.Visible = true;
-        }
-
-        private void pbHelpDodajRacun_MouseLeave_1(object sender, EventArgs e)
-        {
-            lblDodajRacunHelp.Visible = false;
-        }
-
         private void pbIzbrisiFiltre_Click(object sender, EventArgs e)
         {
             PripravitabeloRacunov();

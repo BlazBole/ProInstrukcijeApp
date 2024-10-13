@@ -44,7 +44,7 @@
             // btnVnesiStranko
             // 
             this.btnVnesiStranko.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVnesiStranko.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnVnesiStranko.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnVnesiStranko.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnVnesiStranko.FlatAppearance.BorderSize = 0;
             this.btnVnesiStranko.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

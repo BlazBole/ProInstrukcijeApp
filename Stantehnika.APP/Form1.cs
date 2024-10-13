@@ -59,7 +59,7 @@ namespace Stantehnika.APP
             if (gbGlavaDelo == null) return;
 
             using (Pen whitePen = new Pen(Color.White, 2)) 
-            using (Pen greenPen = new Pen(Color.ForestGreen, 1))
+            using (Pen greenPen = new Pen(Color.DodgerBlue, 1))
             {
                 Rectangle borderRect = new Rectangle(gbGlavaDelo.ClientRectangle.X, gbGlavaDelo.ClientRectangle.Y + 7,
                                                      gbGlavaDelo.ClientRectangle.Width - 1, gbGlavaDelo.ClientRectangle.Height - 8);
@@ -76,7 +76,7 @@ namespace Stantehnika.APP
             if (gbGlavaStranke == null) return;
 
             using (Pen whitePen = new Pen(Color.White, 2))
-            using (Pen greenPen = new Pen(Color.ForestGreen, 1))
+            using (Pen greenPen = new Pen(Color.DodgerBlue, 1))
             {
                 Rectangle borderRect = new Rectangle(gbGlavaStranke.ClientRectangle.X, gbGlavaStranke.ClientRectangle.Y + 7,
                                                      gbGlavaStranke.ClientRectangle.Width - 1, gbGlavaStranke.ClientRectangle.Height - 8);
@@ -93,7 +93,7 @@ namespace Stantehnika.APP
             if (gbGlavaStatistika == null) return;
 
             using (Pen whitePen = new Pen(Color.White, 2))
-            using (Pen greenPen = new Pen(Color.ForestGreen, 1))
+            using (Pen greenPen = new Pen(Color.DodgerBlue, 1))
             {
                 Rectangle borderRect = new Rectangle(gbGlavaStatistika.ClientRectangle.X, gbGlavaStatistika.ClientRectangle.Y + 7,
                                                      gbGlavaStatistika.ClientRectangle.Width - 1, gbGlavaStatistika.ClientRectangle.Height - 8);
@@ -110,7 +110,7 @@ namespace Stantehnika.APP
             if (gbGlavaProfil == null) return;
 
             using (Pen whitePen = new Pen(Color.White, 2))
-            using (Pen greenPen = new Pen(Color.ForestGreen, 1))
+            using (Pen greenPen = new Pen(Color.DodgerBlue, 1))
             {
                 Rectangle borderRect = new Rectangle(gbGlavaProfil.ClientRectangle.X, gbGlavaProfil.ClientRectangle.Y + 7,
                                                      gbGlavaProfil.ClientRectangle.Width - 1, gbGlavaProfil.ClientRectangle.Height - 8);
@@ -127,7 +127,7 @@ namespace Stantehnika.APP
             if (gbGlavaNovRacun == null) return;
 
             using (Pen whitePen = new Pen(Color.White, 2))
-            using (Pen greenPen = new Pen(Color.ForestGreen, 1))
+            using (Pen greenPen = new Pen(Color.DodgerBlue, 1))
             {
                 Rectangle borderRect = new Rectangle(gbGlavaNovRacun.ClientRectangle.X, gbGlavaNovRacun.ClientRectangle.Y + 7,
                                                      gbGlavaNovRacun.ClientRectangle.Width - 1, gbGlavaNovRacun.ClientRectangle.Height - 8);
@@ -142,13 +142,13 @@ namespace Stantehnika.APP
         private void lblGlavaDelo_Click(object sender, EventArgs e)
         {
             ShowUC_Domov();
-            lblGlavaDelo.ForeColor = Color.ForestGreen;
+            lblGlavaDelo.ForeColor = Color.DodgerBlue;
         }
 
         private void pbGlavaDelo_Click(object sender, EventArgs e)
         {
             ShowUC_Domov();
-            lblGlavaDelo.ForeColor = Color.ForestGreen;
+            lblGlavaDelo.ForeColor = Color.DodgerBlue;
         }
 
         private void lblGlavaStranke_Click(object sender, EventArgs e)
@@ -173,7 +173,7 @@ namespace Stantehnika.APP
 
         private void lblGlavaDelo_MouseHover(object sender, EventArgs e)
         {
-            lblGlavaDelo.ForeColor = Color.ForestGreen;
+            lblGlavaDelo.ForeColor = Color.DodgerBlue;
         }
 
         private void lblGlavaDelo_MouseLeave(object sender, EventArgs e)
@@ -183,7 +183,7 @@ namespace Stantehnika.APP
 
         private void lblGlavaStranke_MouseHover(object sender, EventArgs e)
         {
-            lblGlavaStranke.ForeColor = Color.ForestGreen;
+            lblGlavaStranke.ForeColor = Color.DodgerBlue;
         }
 
         private void lblGlavaStranke_MouseLeave(object sender, EventArgs e)

@@ -52,11 +52,11 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label12.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label12.Location = new System.Drawing.Point(237, 239);
+            this.label12.Location = new System.Drawing.Point(226, 239);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(141, 20);
+            this.label12.Size = new System.Drawing.Size(151, 20);
             this.label12.TabIndex = 15;
-            this.label12.Text = "bole@stantehnika.si";
+            this.label12.Text = "info@proinstrukcije.si";
             // 
             // label11
             // 
@@ -98,7 +98,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 20);
             this.label8.TabIndex = 11;
-            this.label8.Text = "64979601";
+            this.label8.Text = "43437583";
             // 
             // label7
             // 
@@ -135,12 +135,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.ForestGreen;
+            this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
             this.label1.Location = new System.Drawing.Point(160, 102);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 20);
+            this.label1.Size = new System.Drawing.Size(219, 20);
             this.label1.TabIndex = 17;
-            this.label1.Text = "STANTEHNIKA, Gregor Bole s.p.";
+            this.label1.Text = "PRO INŠTRUKCIJE, Blaž Bole s.p.";
             // 
             // label2
             // 
@@ -172,7 +172,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 20);
             this.label4.TabIndex = 20;
-            this.label4.Text = "+386 51 677 041";
+            this.label4.Text = "+386 41 347 747";
             // 
             // label13
             // 
@@ -188,7 +188,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label14.ForeColor = System.Drawing.Color.ForestGreen;
+            this.label14.ForeColor = System.Drawing.Color.DodgerBlue;
             this.label14.Location = new System.Drawing.Point(34, 26);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(170, 30);

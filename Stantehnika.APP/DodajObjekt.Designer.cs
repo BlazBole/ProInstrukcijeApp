@@ -47,7 +47,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.ForestGreen;
+            this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
             this.label1.Location = new System.Drawing.Point(34, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 30);
@@ -127,7 +127,7 @@
             // btnDodajObjekt
             // 
             this.btnDodajObjekt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDodajObjekt.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnDodajObjekt.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnDodajObjekt.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDodajObjekt.FlatAppearance.BorderSize = 0;
             this.btnDodajObjekt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -54,7 +54,7 @@
             // btnVnesiOpombo
             // 
             this.btnVnesiOpombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVnesiOpombo.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnVnesiOpombo.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnVnesiOpombo.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnVnesiOpombo.FlatAppearance.BorderSize = 0;
             this.btnVnesiOpombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
