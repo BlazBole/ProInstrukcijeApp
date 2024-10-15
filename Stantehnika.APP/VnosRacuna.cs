@@ -19,6 +19,8 @@ using ceTe.DynamicPDF;
 using Stantehnika.APP.UsersControls;
 using QRCoder;
 using EO.Internal;
+using System.Linq;
+using System.Text;
 
 
 
@@ -323,7 +325,7 @@ namespace Stantehnika.APP
             string datumZapade = dtpDatumZapade.Value.ToShortDateString();
             string skupajZaPlacilo = lblSkupajzaPlacilo.Text;
 
-            VpisiPodatkeQRZaPravnoOsebo(skupajZaPlacilo);
+            VpisiPodatkeQRZaPravnoOsebo(skupajZaPlacilo, stevilkaRacuna);
 
             // Uporabi StringWriter za zapisovanje XML-ja
             using (StringWriter stringWriter = new StringWriter())
@@ -459,63 +461,66 @@ namespace Stantehnika.APP
             }
         }
 
-        public void VpisiPodatkeQRZaPravnoOsebo(string znesekZaPlacilo)
+        public void VpisiPodatkeQRZaPravnoOsebo(string znesekZaPlacilo, string stevilkaRacuna)
         {
             var formattedAmount = ConvertToBankFormat(znesekZaPlacilo);
+            var currentDate = DateTime.Now.ToString("dd.MM.yyyy");
+
+            var namenPlačila = "Plačilo računa " + stevilkaRacuna;
             var upn = new UPNplacilniNalog
             {
                 UPNQR = "UPNQR",
                 IBANPlačnika = "",
                 Polog = "",
                 Dvig = "",
-                ReferencaPlačnika = "SI1227",
+                ReferencaPlačnika = "",
                 ImePlačnika = "",
                 UlicaInŠtevilkaPlačnika = "",
                 KrajPlačnika = "",
                 Znesek = formattedAmount,
-                DatumPlačila = "10.12.2003",
+                DatumPlačila = currentDate,
                 Nujno = "",
                 KodaNamena = "OTHR",
-                NamenPlačila = "Plačilo računa",
+                NamenPlačila = namenPlačila,
                 RokPlačila = "",
-                IBANPrejemnika = "SI56101000060376869",
-                ReferencaPrejemnika = "",
-                ImePrejemnika = "STANTEHNIKA Gregor Bole s.p.",
+                IBANPrejemnika = "SI56101000062294365",
+                ReferencaPrejemnika = "SI99",
+                ImePrejemnika = "PRO INŠTRUKCIJE Blaž Bole s.p.",
                 UlicaInŠtevilkaPrejemnika = "Borova ulica 9",
                 KrajPrejemnika = "2204 Miklavž na Dravskem polju",
                 VsotaZnakov = 0
             };
 
             // Generate QR code with data on separate lines
-            var qrData = string.Join(Environment.NewLine, new[]
+            var qrData = string.Join("\n", new[]
             {
-                upn.UPNQR,
-                upn.IBANPlačnika,
-                upn.Polog,
-                upn.Dvig,
-                upn.ReferencaPlačnika,
-                upn.ImePlačnika,
-                upn.UlicaInŠtevilkaPlačnika,
-                upn.KrajPlačnika,
-                upn.Znesek,
-                upn.DatumPlačila,
-                upn.Nujno,
-                upn.KodaNamena,
-                upn.NamenPlačila,
-                upn.RokPlačila,
-                upn.IBANPrejemnika,
-                upn.ReferencaPrejemnika,
-                upn.ImePrejemnika,
-                upn.UlicaInŠtevilkaPrejemnika,
-                upn.KrajPrejemnika,
-                upn.VsotaZnakov.ToString() //TODO
-             });
+                "UPNQR",  // Konstanta
+                upn.IBANPlačnika,  // Prazno
+                upn.Polog,  // Prazno
+                upn.Dvig,  // Prazno
+                upn.ReferencaPlačnika,  // Prazno
+                upn.ImePlačnika,  // Obvezno
+                upn.UlicaInŠtevilkaPlačnika,  // Obvezno
+                upn.KrajPlačnika,  // Obvezno
+                upn.Znesek,  // Obvezno
+                "",  // Datum plačila - Prazno
+                "",  // Nujno - Prazno
+                upn.KodaNamena,  // Obvezno
+                upn.NamenPlačila,  // Obvezno
+                upn.RokPlačila,  // Poljubno
+                upn.IBANPrejemnika,  // Obvezno
+                upn.ReferencaPrejemnika,  // Obvezno
+                upn.ImePrejemnika,  // Obvezno
+                upn.UlicaInŠtevilkaPrejemnika,  // Obvezno
+                upn.KrajPrejemnika,  // Obvezno
+                upn.VsotaZnakov.ToString()  // Kontrolna vsota
+            });
 
-            upn.VsotaZnakov = qrData.Length - 20; // Count the total characters
+            upn.VsotaZnakov = qrData.Length - 20; 
 
-            // Optionally: If you want to include VsotaZnakov in the qrData output
+           
             qrData += Environment.NewLine + upn.VsotaZnakov;
-            // Call the method to generate the QR code image
+    
             GenerateQRCode(qrData);
         }
 
@@ -540,23 +545,31 @@ namespace Stantehnika.APP
         {
             using (var qrGenerator = new QRCodeGenerator())
             {
-                var qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+                // Uporaba ECC_M za popravljanje napak
+                var qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.M);
+
+                // Nastavitev na ISO 8859-2 z ECI (000004)
+                var eciHeader = new byte[] { 0xEC, 0x04 };
+                var qrBytes = Encoding.GetEncoding("ISO-8859-2").GetBytes(data);
+                var qrDataWithECI = eciHeader.Concat(qrBytes).ToArray();
+
                 using (var qrCode = new QRCode(qrCodeData))
                 {
                     using (var bitmap = qrCode.GetGraphic(20))
                     {
-                        // Save or display the QR code bitmap as needed
+                        // Shrani ali prikaži QR kodo
                         bitmap.Save("upn_qr_code.png", System.Drawing.Imaging.ImageFormat.Png);
                     }
                 }
             }
         }
 
+
         public void PretvoriV_PDF()
         {
-            Uri htmlFilePath = new Uri(@"C:\Users\blazb\source\repos\Stantehnika.APP\Stantehnika.APP\bin\Debug\racun.html"); // Pot do vaše HTML datoteke
+            Uri htmlFilePath = new Uri(@"C:\Users\blazb\source\repos\ProInstrukcije.APP\Stantehnika.APP\bin\Debug\racun.html"); // Pot do vaše HTML datoteke
 
-            string pdfFilePath = @"C:\Users\blazb\source\repos\Stantehnika.APP\Stantehnika.APP\bin\Debug\racun.pdf";
+            string pdfFilePath = @"C:\Users\blazb\source\repos\ProInstrukcije.APP\Stantehnika.APP\bin\Debug\racun.pdf";
 
             Converter.Convert(htmlFilePath, pdfFilePath);
         }
@@ -717,10 +730,10 @@ namespace Stantehnika.APP
                 }
 
                 // Shranite HTML v datoteko
-                string filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "C:\\Users\\blazb\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.html");
+                string filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "C:\\Users\\blazb\\source\\repos\\ProInstrukcije.APP\\Stantehnika.APP\\bin\\Debug\\racun.html");
                 File.WriteAllText(filePath, htmlContent); // Shrani HTML v datoteko
                 PretvoriV_PDF();
-                ReplaceText("C:\\Users\\blazb\\source\\repos\\Stantehnika.APP\\Stantehnika.APP\\bin\\Debug\\racun.pdf", "Created with the DynamicPDF Essentials Edition.", "");
+                ReplaceText("C:\\Users\\blazb\\source\\repos\\ProInstrukcije.APP\\Stantehnika.APP\\bin\\Debug\\racun.pdf", "Created with the DynamicPDF Essentials Edition.", "");
 
 
             }
@@ -1027,6 +1040,11 @@ namespace Stantehnika.APP
                 krajObjekt = objektForm.KrajObjekt;
                 postaObjekt = objektForm.PostaObjekt;
             }
+
+        }
+
+        private void VnosRacuna_Load(object sender, EventArgs e)
+        {
 
         }
     }

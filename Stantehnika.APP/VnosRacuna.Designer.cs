@@ -50,7 +50,6 @@
             this.lbl = new System.Windows.Forms.Label();
             this.lblNaslovFizicnaOseba = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.lblIzberiStranko = new System.Windows.Forms.Label();
             this.gbNaslovnikPodjetje = new System.Windows.Forms.GroupBox();
             this.lblEnaslovPodjetje = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -60,6 +59,7 @@
             this.lblDavcnaStevilkaPodjetje = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.lblIzberiStranko = new System.Windows.Forms.Label();
             this.dataGridViewPredlogi = new System.Windows.Forms.DataGridView();
             this.tbIsciStranko = new System.Windows.Forms.TextBox();
             this.pbPrikaziVecInfoPodjetja = new System.Windows.Forms.PictureBox();
@@ -169,8 +169,9 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.lblIzberiStranko);
+            this.panel5.Controls.Add(this.gbPodatkiFizicneOsebe);
             this.panel5.Controls.Add(this.gbNaslovnikPodjetje);
+            this.panel5.Controls.Add(this.lblIzberiStranko);
             this.panel5.Controls.Add(this.dataGridViewPredlogi);
             this.panel5.Controls.Add(this.tbIsciStranko);
             this.panel5.Controls.Add(this.pbPrikaziVecInfoPodjetja);
@@ -191,10 +192,10 @@
             this.gbPodatkiFizicneOsebe.Controls.Add(this.lblNaslovFizicnaOseba);
             this.gbPodatkiFizicneOsebe.Controls.Add(this.label15);
             this.gbPodatkiFizicneOsebe.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.gbPodatkiFizicneOsebe.Location = new System.Drawing.Point(0, 5);
+            this.gbPodatkiFizicneOsebe.Location = new System.Drawing.Point(2, 232);
             this.gbPodatkiFizicneOsebe.Name = "gbPodatkiFizicneOsebe";
             this.gbPodatkiFizicneOsebe.Size = new System.Drawing.Size(414, 117);
-            this.gbPodatkiFizicneOsebe.TabIndex = 41;
+            this.gbPodatkiFizicneOsebe.TabIndex = 43;
             this.gbPodatkiFizicneOsebe.TabStop = false;
             this.gbPodatkiFizicneOsebe.Text = "Podatki stranke";
             // 
@@ -263,20 +264,8 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "Stranka:";
             // 
-            // lblIzberiStranko
-            // 
-            this.lblIzberiStranko.AutoSize = true;
-            this.lblIzberiStranko.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblIzberiStranko.ForeColor = System.Drawing.Color.DimGray;
-            this.lblIzberiStranko.Location = new System.Drawing.Point(501, 168);
-            this.lblIzberiStranko.Name = "lblIzberiStranko";
-            this.lblIzberiStranko.Size = new System.Drawing.Size(160, 21);
-            this.lblIzberiStranko.TabIndex = 40;
-            this.lblIzberiStranko.Text = "Izberi željeno stranko:";
-            // 
             // gbNaslovnikPodjetje
             // 
-            this.gbNaslovnikPodjetje.Controls.Add(this.gbPodatkiFizicneOsebe);
             this.gbNaslovnikPodjetje.Controls.Add(this.lblEnaslovPodjetje);
             this.gbNaslovnikPodjetje.Controls.Add(this.label11);
             this.gbNaslovnikPodjetje.Controls.Add(this.lblNaslovnikPodjetje);
@@ -286,10 +275,10 @@
             this.gbNaslovnikPodjetje.Controls.Add(this.label7);
             this.gbNaslovnikPodjetje.Controls.Add(this.label5);
             this.gbNaslovnikPodjetje.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.gbNaslovnikPodjetje.Location = new System.Drawing.Point(1, 240);
+            this.gbNaslovnikPodjetje.Location = new System.Drawing.Point(2, 232);
             this.gbNaslovnikPodjetje.Name = "gbNaslovnikPodjetje";
             this.gbNaslovnikPodjetje.Size = new System.Drawing.Size(414, 142);
-            this.gbNaslovnikPodjetje.TabIndex = 39;
+            this.gbNaslovnikPodjetje.TabIndex = 42;
             this.gbNaslovnikPodjetje.TabStop = false;
             this.gbNaslovnikPodjetje.Text = "Podatki podjetja";
             // 
@@ -377,6 +366,17 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Podjetje:";
             // 
+            // lblIzberiStranko
+            // 
+            this.lblIzberiStranko.AutoSize = true;
+            this.lblIzberiStranko.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblIzberiStranko.ForeColor = System.Drawing.Color.DimGray;
+            this.lblIzberiStranko.Location = new System.Drawing.Point(501, 168);
+            this.lblIzberiStranko.Name = "lblIzberiStranko";
+            this.lblIzberiStranko.Size = new System.Drawing.Size(160, 21);
+            this.lblIzberiStranko.TabIndex = 40;
+            this.lblIzberiStranko.Text = "Izberi željeno stranko:";
+            // 
             // dataGridViewPredlogi
             // 
             this.dataGridViewPredlogi.AllowUserToDeleteRows = false;
@@ -457,7 +457,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(42, 34);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(151, 99);
+            this.pictureBox1.Size = new System.Drawing.Size(144, 90);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
@@ -1040,6 +1040,7 @@
             this.Controls.Add(this.panel3);
             this.Name = "VnosRacuna";
             this.Text = "VnosRacuna";
+            this.Load += new System.EventHandler(this.VnosRacuna_Load);
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -1107,24 +1108,8 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Button btnKoncajRacun;
-        private System.Windows.Forms.Label lblNaslovnikPodjetje;
         private System.Windows.Forms.DataGridView dataGridViewPredlogi;
-        private System.Windows.Forms.GroupBox gbNaslovnikPodjetje;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblEnaslovPodjetje;
-        private System.Windows.Forms.Label lblPEPodjetje;
-        private System.Windows.Forms.Label lblDavcnaStevilkaPodjetje;
         private System.Windows.Forms.Label lblIzberiStranko;
-        private System.Windows.Forms.GroupBox gbPodatkiFizicneOsebe;
-        private System.Windows.Forms.Label lblStrankaFizicnaOseba;
-        private System.Windows.Forms.Label lbl;
-        private System.Windows.Forms.Label lblNaslovFizicnaOseba;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lblEnaslovFizicnaOseba;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.PictureBox pbDodajVrstico;
@@ -1155,5 +1140,21 @@
         private System.Windows.Forms.GroupBox gbGlavaDelo;
         private System.Windows.Forms.Label lblShraniRacun;
         private System.Windows.Forms.PictureBox pbShraniRacun;
+        private System.Windows.Forms.GroupBox gbPodatkiFizicneOsebe;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblEnaslovFizicnaOseba;
+        private System.Windows.Forms.Label lblStrankaFizicnaOseba;
+        private System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.Label lblNaslovFizicnaOseba;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.GroupBox gbNaslovnikPodjetje;
+        private System.Windows.Forms.Label lblEnaslovPodjetje;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblNaslovnikPodjetje;
+        private System.Windows.Forms.Label lblPEPodjetje;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblDavcnaStevilkaPodjetje;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
     }
 }

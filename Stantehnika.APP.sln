@@ -14,7 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DC3BA8B-380F-4FEE-A51B-9DD8993EB467}"
 	ProjectSection(SolutionItems) = preProject
 		Stantehnika.APP\bin\Debug\RacunPredloga.xslt = Stantehnika.APP\bin\Debug\RacunPredloga.xslt
-		XMLFile2.xml = XMLFile2.xml
 	EndProjectSection
 EndProject
 Global
