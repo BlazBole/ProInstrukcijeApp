@@ -465,7 +465,6 @@ namespace Stantehnika.APP
         {
             var formattedAmount = ConvertToBankFormat(znesekZaPlacilo);
             var currentDate = DateTime.Now.ToString("dd.MM.yyyy");
-
             var namenPlačila = "Plačilo računa " + stevilkaRacuna;
             var upn = new UPNplacilniNalog
             {
