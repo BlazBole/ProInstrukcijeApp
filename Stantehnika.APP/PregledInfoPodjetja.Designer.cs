@@ -75,9 +75,9 @@
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label10.Location = new System.Drawing.Point(205, 211);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(173, 20);
+            this.label10.Size = new System.Drawing.Size(177, 20);
             this.label10.TabIndex = 13;
-            this.label10.Text = "SI56 1010 0006 0376 869";
+            this.label10.Text = "SI56 1010 0006 2294 365 ";
             // 
             // label9
             // 

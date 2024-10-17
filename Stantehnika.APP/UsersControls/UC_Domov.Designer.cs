@@ -396,9 +396,9 @@
             this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label16.Location = new System.Drawing.Point(6, 85);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(199, 21);
+            this.label16.Size = new System.Drawing.Size(193, 21);
             this.label16.TabIndex = 10;
-            this.label16.Text = "Neto priliv (brez materiala):";
+            this.label16.Text = "Neto priliv (brez stroškov):";
             // 
             // label15
             // 
@@ -406,9 +406,9 @@
             this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label15.Location = new System.Drawing.Point(6, 60);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(132, 21);
+            this.label15.Size = new System.Drawing.Size(181, 21);
             this.label15.TabIndex = 9;
-            this.label15.Text = "Prilivi za material:";
+            this.label15.Text = "Prilivi dodatnih stroškov:";
             // 
             // label14
             // 
@@ -468,7 +468,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(173, 20);
             this.label10.TabIndex = 5;
-            this.label10.Text = "SI56 1010 0006 0376 869";
+            this.label10.Text = "SI56 1010 0006 2294 365";
             // 
             // label9
             // 

@@ -309,6 +309,7 @@ namespace Stantehnika.APP
         public string pripraviPodatkeXML()
         {
             // Zberi podatke iz forme
+            string vrstaRacuna = cmbVrstaRacuna.Text;
             string nazivPodjetja = gbNaslovnikPodjetje.Visible ? lblNaslovnikPodjetje.Text : null;
             string davcnaStevilka = gbNaslovnikPodjetje.Visible ? lblDavcnaStevilkaPodjetje.Text : null;
             string pe = gbNaslovnikPodjetje.Visible ? lblPEPodjetje.Text : null;
@@ -334,6 +335,10 @@ namespace Stantehnika.APP
                 {
                     writer.WriteStartDocument();
                     writer.WriteStartElement("Racun");
+
+                    writer.WriteStartElement("VrstaRacuna");
+                    writer.WriteElementString("NazivRacuna", vrstaRacuna);
+                    writer.WriteEndElement(); // Dodatno
 
                     // Podjetje
                     if (gbNaslovnikPodjetje.Visible)
@@ -575,7 +580,7 @@ namespace Stantehnika.APP
 
         public void ReplaceText(string inputFilePath, string oldText, string newText)
         {
-            string outputFileName = "racunStantehnika.pdf"; // Specify the output file name
+            string outputFileName = "racunProInstrukcije.pdf"; // Specify the output file name
 
             using (Stream inputStream = File.Open(inputFilePath, FileMode.Open, FileAccess.Read))
             {
@@ -623,13 +628,13 @@ namespace Stantehnika.APP
 
         public void IzberiPotZaShranjenRacun()
         {
-            string originalPath = @"racunStantehnika.pdf";
+            string originalPath = @"racunProInstrukcije.pdf";
 
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
                 saveFileDialog.Title = "Shrani račun kot";
-                saveFileDialog.FileName = "racunStantehnika.pdf";
+                saveFileDialog.FileName = "racunProInstrukcije.pdf";
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -748,7 +753,11 @@ namespace Stantehnika.APP
 
             if (dialogResult == DialogResult.Yes)
             {
-                shraniPodatkeVracun();
+                if(cmbVrstaRacuna.Text == "RAČUN")
+                {
+                    shraniPodatkeVracun();
+                }
+     
                 generirajRacun();
                 IzberiPotZaShranjenRacun();
 

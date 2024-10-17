@@ -620,9 +620,9 @@
             this.label8.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.label8.Location = new System.Drawing.Point(113, 38);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(127, 23);
+            this.label8.Size = new System.Drawing.Size(154, 23);
             this.label8.TabIndex = 47;
-            this.label8.Text = "STANTEHNIKA";
+            this.label8.Text = "PRO INŠTRUKCIJE";
             // 
             // label6
             // 
@@ -632,7 +632,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 23);
             this.label6.TabIndex = 46;
-            this.label6.Text = "Račun izdala:";
+            this.label6.Text = "Račun izdale:";
             // 
             // label3
             // 

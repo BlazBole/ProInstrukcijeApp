@@ -139,8 +139,13 @@ namespace Stantehnika.APP
             string email = tbEnaslov.Text;
 
             // Preveri, če so vsa polja izpolnjena
-            if (string.IsNullOrEmpty(nazivPodjetja) || string.IsNullOrEmpty(davcnaStevilka) ||
-                string.IsNullOrEmpty(sedezPodjetja) || string.IsNullOrEmpty(email))
+            if (string.IsNullOrWhiteSpace(nazivPodjetja) || nazivPodjetja == "naziv podjetja" ||
+                string.IsNullOrWhiteSpace(davcnaStevilka) || davcnaStevilka == "davčna številka" ||
+                string.IsNullOrWhiteSpace(tbUlica.Text) || tbUlica.Text == "ulica" ||
+                string.IsNullOrWhiteSpace(tbHisnaStevilka.Text) || tbHisnaStevilka.Text == "hišna številka" ||
+                string.IsNullOrWhiteSpace(tbPostnaStevilka.Text) || tbPostnaStevilka.Text == "poštna številka" ||
+                string.IsNullOrWhiteSpace(tbKraj.Text) || tbKraj.Text == "kraj" ||
+                string.IsNullOrWhiteSpace(email) || email == "e-naslov")
             {
                 MessageBox.Show("Prosimo, izpolnite vsa polja.", "Napaka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

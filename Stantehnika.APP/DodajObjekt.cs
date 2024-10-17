@@ -89,6 +89,22 @@ namespace Stantehnika.APP
         #region events
         private void btnDodajObjekt_Click(object sender, EventArgs e)
         {
+            // Preveri, če so vsa polja izpolnjena
+            if (string.IsNullOrWhiteSpace(tbObjekt.Text) || tbObjekt.Text == "naziv objekta" ||
+        string.IsNullOrWhiteSpace(tbUlica.Text) || tbUlica.Text == "ulica" ||
+        string.IsNullOrWhiteSpace(tbHisnaStevilka.Text) || tbHisnaStevilka.Text == "hišna številka" ||
+        string.IsNullOrWhiteSpace(tbKraj.Text) || tbKraj.Text == "kraj" ||
+        string.IsNullOrWhiteSpace(tbPostnaStevilka.Text) || tbPostnaStevilka.Text == "poštna številka")
+            {
+                // Prikaži opozorilo, da niso vsa polja izpolnjena
+                MessageBox.Show("Prosimo, izpolnite vsa polja, preden dodate objekt.",
+                                "Napaka",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return; // Prekini postopek dodajanja
+            }
+
+            // Če so vsa polja izpolnjena, nadaljuj z dodajanjem objekta
             Objekt = tbObjekt.Text;
             UlicaObjekt = tbUlica.Text;
             HisnaStevilkaObjekt = tbHisnaStevilka.Text;
@@ -97,7 +113,6 @@ namespace Stantehnika.APP
 
             this.DialogResult = DialogResult.OK; // Vrni uspešno stanje
             this.Close();
-
         }
 
         private void pbOdstraniObjekt_Click(object sender, EventArgs e)
