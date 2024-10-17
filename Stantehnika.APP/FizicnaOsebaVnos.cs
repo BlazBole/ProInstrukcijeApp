@@ -17,105 +17,36 @@ namespace Stantehnika.APP
         public FizicnaOsebaVnos()
         {
             InitializeComponent();
+            SetPlaceholder(tbImePriimek, "ime in priimek");
+            SetPlaceholder(tbUlica, "ulica");
+            SetPlaceholder(tbHisnaStevilka, "hišna številka");
+            SetPlaceholder(tbKraj, "kraj");
+            SetPlaceholder(tbPostnaStevilka, "poštna številka");
+            SetPlaceholder(tbEnaslov, "e-naslov");
         }
 
-        #region events
-
-        private void tbImePriimek_Click(object sender, EventArgs e)
+        private void SetPlaceholder(TextBox textBox, string placeholder)
         {
-            if (tbImePriimek.Text == "ime in priimek")
-            {
-                tbImePriimek.Text = "";
-            }
-        }
+            textBox.Text = placeholder;
+            textBox.ForeColor = Color.Gray;
 
-        private void tbUlica_Click(object sender, EventArgs e)
-        {
-            if (tbUlica.Text == "ulica")
+            textBox.Enter += (s, e) =>
             {
-                tbUlica.Text = "";
-            }
-        }
+                if (textBox.Text == placeholder)
+                {
+                    textBox.Text = "";
+                    textBox.ForeColor = Color.Black;
+                }
+            };
 
-        private void tbHisnaStevilka_Click(object sender, EventArgs e)
-        {
-            if (tbHisnaStevilka.Text == "hišna številka")
+            textBox.Leave += (s, e) =>
             {
-                tbHisnaStevilka.Text = "";
-            }
-        }
-
-        private void tbKraj_Click(object sender, EventArgs e)
-        {
-            if (tbKraj.Text == "kraj")
-            {
-                tbKraj.Text = "";
-            }
-        }
-
-        private void tbPostnaStevilka_Click(object sender, EventArgs e)
-        {
-            if (tbPostnaStevilka.Text == "poštna številka")
-            {
-                tbPostnaStevilka.Text = "";
-            }
-        }
-
-        private void tbEnaslov_Click(object sender, EventArgs e)
-        {
-            if (tbEnaslov.Text == "e-naslov")
-            {
-                tbEnaslov.Text = "";
-            }
-        }
-
-        private void tbImePriimek_Leave(object sender, EventArgs e)
-        {
-            if (tbImePriimek.Text == "")
-            {
-                tbImePriimek.Text = "ime in priimek";
-            }
-        }
-
-        private void tbUlica_Leave(object sender, EventArgs e)
-        {
-            if (tbUlica.Text == "")
-            {
-                tbUlica.Text = "ulica";
-            }
-        }
-
-        private void tbHisnaStevilka_Leave(object sender, EventArgs e)
-        {
-            if (tbHisnaStevilka.Text == "")
-            {
-                tbHisnaStevilka.Text = "hišna številka";
-            }
-        }
-
-        private void tbKraj_Leave(object sender, EventArgs e)
-        {
-            if (tbKraj.Text == "")
-            {
-                tbKraj.Text = "kraj";
-            }
-        }
-
-
-        private void tbPostnaStevilka_Leave(object sender, EventArgs e)
-        {
-            if (tbPostnaStevilka.Text == "")
-            {
-                tbPostnaStevilka.Text = "poštna številka";
-            }
-        }
-
-        private void tbEnaslov_Leave(object sender, EventArgs e)
-        {
-            if (tbEnaslov.Text == "")
-            {
-                tbEnaslov.Text = "e-naslov";
-            }
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = placeholder;
+                    textBox.ForeColor = Color.Gray;
+                }
+            };
         }
 
         private void btnVnesiStranko_Click(object sender, EventArgs e)
@@ -152,6 +83,5 @@ namespace Stantehnika.APP
             this.Close();
         }
 
-        #endregion events
     }
 }

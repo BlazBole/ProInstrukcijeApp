@@ -16,126 +16,52 @@ namespace Stantehnika.APP
         public PravnaOsebaVnos()
         {
             InitializeComponent();
+            SetDefaultText(tbNazivPodjetja, "naziv podjetja");
+            SetDefaultText(tbDavcnaStevilka, "davčna številka");
+            SetDefaultText(tbUlica, "ulica");
+            SetDefaultText(tbHisnaStevilka, "hišna številka");
+            SetDefaultText(tbKraj, "kraj");
+            SetDefaultText(tbPostnaStevilka, "poštna številka");
+            SetDefaultText(tbEnaslov, "e-naslov");
         }
 
-        #region events
-        private void tbNazivPodjetja_Click(object sender, EventArgs e)
+        private void SetDefaultText(TextBox textBox, string placeholder)
         {
-            if (tbNazivPodjetja.Text == "naziv podjetja")
+            textBox.Text = placeholder;
+            textBox.ForeColor = Color.Gray;
+
+            textBox.Enter += (s, e) =>
             {
-                tbNazivPodjetja.Text = "";
-            }
+                if (textBox.Text == placeholder)
+                {
+                    textBox.Text = "";
+                    textBox.ForeColor = Color.Black;
+                }
+            };
+
+            textBox.Leave += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = placeholder;
+                    textBox.ForeColor = Color.Gray;
+                }
+            };
+
+            textBox.TextChanged += (s, e) => UpdateVisibility();
         }
 
-        private void tbDavcnaStevilka_Click(object sender, EventArgs e)
+        private void UpdateVisibility()
         {
-            if (tbDavcnaStevilka.Text == "davčna številka")
-            {
-                tbDavcnaStevilka.Text = "";
-            }
+            // Tvoja logika za prikaz/skrivanje elementov
         }
 
-        private void tbUlica_Click(object sender, EventArgs e)
-        {
-            if (tbUlica.Text == "ulica")
-            {
-                tbUlica.Text = "";
-            }
-        }
-
-        private void tbHisnaStevilka_Click(object sender, EventArgs e)
-        {
-            if (tbHisnaStevilka.Text == "hišna številka")
-            {
-                tbHisnaStevilka.Text = "";
-            }
-        }
-
-        private void tbKraj_Click(object sender, EventArgs e)
-        {
-            if (tbKraj.Text == "kraj")
-            {
-                tbKraj.Text = "";
-            }
-        }
-
-        private void tbPostnaStevilka_Click(object sender, EventArgs e)
-        {
-            if (tbPostnaStevilka.Text == "poštna številka")
-            {
-                tbPostnaStevilka.Text = "";
-            }
-        }
-
-        private void tbEnaslov_Click(object sender, EventArgs e)
-        {
-            if (tbEnaslov.Text == "e-naslov")
-            {
-                tbEnaslov.Text = "";
-            }
-        }
-
-        private void tbNazivPodjetja_Leave(object sender, EventArgs e)
-        {
-            if (tbNazivPodjetja.Text == "")
-            {
-                tbNazivPodjetja.Text = "naziv podjetja";
-            }
-        }
-
-        private void tbDavcnaStevilka_Leave(object sender, EventArgs e)
-        {
-            if (tbDavcnaStevilka.Text == "")
-            {
-                tbDavcnaStevilka.Text = "davčna številka";
-            }
-        }
-
-        private void tbUlica_Leave(object sender, EventArgs e)
-        {
-            if (tbUlica.Text == "")
-            {
-                tbUlica.Text = "ulica";
-            }
-        }
-
-        private void tbHisnaStevilka_Leave(object sender, EventArgs e)
-        {
-            if (tbHisnaStevilka.Text == "")
-            {
-                tbHisnaStevilka.Text = "hišna številka";
-            }
-        }
-
-        private void tbKraj_Leave(object sender, EventArgs e)
-        {
-            if (tbKraj.Text == "")
-            {
-                tbKraj.Text = "kraj";
-            }
-        }
-
-        private void tbPostnaStevilka_Leave(object sender, EventArgs e)
-        {
-            if (tbPostnaStevilka.Text == "")
-            {
-                tbPostnaStevilka.Text = "poštna številka";
-            }
-        }
-
-        private void tbEnaslov_Leave(object sender, EventArgs e)
-        {
-            if (tbEnaslov.Text == "")
-            {
-                tbEnaslov.Text = "e-naslov";
-            }
-        }
-
+        // Ostali dogodki in logika ostanejo nespremenjeni
         private void btnVnesiStranko_Click(object sender, EventArgs e)
         {
             string nazivPodjetja = tbNazivPodjetja.Text;
             string davcnaStevilka = tbDavcnaStevilka.Text;
-            string sedezPodjetja = tbUlica.Text + " " + tbHisnaStevilka.Text + ", " +tbPostnaStevilka.Text + " " + tbKraj.Text;
+            string sedezPodjetja = tbUlica.Text + " " + tbHisnaStevilka.Text + ", " + tbPostnaStevilka.Text + " " + tbKraj.Text;
             string email = tbEnaslov.Text;
 
             // Preveri, če so vsa polja izpolnjena
@@ -168,7 +94,5 @@ namespace Stantehnika.APP
             // Po uspešnem vnosu lahko zaprete obrazec ali počistite polja
             this.Close();
         }
-
-        #endregion events
     }
 }

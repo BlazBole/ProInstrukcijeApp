@@ -72,8 +72,6 @@
             this.tbUlica.TabIndex = 15;
             this.tbUlica.Tag = "";
             this.tbUlica.Text = "ulica";
-            this.tbUlica.Click += new System.EventHandler(this.tbUlica_Click);
-            this.tbUlica.Leave += new System.EventHandler(this.tbUlica_Leave);
             // 
             // tbDavcnaStevilka
             // 
@@ -86,8 +84,6 @@
             this.tbDavcnaStevilka.TabIndex = 13;
             this.tbDavcnaStevilka.Tag = "";
             this.tbDavcnaStevilka.Text = "davčna številka";
-            this.tbDavcnaStevilka.Click += new System.EventHandler(this.tbDavcnaStevilka_Click);
-            this.tbDavcnaStevilka.Leave += new System.EventHandler(this.tbDavcnaStevilka_Leave);
             // 
             // label1
             // 
@@ -111,8 +107,6 @@
             this.tbNazivPodjetja.TabIndex = 11;
             this.tbNazivPodjetja.Tag = "";
             this.tbNazivPodjetja.Text = "naziv podjetja";
-            this.tbNazivPodjetja.Click += new System.EventHandler(this.tbNazivPodjetja_Click);
-            this.tbNazivPodjetja.Leave += new System.EventHandler(this.tbNazivPodjetja_Leave);
             // 
             // tbEnaslov
             // 
@@ -125,8 +119,6 @@
             this.tbEnaslov.TabIndex = 20;
             this.tbEnaslov.Tag = "";
             this.tbEnaslov.Text = "e-naslov";
-            this.tbEnaslov.Click += new System.EventHandler(this.tbEnaslov_Click);
-            this.tbEnaslov.Leave += new System.EventHandler(this.tbEnaslov_Leave);
             // 
             // groupBox7
             // 
@@ -153,8 +145,6 @@
             this.tbPostnaStevilka.TabIndex = 18;
             this.tbPostnaStevilka.Tag = "";
             this.tbPostnaStevilka.Text = "poštna številka";
-            this.tbPostnaStevilka.Click += new System.EventHandler(this.tbPostnaStevilka_Click);
-            this.tbPostnaStevilka.Leave += new System.EventHandler(this.tbPostnaStevilka_Leave);
             // 
             // tbKraj
             // 
@@ -167,8 +157,6 @@
             this.tbKraj.TabIndex = 17;
             this.tbKraj.Tag = "";
             this.tbKraj.Text = "kraj";
-            this.tbKraj.Click += new System.EventHandler(this.tbKraj_Click);
-            this.tbKraj.Leave += new System.EventHandler(this.tbKraj_Leave);
             // 
             // tbHisnaStevilka
             // 
@@ -181,8 +169,6 @@
             this.tbHisnaStevilka.TabIndex = 16;
             this.tbHisnaStevilka.Tag = "";
             this.tbHisnaStevilka.Text = "hišna številka";
-            this.tbHisnaStevilka.Click += new System.EventHandler(this.tbHisnaStevilka_Click);
-            this.tbHisnaStevilka.Leave += new System.EventHandler(this.tbHisnaStevilka_Leave);
             // 
             // pictureBox2
             // 

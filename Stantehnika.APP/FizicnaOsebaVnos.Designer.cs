@@ -52,8 +52,6 @@
             this.tbImePriimek.TabIndex = 3;
             this.tbImePriimek.Tag = "";
             this.tbImePriimek.Text = "ime in priimek";
-            this.tbImePriimek.Click += new System.EventHandler(this.tbImePriimek_Click);
-            this.tbImePriimek.Leave += new System.EventHandler(this.tbImePriimek_Leave);
             // 
             // label1
             // 
@@ -77,8 +75,6 @@
             this.tbUlica.TabIndex = 5;
             this.tbUlica.Tag = "";
             this.tbUlica.Text = "ulica";
-            this.tbUlica.Click += new System.EventHandler(this.tbUlica_Click);
-            this.tbUlica.Leave += new System.EventHandler(this.tbUlica_Leave);
             // 
             // tbHisnaStevilka
             // 
@@ -91,8 +87,6 @@
             this.tbHisnaStevilka.TabIndex = 6;
             this.tbHisnaStevilka.Tag = "";
             this.tbHisnaStevilka.Text = "hišna številka";
-            this.tbHisnaStevilka.Click += new System.EventHandler(this.tbHisnaStevilka_Click);
-            this.tbHisnaStevilka.Leave += new System.EventHandler(this.tbHisnaStevilka_Leave);
             // 
             // tbKraj
             // 
@@ -105,8 +99,6 @@
             this.tbKraj.TabIndex = 7;
             this.tbKraj.Tag = "";
             this.tbKraj.Text = "kraj";
-            this.tbKraj.Click += new System.EventHandler(this.tbKraj_Click);
-            this.tbKraj.Leave += new System.EventHandler(this.tbKraj_Leave);
             // 
             // tbPostnaStevilka
             // 
@@ -119,8 +111,6 @@
             this.tbPostnaStevilka.TabIndex = 8;
             this.tbPostnaStevilka.Tag = "";
             this.tbPostnaStevilka.Text = "poštna številka";
-            this.tbPostnaStevilka.Click += new System.EventHandler(this.tbPostnaStevilka_Click);
-            this.tbPostnaStevilka.Leave += new System.EventHandler(this.tbPostnaStevilka_Leave);
             // 
             // tbEnaslov
             // 
@@ -133,8 +123,6 @@
             this.tbEnaslov.TabIndex = 9;
             this.tbEnaslov.Tag = "";
             this.tbEnaslov.Text = "e-naslov";
-            this.tbEnaslov.Click += new System.EventHandler(this.tbEnaslov_Click);
-            this.tbEnaslov.Leave += new System.EventHandler(this.tbEnaslov_Leave);
             // 
             // btnVnesiStranko
             // 
