@@ -1,4 +1,5 @@
-﻿using Stantehnika.Dal;
+﻿using OfficeOpenXml;
+using Stantehnika.Dal;
 using Stantehnika.Model;
 using System;
 using System.Collections.Generic;
@@ -95,13 +96,36 @@ namespace Stantehnika.APP.UsersControls
 
         private void ShraniIzpisekStoritev()
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
-            saveFileDialog.FileName = "Tabela_" + DateTime.Now.ToString("yyyy-MM-dd") + ".csv";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            using (var package = new ExcelPackage())
             {
-                SaveDataGridViewToCSV(saveFileDialog.FileName);
+                var worksheet = package.Workbook.Worksheets.Add("Račun");
+
+                for (int col = 1; col <= dataGridView.Columns.Count; col++)
+                {
+                    worksheet.Cells[1, col].Value = dataGridView.Columns[col - 1].HeaderText;
+                }
+
+                for (int row = 0; row < dataGridView.Rows.Count; row++)
+                {
+                    for (int col = 0; col < dataGridView.Columns.Count; col++)
+                    {
+                        worksheet.Cells[row + 2, col + 1].Value = dataGridView.Rows[row].Cells[col].Value;
+                    }
+                }
+
+                worksheet.Cells[dataGridView.Rows.Count + 3, 1].Value = "Skupni znesek za tekoči mesec:";
+                worksheet.Cells[dataGridView.Rows.Count + 3, 2].Value = lblZnesekTekociMesec.Text;
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel Files|*.xlsx";
+                saveFileDialog.Title = "Shrani račun v Excel";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    FileInfo file = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(file);
+                    MessageBox.Show("Račun je bil uspešno shranjen v Excel!");
+                }
             }
         }
 
@@ -152,6 +176,68 @@ namespace Stantehnika.APP.UsersControls
             ShraniIzpisekStoritev();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Račun");
+
+                int colIndex = 1;
+                for (int col = 0; col < dataGridView.Columns.Count; col++)
+                {
+                    if (dataGridView.Columns[col].Name == "NazivPodjetja")
+                    {
+                        worksheet.Cells[1, colIndex].Value = "Naziv stranke";
+                        colIndex++;
+                    }
+                    else if (dataGridView.Columns[col].Name != "Stranka" &&
+                             dataGridView.Columns[col].Name != "StrankaID" &&
+                             dataGridView.Columns[col].Name != "XMLPodatki" &&
+                             dataGridView.Columns[col].Name != "ImeInPriimek")
+                    {
+                        worksheet.Cells[1, colIndex].Value = dataGridView.Columns[col].HeaderText;
+                        colIndex++;
+                    }
+                }
+
+                for (int row = 0; row < dataGridView.Rows.Count; row++)
+                {
+                    colIndex = 1;
+                    for (int col = 0; col < dataGridView.Columns.Count; col++)
+                    {
+                        if (dataGridView.Columns[col].Name != "Stranka" &&
+                            dataGridView.Columns[col].Name != "StrankaID" &&
+                            dataGridView.Columns[col].Name != "XMLPodatki" &&
+                            dataGridView.Columns[col].Name != "ImeInPriimek")
+                        {
+                            if (dataGridView.Columns[col].Name == "NazivPodjetja")
+                            {
+                                worksheet.Cells[row + 2, colIndex].Value = dataGridView.Rows[row].Cells[col].Value;
+                            }
+                            else
+                            {
+                                worksheet.Cells[row + 2, colIndex].Value = dataGridView.Rows[row].Cells[col].Value;
+                            }
+                            colIndex++;
+                        }
+                    }
+                }
+
+                worksheet.Cells[dataGridView.Rows.Count + 3, 1].Value = "Skupni znesek za tekoči mesec:";
+                worksheet.Cells[dataGridView.Rows.Count + 3, 2].Value = lblZnesekTekociMesec.Text;
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel Files|*.xlsx";
+                saveFileDialog.Title = "Shrani račun v Excel";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    FileInfo file = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(file);
+                    MessageBox.Show("Račun je bil uspešno shranjen v Excel!");
+                }
+            }
+        }
         #endregion events
     }
 }
