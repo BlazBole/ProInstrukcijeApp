@@ -37,7 +37,7 @@
             this.lblGlavaNovRacun = new System.Windows.Forms.Label();
             this.pbglavaNovRacun = new System.Windows.Forms.PictureBox();
             this.gbGlavaProfil = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblGlavaPodjetje = new System.Windows.Forms.Label();
             this.pbGlavaProfil = new System.Windows.Forms.PictureBox();
             this.gbGlavaStatistika = new System.Windows.Forms.GroupBox();
             this.lblGlavaStatistika = new System.Windows.Forms.Label();
@@ -145,7 +145,7 @@
             // 
             // gbGlavaProfil
             // 
-            this.gbGlavaProfil.Controls.Add(this.label2);
+            this.gbGlavaProfil.Controls.Add(this.lblGlavaPodjetje);
             this.gbGlavaProfil.Controls.Add(this.pbGlavaProfil);
             this.gbGlavaProfil.Location = new System.Drawing.Point(433, 3);
             this.gbGlavaProfil.Name = "gbGlavaProfil";
@@ -154,15 +154,18 @@
             this.gbGlavaProfil.TabStop = false;
             this.gbGlavaProfil.Paint += new System.Windows.Forms.PaintEventHandler(this.gbGlavaProfil_Paint);
             // 
-            // label2
+            // lblGlavaPodjetje
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(41, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Profil";
+            this.lblGlavaPodjetje.AutoSize = true;
+            this.lblGlavaPodjetje.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblGlavaPodjetje.Location = new System.Drawing.Point(41, 13);
+            this.lblGlavaPodjetje.Name = "lblGlavaPodjetje";
+            this.lblGlavaPodjetje.Size = new System.Drawing.Size(49, 23);
+            this.lblGlavaPodjetje.TabIndex = 1;
+            this.lblGlavaPodjetje.Text = "Profil";
+            this.lblGlavaPodjetje.Click += new System.EventHandler(this.lblGlavaPodjetje_Click);
+            this.lblGlavaPodjetje.MouseLeave += new System.EventHandler(this.lblGlavaPodjetje_MouseLeave);
+            this.lblGlavaPodjetje.MouseHover += new System.EventHandler(this.lblGlavaPodjetje_MouseHover);
             // 
             // pbGlavaProfil
             // 
@@ -173,6 +176,7 @@
             this.pbGlavaProfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbGlavaProfil.TabIndex = 0;
             this.pbGlavaProfil.TabStop = false;
+            this.pbGlavaProfil.Click += new System.EventHandler(this.pbGlavaProfil_Click);
             // 
             // gbGlavaStatistika
             // 
@@ -337,7 +341,7 @@
         private System.Windows.Forms.Label lblGlavaStatistika;
         private System.Windows.Forms.PictureBox pbGlavaStatistika;
         private System.Windows.Forms.GroupBox gbGlavaProfil;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblGlavaPodjetje;
         private System.Windows.Forms.PictureBox pbGlavaProfil;
         private System.Windows.Forms.GroupBox gbGlavaNovRacun;
         private System.Windows.Forms.Label lblGlavaNovRacun;

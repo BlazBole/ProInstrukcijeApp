@@ -459,6 +459,12 @@
     <Compile Include="UsersControls\UC_Domov.Designer.cs">
       <DependentUpon>UC_Domov.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsersControls\UC_Profil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsersControls\UC_Profil.Designer.cs">
+      <DependentUpon>UC_Profil.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsersControls\UC_Stranke.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -510,6 +516,9 @@
     </Compile>
     <EmbeddedResource Include="UsersControls\UC_Domov.resx">
       <DependentUpon>UC_Domov.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersControls\UC_Profil.resx">
+      <DependentUpon>UC_Profil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersControls\UC_Stranke.resx">
       <DependentUpon>UC_Stranke.cs</DependentUpon>

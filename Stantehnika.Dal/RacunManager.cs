@@ -201,8 +201,6 @@ namespace Stantehnika.Dal
             return stranka;
         }
 
-
-
         public DateTime? GetDatumZadnjegaRacuna()
         {
             DateTime? datumZadnjegaRacuna = null;
@@ -279,8 +277,6 @@ namespace Stantehnika.Dal
             return skupnaCena;
         }
 
-
-
         public List<RacunGlava> GetAllRacuni()
         {
             List<RacunGlava> racuni = new List<RacunGlava>();
@@ -298,14 +294,12 @@ namespace Stantehnika.Dal
         FROM RacunPostavka rp1 
         WHERE rp1.RacunGlavaID = rg.RacunGlavaID 
         AND rp1.Storitev = 'material') AS CenaMaterial
-FROM RacunGlava rg
-JOIN Stranka s ON rg.StrankaID = s.StrankaID
-LEFT JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
-GROUP BY rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
-         rg.StrankaID, s.NazivPodjetja, s.ImeInPriimek
-ORDER BY rg.Datum DESC, CAST(SUBSTRING_INDEX(rg.StevilkaRacuna, '-', -1) AS UNSIGNED) DESC;
-
-                                ";
+        FROM RacunGlava rg
+        JOIN Stranka s ON rg.StrankaID = s.StrankaID
+        LEFT JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
+        GROUP BY rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+                 rg.StrankaID, s.NazivPodjetja, s.ImeInPriimek
+        ORDER BY rg.Datum DESC, CAST(SUBSTRING_INDEX(rg.StevilkaRacuna, '-', -1) AS UNSIGNED) DESC; ";
 
                     using (var command = new MySqlCommand(query, connection))
                     using (var reader = command.ExecuteReader())
@@ -863,8 +857,49 @@ ORDER BY rg.Datum DESC, CAST(SUBSTRING_INDEX(rg.StevilkaRacuna, '-', -1) AS UNSI
             }
         }
 
+        public List<RacunGlava> GetOpravljenaDelaZaTekociMesec()
+        {
+            List<RacunGlava> racuni = new List<RacunGlava>();
 
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"SELECT rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+                             rg.StrankaID, 
+                             COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka, 
+                             SUM(rp.CenaPostavke) AS SkupnaCena,
+                             (SELECT SUM(rp1.CenaPostavke) 
+                              FROM RacunPostavka rp1 
+                              WHERE rp1.RacunGlavaID = rg.RacunGlavaID 
+                              AND rp1.Storitev = 'material') AS CenaMaterial
+                             FROM RacunGlava rg
+                             JOIN Stranka s ON rg.StrankaID = s.StrankaID
+                             LEFT JOIN RacunPostavka rp ON rg.RacunGlavaID = rp.RacunGlavaID
+                             WHERE YEAR(rg.DatumOpravljeno) = YEAR(CURDATE()) AND MONTH(rg.DatumOpravljeno) = MONTH(CURDATE())
+                             GROUP BY rg.RacunGlavaID, rg.StevilkaRacuna, rg.Kraj, rg.Datum, rg.DatumOpravljeno, rg.DatumZapade, 
+                                      rg.StrankaID, s.NazivPodjetja, s.ImeInPriimek
+                             ORDER BY rg.Datum DESC, CAST(SUBSTRING_INDEX(rg.StevilkaRacuna, '-', -1) AS UNSIGNED) DESC;";
 
+                    using (var command = new MySqlCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            RacunGlava racun = RacunMapper.MapToRacunGlava(reader);
+                            racuni.Add(racun);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju opravljenih del za tekoči mesec: " + ex.Message);
+            }
+
+            return racuni;
+        }
         #endregion methods
     }
 }

@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using Stantehnika.APP.UsersControls;
-using Stantehnika.Dal;
-using Stantehnika.Model;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Stantehnika.APP
 {
@@ -40,6 +30,14 @@ namespace Stantehnika.APP
         private void ShowUC_Stranke()
         {
             UC_Stranke homeControl = new UC_Stranke();
+            homeControl.Dock = DockStyle.Fill;
+            lblGlavaProfil.Controls.Clear();
+            lblGlavaProfil.Controls.Add(homeControl);
+        }
+
+        private void ShowUC_Profil()
+        {
+            UC_Profil homeControl = new UC_Profil();
             homeControl.Dock = DockStyle.Fill;
             lblGlavaProfil.Controls.Clear();
             lblGlavaProfil.Controls.Add(homeControl);
@@ -161,6 +159,16 @@ namespace Stantehnika.APP
             ShowUC_Stranke();
         }
 
+        private void lblGlavaPodjetje_Click(object sender, EventArgs e)
+        {
+            ShowUC_Profil();
+        }
+
+        private void pbGlavaProfil_Click(object sender, EventArgs e)
+        {
+            ShowUC_Profil();
+        }
+
         private void lblGlavaNovRacun_Click(object sender, EventArgs e)
         {
             ShowForm_VnosRacuna();
@@ -190,7 +198,17 @@ namespace Stantehnika.APP
         {
             lblGlavaStranke.ForeColor = Color.Black;
         }
-        #endregion events
 
+        private void lblGlavaPodjetje_MouseHover(object sender, EventArgs e)
+        {
+            lblGlavaPodjetje.ForeColor = Color.DodgerBlue;
+        }
+
+        private void lblGlavaPodjetje_MouseLeave(object sender, EventArgs e)
+        {
+            lblGlavaPodjetje.ForeColor = Color.Black;
+        }
+
+        #endregion events
     }
 }

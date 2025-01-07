@@ -13,26 +13,34 @@ namespace Stantehnika.Dal
     {
         public static RacunGlava MapToRacunGlava(MySqlDataReader reader)
         {
-            decimal skupnaCena = reader.GetDecimal("SkupnaCena");
-            decimal cenaMaterial = reader.IsDBNull(reader.GetOrdinal("CenaMaterial"))
-                                   ? 0.00m
-                                   : reader.GetDecimal("CenaMaterial");
+            string kraj = reader.IsDBNull(reader.GetOrdinal("Kraj")) ? string.Empty : reader.GetString("Kraj");
+            decimal skupnaCena = reader.IsDBNull(reader.GetOrdinal("SkupnaCena")) ? 0.00m : reader.GetDecimal("SkupnaCena");
+            decimal cenaMaterial = reader.IsDBNull(reader.GetOrdinal("CenaMaterial")) ? 0.00m : reader.GetDecimal("CenaMaterial");
 
             return new RacunGlava
             {
                 RacunGlavaID = reader.GetInt32("RacunGlavaID"),
                 StevilkaRacuna = reader.GetString("StevilkaRacuna"),
-                Kraj = reader.GetString("Kraj"),
-                Datum = reader.GetDateTime(reader.GetOrdinal("Datum")).ToString("dd.MM.yyyy"),
-                DatumOpravljeno = reader.GetDateTime(reader.GetOrdinal("DatumOpravljeno")).ToString("dd.MM.yyyy"),
-                Datumzapade = reader.GetDateTime(reader.GetOrdinal("Datumzapade")).ToString("dd.MM.yyyy"),
+                Kraj = kraj,
+                Datum = reader.IsDBNull(reader.GetOrdinal("Datum"))
+                        ? string.Empty
+                        : reader.GetDateTime(reader.GetOrdinal("Datum")).ToString("dd.MM.yyyy"),
+                DatumOpravljeno = reader.IsDBNull(reader.GetOrdinal("DatumOpravljeno"))
+                                  ? string.Empty
+                                  : reader.GetDateTime(reader.GetOrdinal("DatumOpravljeno")).ToString("dd.MM.yyyy"),
+                Datumzapade = reader.IsDBNull(reader.GetOrdinal("Datumzapade"))
+                              ? string.Empty
+                              : reader.GetDateTime(reader.GetOrdinal("Datumzapade")).ToString("dd.MM.yyyy"),
                 StrankaID = reader.GetInt32("StrankaID"),
-                NazivPodjetja = reader.GetString("Stranka"),
+                NazivPodjetja = reader.IsDBNull(reader.GetOrdinal("Stranka"))
+                                ? string.Empty
+                                : reader.GetString("Stranka"),
                 SkupnaCena = skupnaCena.ToString("N2") + " €",
                 CenaMaterial = cenaMaterial.ToString("N2") + " €",
                 CenaDelo = (skupnaCena - cenaMaterial).ToString("N2") + " €"
             };
         }
+
 
         public static Stranka MapToRacunStranka(MySqlDataReader reader)
         {
