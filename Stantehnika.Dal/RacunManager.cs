@@ -900,6 +900,92 @@ namespace Stantehnika.Dal
 
             return racuni;
         }
+
+        public int GetSkupajIzdanihRacunov()
+        {
+            int skupajIzdanihRacunov = 0;
+
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = "SELECT COUNT(*) AS SkupajIzdanihRacunov FROM RacunGlava;";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        skupajIzdanihRacunov = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju skupnega števila izdanih računov: " + ex.Message);
+            }
+
+            return skupajIzdanihRacunov;
+        }
+
+        public decimal GetSkupniPrilivOdZacetka()
+        {
+            decimal skupniPriliv = 0.00m;
+
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = "SELECT SUM(rp.CenaPostavke) AS SkupniPriliv " +
+                                   "FROM RacunPostavka rp " +
+                                   "JOIN RacunGlava rg ON rp.RacunGlavaID = rg.RacunGlavaID " +
+                                   "WHERE rg.Datum >= '2024-10-15';";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        var result = command.ExecuteScalar();
+                        if (result != DBNull.Value)
+                        {
+                            skupniPriliv = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju skupnega priliva od začetka: " + ex.Message);
+            }
+
+            return skupniPriliv;
+        }
+
+        public int GetSkupnoSteviloStrank()
+        {
+            int steviloStrank = 0;
+
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = "SELECT COUNT(*) AS SkupnoSteviloStrank FROM Stranka;";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        var result = command.ExecuteScalar();
+                        if (result != DBNull.Value)
+                        {
+                            steviloStrank = Convert.ToInt32(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju števila strank: " + ex.Message);
+            }
+
+            return steviloStrank;
+        }
         #endregion methods
     }
 }

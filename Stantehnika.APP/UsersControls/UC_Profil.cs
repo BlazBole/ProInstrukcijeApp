@@ -16,13 +16,13 @@ namespace Stantehnika.APP.UsersControls
         public UC_Profil()
         {
             InitializeComponent();
-            NaloziOpravljenaDela();
+            NaloziObrazecProfil();
 
         }
         #endregion constructor
 
         #region methods
-        public void NaloziOpravljenaDela()
+        public void NaloziObrazecProfil()
         {
             RacunManager racunManager = new RacunManager();
             List<RacunGlava> izpisek = racunManager.GetOpravljenaDelaZaTekociMesec();
@@ -53,6 +53,10 @@ namespace Stantehnika.APP.UsersControls
             var (prviDanTrenutnegaMeseca, zadnjiDanTrenutnegaMeseca, prviDanPrejsnjegaMeseca, zadnjiDanPrejsnjegaMeseca) = PridobiDatumskiObsegZaPrejsnjiMesec();
             PrikaziSkupniPrilivZaMesec(prviDanTrenutnegaMeseca, zadnjiDanTrenutnegaMeseca);
             PrikaziSkupniPrilivPrejsnjiMesec(prviDanPrejsnjegaMeseca, zadnjiDanPrejsnjegaMeseca);
+
+            PrikaziSkupajIzdanihRacunov();
+            PrikaziSkupniPrilivOdZacetka();
+            PrikaziSteviloStrank();
         }
 
         public (DateTime prviDanMeseca, DateTime zadnjiDanMeseca) PridobiDatumskiObsegZaTekociMesec()
@@ -97,7 +101,6 @@ namespace Stantehnika.APP.UsersControls
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Klic funkcije za shranjevanje tabele v CSV
                 SaveDataGridViewToCSV(saveFileDialog.FileName);
             }
         }
@@ -116,6 +119,30 @@ namespace Stantehnika.APP.UsersControls
             }
 
             File.WriteAllText(filePath, sb.ToString());
+        }
+
+        private void PrikaziSkupajIzdanihRacunov()
+        {
+            RacunManager racunManager = new RacunManager();
+            int skupajIzdanihRacunov = racunManager.GetSkupajIzdanihRacunov();
+
+            lblSkupajIzdanihRacunov.Text = skupajIzdanihRacunov.ToString();
+        }
+
+        private void PrikaziSkupniPrilivOdZacetka()
+        {
+            RacunManager racunManager = new RacunManager();
+            decimal skupniPriliv = racunManager.GetSkupniPrilivOdZacetka();
+
+            lblSkupniPriliv.Text = skupniPriliv.ToString("N2") + " €";
+        }
+
+        private void PrikaziSteviloStrank()
+        {
+            RacunManager racunManager = new RacunManager();
+            int steviloStrank = racunManager.GetSkupnoSteviloStrank();
+
+            lblSkupnoSteviloStrank.Text = steviloStrank.ToString();
         }
         #endregion methods
 
