@@ -198,6 +198,9 @@
             this.lblGlavaStatistika.Size = new System.Drawing.Size(77, 23);
             this.lblGlavaStatistika.TabIndex = 1;
             this.lblGlavaStatistika.Text = "Statistika";
+            this.lblGlavaStatistika.Click += new System.EventHandler(this.lblGlavaStatistika_Click);
+            this.lblGlavaStatistika.MouseLeave += new System.EventHandler(this.lblGlavaStatistika_MouseLeave);
+            this.lblGlavaStatistika.MouseHover += new System.EventHandler(this.lblGlavaStatistika_MouseHover);
             // 
             // pbGlavaStatistika
             // 
@@ -208,6 +211,7 @@
             this.pbGlavaStatistika.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbGlavaStatistika.TabIndex = 0;
             this.pbGlavaStatistika.TabStop = false;
+            this.pbGlavaStatistika.Click += new System.EventHandler(this.pbGlavaStatistika_Click);
             // 
             // gbGlavaStranke
             // 

@@ -144,7 +144,6 @@ namespace Stantehnika.APP.UsersControls
             dataGridView.Columns["DatumOpravljeno"].HeaderText = "Opravljeno";
             dataGridView.Columns["NazivPodjetja"].HeaderText = "Stranka";
             dataGridView.Columns["CenaDelo"].HeaderText = "Cena dela";
-            dataGridView.Columns["CenaMaterial"].HeaderText = "Cena materiala";
             dataGridView.Columns["SkupnaCena"].HeaderText = "Skupna cena";
 
 
@@ -162,6 +161,7 @@ namespace Stantehnika.APP.UsersControls
             dataGridView.Columns["StrankaID"].Visible = false;
             dataGridView.Columns["Stranka"].Visible = false;
             dataGridView.Columns["ImeInPriimek"].Visible = false;
+            dataGridView.Columns["CenaMaterial"].Visible = false;
             dataGridView.Columns["XMLPodatki"].Visible = false;
 
             if (racuni.Count > 0)

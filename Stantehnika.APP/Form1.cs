@@ -43,6 +43,14 @@ namespace Stantehnika.APP
             lblGlavaProfil.Controls.Add(homeControl);
         }
 
+        private void ShowUC_Statistika()
+        {
+            UC_Statistika homeControl = new UC_Statistika();
+            homeControl.Dock = DockStyle.Fill;
+            lblGlavaProfil.Controls.Clear();
+            lblGlavaProfil.Controls.Add(homeControl);
+        }
+
         private void ShowForm_VnosRacuna()
         {
             VnosRacuna form = new VnosRacuna();
@@ -169,6 +177,16 @@ namespace Stantehnika.APP
             ShowUC_Profil();
         }
 
+        private void lblGlavaStatistika_Click(object sender, EventArgs e)
+        {
+            ShowUC_Statistika();
+        }
+
+        private void pbGlavaStatistika_Click(object sender, EventArgs e)
+        {
+            ShowUC_Statistika();
+        }
+
         private void lblGlavaNovRacun_Click(object sender, EventArgs e)
         {
             ShowForm_VnosRacuna();
@@ -209,6 +227,15 @@ namespace Stantehnika.APP
             lblGlavaPodjetje.ForeColor = Color.Black;
         }
 
+        private void lblGlavaStatistika_MouseHover(object sender, EventArgs e)
+        {
+            lblGlavaStatistika.ForeColor = Color.DodgerBlue;
+        }
+
+        private void lblGlavaStatistika_MouseLeave(object sender, EventArgs e)
+        {
+            lblGlavaStatistika.ForeColor = Color.Black;
+        }
         #endregion events
     }
 }

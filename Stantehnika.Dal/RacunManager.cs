@@ -986,6 +986,235 @@ namespace Stantehnika.Dal
 
             return steviloStrank;
         }
+
+        public Dictionary<int, decimal> GetZasluzkiPoMesecihZaLeto(int leto)
+        {
+            Dictionary<int, decimal> zasluzkiPoMesecih = new Dictionary<int, decimal>();
+
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                        MONTH(r.Datum) AS Mesec, -- Dobi številko meseca
+                        SUM(p.CenaEneKolicine * p.Kolicina) AS SkupnaCena
+                        FROM RacunGlava r
+                        JOIN RacunPostavka p ON r.RacunGlavaID = p.RacunGlavaID
+                        WHERE YEAR(r.Datum) = @Leto
+                        GROUP BY MONTH(r.Datum)
+                        ORDER BY MONTH(r.Datum)";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Leto", leto);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int mesec = reader.GetInt32("Mesec");
+                                decimal zasluzek = reader.GetDecimal("SkupnaCena");
+                                zasluzkiPoMesecih[mesec] = zasluzek;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju zaslužkov po mesecih: " + ex.Message);
+            }
+
+            return zasluzkiPoMesecih;
+        }
+
+        public Dictionary<int, decimal> GetSkupniPrihodkiPoLetih()
+        {
+            Dictionary<int, decimal> prihodkiPoLetih = new Dictionary<int, decimal>();
+
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                        YEAR(r.Datum) AS Leto, 
+                        SUM(p.CenaEneKolicine * p.Kolicina) AS SkupniPrihodek
+                        FROM RacunGlava r
+                        JOIN RacunPostavka p ON r.RacunGlavaID = p.RacunGlavaID
+                        GROUP BY YEAR(r.Datum)
+                        ORDER BY YEAR(r.Datum)";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int leto = reader.GetInt32("Leto");
+                                decimal prihodki = reader.GetDecimal("SkupniPrihodek");
+                                prihodkiPoLetih[leto] = prihodki;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju prihodkov po letih: " + ex.Message);
+            }
+
+            return prihodkiPoLetih;
+        }
+
+        public (string nazivStranke, decimal znesek) GetStrankaZNajvecPrihodki()
+        {
+            string nazivStranke = null;
+            decimal znesek = 0;
+
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                        COALESCE(s.NazivPodjetja, s.ImeInPriimek) AS Stranka,
+                        SUM(p.CenaEneKolicine * p.Kolicina) AS SkupniPrihodki
+                        FROM RacunGlava r
+                        JOIN RacunPostavka p ON r.RacunGlavaID = p.RacunGlavaID
+                        JOIN Stranka s ON r.StrankaID = s.StrankaID
+                        GROUP BY r.StrankaID
+                        ORDER BY SkupniPrihodki DESC
+                        LIMIT 1";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            nazivStranke = reader.GetString("Stranka");
+                            znesek = reader.GetDecimal("SkupniPrihodki");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju stranke z največ prihodki: " + ex.Message);
+            }
+
+            return (nazivStranke, znesek);
+        }
+
+        public (int steviloFizicnih, int steviloPravnih) GetSteviloStrank()
+        {
+            int steviloFizicnih = 0;
+            int steviloPravnih = 0;
+
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                        SUM(CASE WHEN s.NazivPodjetja IS NULL THEN 1 ELSE 0 END) AS FizicneStranke,
+                        SUM(CASE WHEN s.NazivPodjetja IS NOT NULL THEN 1 ELSE 0 END) AS PravneStranke
+                        FROM Stranka s";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            steviloFizicnih = reader.GetInt32("FizicneStranke");
+                            steviloPravnih = reader.GetInt32("PravneStranke");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju števila strank: " + ex.Message);
+            }
+
+            return (steviloFizicnih, steviloPravnih);
+        }
+
+        public Dictionary<int, int> GetSteviloNovihStrankPoMesecih(int leto)
+        {
+            Dictionary<int, int> steviloNovihStrank = new Dictionary<int, int>();
+
+            try
+            {
+                using (var connection = dbConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"
+                SELECT 
+    MONTH(MinDatum.PrviRacunDatum) AS Mesec,
+    COUNT(MinDatum.StrankaID) AS SteviloNovihStrank
+FROM (
+    SELECT 
+        r.StrankaID,
+        MIN(r.DatumOpravljeno) AS PrviRacunDatum
+    FROM 
+        RacunGlava r
+    GROUP BY 
+        r.StrankaID
+) MinDatum
+WHERE 
+    YEAR(MinDatum.PrviRacunDatum) = @leto
+GROUP BY 
+    MONTH(MinDatum.PrviRacunDatum)
+ORDER BY 
+    Mesec;";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@leto", leto);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int mesec = reader.GetInt32("Mesec");
+                                int stevilo = reader.GetInt32("SteviloNovihStrank");
+
+                                // Dodaj število novih strank za določen mesec
+                                steviloNovihStrank[mesec] = stevilo;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Napaka pri pridobivanju števila novih strank: " + ex.Message);
+            }
+
+            // Poskrbi, da so vsi meseci prisotni v slovarju, tudi tisti, kjer ni novih strank (0)
+            for (int mesec = 1; mesec <= 12; mesec++)
+            {
+                if (!steviloNovihStrank.ContainsKey(mesec))
+                {
+                    steviloNovihStrank[mesec] = 0;
+                }
+            }
+
+            return steviloNovihStrank;
+        }
+
+
+
+
+
+
+
         #endregion methods
     }
 }
